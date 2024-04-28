@@ -7,19 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
-namespace SISACON
+namespace SISACON.FormInitial
 {
-    public partial class FormLogin : Form
+    public partial class FormInitial : Form
     {
-        public FormLogin()
+        public FormInitial()
         {
             InitializeComponent();
+
+            // Atualiza o texto da label com o nome do usuário logado
+            lblUsuarioLogado.Text = "Bem vindo: " + UsuarioLogado.Login;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Login realizado com sucesso");
-        }
+
     }
 }

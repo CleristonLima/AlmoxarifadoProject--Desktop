@@ -33,7 +33,7 @@ namespace SISACON
             this.lblSenha = new System.Windows.Forms.Label();
             this.txtBoxLogin = new System.Windows.Forms.TextBox();
             this.txtBoxSenha = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnEntrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblLogin
@@ -73,24 +73,24 @@ namespace SISACON
             this.txtBoxSenha.Size = new System.Drawing.Size(186, 23);
             this.txtBoxSenha.TabIndex = 3;
             // 
-            // button1
+            // btnEntrar
             // 
-            this.button1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(188, 153);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 33);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Entrar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnEntrar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEntrar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnEntrar.Location = new System.Drawing.Point(188, 153);
+            this.btnEntrar.Name = "btnEntrar";
+            this.btnEntrar.Size = new System.Drawing.Size(118, 33);
+            this.btnEntrar.TabIndex = 4;
+            this.btnEntrar.Text = "Entrar";
+            this.btnEntrar.UseVisualStyleBackColor = true;
+            this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
             // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(495, 236);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.txtBoxSenha);
             this.Controls.Add(this.txtBoxLogin);
             this.Controls.Add(this.lblSenha);
@@ -109,7 +109,7 @@ namespace SISACON
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.TextBox txtBoxLogin;
         private System.Windows.Forms.TextBox txtBoxSenha;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnEntrar;
     }
 }
 

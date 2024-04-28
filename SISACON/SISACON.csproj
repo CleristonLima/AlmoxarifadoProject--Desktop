@@ -46,15 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="ConexaoBD\ConexaoBancoDados.cs" />
+    <Compile Include="ConexaoInternet\ConexaoInternet.cs" />
+    <Compile Include="FormInitial\FormInitial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
+    <Compile Include="FormInitial\FormInitial.Designer.cs">
+      <DependentUpon>FormInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormLogin.resx">
+    <EmbeddedResource Include="FormInitial\FormInitial.resx">
+      <DependentUpon>FormInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -65,6 +76,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -78,6 +90,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\CadastroUsuario.jpg" />
+    <Content Include="Images\Consulta.png" />
+    <Content Include="Images\Engrenagem.jpg" />
+    <Content Include="Images\Ferramentas.jpg" />
+    <Content Include="Images\Maquina.jpg" />
+    <Content Include="Images\Perfil.png" />
+    <Content Include="Images\RH.png" />
+    <Content Include="Images\Sair.png" />
+    <Content Include="Images\Veiculo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
