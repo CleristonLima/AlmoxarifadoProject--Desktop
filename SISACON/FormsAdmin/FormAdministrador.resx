@@ -117,35 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="RH" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\RH.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Sair" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Sair.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Veiculo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Veiculo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Consulta" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Consulta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CadastroUsuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\CadastroUsuario.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Ferramentas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Ferramentas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Perfil" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Perfil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Engrenagem" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Engrenagem.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Maquina" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Maquina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Setinha_Voltar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Setinha_Voltar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

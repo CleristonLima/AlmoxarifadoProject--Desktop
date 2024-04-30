@@ -35,15 +35,15 @@ namespace SISACON.FormInitial
             this.linkLblMaquinas = new System.Windows.Forms.LinkLabel();
             this.linkLblVeiculos = new System.Windows.Forms.LinkLabel();
             this.linkLblFerramentas = new System.Windows.Forms.LinkLabel();
+            this.linkLblSair = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblUsuarioLogado = new System.Windows.Forms.Label();
             this.btnSair = new System.Windows.Forms.Button();
             this.btnFerramentas = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnMaquina = new System.Windows.Forms.Button();
             this.btnRH = new System.Windows.Forms.Button();
             this.btnAdmin = new System.Windows.Forms.Button();
-            this.linkLblSair = new System.Windows.Forms.LinkLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblUsuarioLogado = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // linklblAdmin
@@ -101,6 +101,37 @@ namespace SISACON.FormInitial
             this.linkLblFerramentas.TabStop = true;
             this.linkLblFerramentas.Text = "Ferramentas";
             // 
+            // linkLblSair
+            // 
+            this.linkLblSair.AutoSize = true;
+            this.linkLblSair.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLblSair.Location = new System.Drawing.Point(95, 590);
+            this.linkLblSair.Name = "linkLblSair";
+            this.linkLblSair.Size = new System.Drawing.Size(35, 19);
+            this.linkLblSair.TabIndex = 16;
+            this.linkLblSair.TabStop = true;
+            this.linkLblSair.Text = "Sair";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(278, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(620, 29);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Olá selecione uma das opções abaixo para acessar o sistema.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblUsuarioLogado
+            // 
+            this.lblUsuarioLogado.AutoSize = true;
+            this.lblUsuarioLogado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuarioLogado.Location = new System.Drawing.Point(962, 20);
+            this.lblUsuarioLogado.Name = "lblUsuarioLogado";
+            this.lblUsuarioLogado.Size = new System.Drawing.Size(0, 15);
+            this.lblUsuarioLogado.TabIndex = 18;
+            // 
             // btnSair
             // 
             this.btnSair.Image = global::SISACON.Properties.Resources.Sair;
@@ -154,37 +185,7 @@ namespace SISACON.FormInitial
             this.btnAdmin.Size = new System.Drawing.Size(144, 149);
             this.btnAdmin.TabIndex = 0;
             this.btnAdmin.UseVisualStyleBackColor = true;
-            // 
-            // linkLblSair
-            // 
-            this.linkLblSair.AutoSize = true;
-            this.linkLblSair.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLblSair.Location = new System.Drawing.Point(95, 590);
-            this.linkLblSair.Name = "linkLblSair";
-            this.linkLblSair.Size = new System.Drawing.Size(35, 19);
-            this.linkLblSair.TabIndex = 16;
-            this.linkLblSair.TabStop = true;
-            this.linkLblSair.Text = "Sair";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(278, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(620, 29);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Olá selecione uma das opções abaixo para acessar o sistema.";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblUsuarioLogado
-            // 
-            this.lblUsuarioLogado.AutoSize = true;
-            this.lblUsuarioLogado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioLogado.Location = new System.Drawing.Point(962, 20);
-            this.lblUsuarioLogado.Name = "lblUsuarioLogado";
-            this.lblUsuarioLogado.Size = new System.Drawing.Size(0, 15);
-            this.lblUsuarioLogado.TabIndex = 18;
+            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
             // 
             // FormInitial
             // 

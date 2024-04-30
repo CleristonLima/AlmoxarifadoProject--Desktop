@@ -63,6 +63,26 @@ namespace SISACON.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CadastroUsuario {
+            get {
+                object obj = ResourceManager.GetObject("CadastroUsuario", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Consulta {
+            get {
+                object obj = ResourceManager.GetObject("Consulta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Engrenagem {
             get {
                 object obj = ResourceManager.GetObject("Engrenagem", resourceCulture);
@@ -93,6 +113,16 @@ namespace SISACON.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Perfil {
+            get {
+                object obj = ResourceManager.GetObject("Perfil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap RH {
             get {
                 object obj = ResourceManager.GetObject("RH", resourceCulture);
@@ -106,6 +136,16 @@ namespace SISACON.Properties {
         internal static System.Drawing.Bitmap Sair {
             get {
                 object obj = ResourceManager.GetObject("Sair", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Setinha_Voltar {
+            get {
+                object obj = ResourceManager.GetObject("Setinha_Voltar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
