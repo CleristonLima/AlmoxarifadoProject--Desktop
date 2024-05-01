@@ -58,19 +58,19 @@ namespace SISACON
             // 
             // txtBoxLogin
             // 
-            this.txtBoxLogin.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxLogin.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxLogin.Location = new System.Drawing.Point(163, 42);
             this.txtBoxLogin.Name = "txtBoxLogin";
-            this.txtBoxLogin.Size = new System.Drawing.Size(186, 23);
+            this.txtBoxLogin.Size = new System.Drawing.Size(186, 26);
             this.txtBoxLogin.TabIndex = 2;
             // 
             // txtBoxSenha
             // 
-            this.txtBoxSenha.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxSenha.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxSenha.Location = new System.Drawing.Point(163, 93);
             this.txtBoxSenha.Name = "txtBoxSenha";
             this.txtBoxSenha.PasswordChar = '*';
-            this.txtBoxSenha.Size = new System.Drawing.Size(186, 23);
+            this.txtBoxSenha.Size = new System.Drawing.Size(186, 26);
             this.txtBoxSenha.TabIndex = 3;
             // 
             // btnEntrar
@@ -97,6 +97,7 @@ namespace SISACON
             this.Controls.Add(this.lblLogin);
             this.MaximizeBox = false;
             this.Name = "FormLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISACON";
             this.ResumeLayout(false);
             this.PerformLayout();
