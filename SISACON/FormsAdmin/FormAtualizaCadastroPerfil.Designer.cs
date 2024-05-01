@@ -31,8 +31,8 @@ namespace SISACON.FormsAdmin
         {
             this.lblUsuarioLogado = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.comboBoxPerfil = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBoxPerfil = new System.Windows.Forms.GroupBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtCodigoPerfil = new System.Windows.Forms.TextBox();
@@ -60,6 +60,9 @@ namespace SISACON.FormsAdmin
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.comboBoxPerfil);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
@@ -71,16 +74,6 @@ namespace SISACON.FormsAdmin
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selecione o perfil pra ser alterado";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(6, 58);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Perfil:";
-            // 
             // comboBoxPerfil
             // 
             this.comboBoxPerfil.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -91,8 +84,22 @@ namespace SISACON.FormsAdmin
             this.comboBoxPerfil.TabIndex = 1;
             this.comboBoxPerfil.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(6, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Perfil:";
+            // 
             // groupBoxPerfil
             // 
+            this.groupBoxPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxPerfil.AutoSize = true;
             this.groupBoxPerfil.Controls.Add(this.lblTitle);
             this.groupBoxPerfil.Controls.Add(this.txtCodigoPerfil);
             this.groupBoxPerfil.Controls.Add(this.txtNomePerfil);
@@ -104,7 +111,7 @@ namespace SISACON.FormsAdmin
                 | System.Drawing.FontStyle.Underline))));
             this.groupBoxPerfil.Location = new System.Drawing.Point(12, 160);
             this.groupBoxPerfil.Name = "groupBoxPerfil";
-            this.groupBoxPerfil.Size = new System.Drawing.Size(655, 286);
+            this.groupBoxPerfil.Size = new System.Drawing.Size(655, 289);
             this.groupBoxPerfil.TabIndex = 25;
             this.groupBoxPerfil.TabStop = false;
             this.groupBoxPerfil.Text = "Cadastro de Perfil";
@@ -142,7 +149,7 @@ namespace SISACON.FormsAdmin
             this.btnVoltar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnVoltar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.ForeColor = System.Drawing.Color.Red;
-            this.btnVoltar.Location = new System.Drawing.Point(387, 220);
+            this.btnVoltar.Location = new System.Drawing.Point(387, 221);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(107, 37);
             this.btnVoltar.TabIndex = 16;
@@ -155,7 +162,7 @@ namespace SISACON.FormsAdmin
             this.btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSalvar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.ForeColor = System.Drawing.Color.Green;
-            this.btnSalvar.Location = new System.Drawing.Point(521, 220);
+            this.btnSalvar.Location = new System.Drawing.Point(521, 221);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(107, 37);
             this.btnSalvar.TabIndex = 15;
@@ -191,6 +198,7 @@ namespace SISACON.FormsAdmin
             this.Controls.Add(this.groupBoxPerfil);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblUsuarioLogado);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "FormAtualizaCadastroPerfil";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

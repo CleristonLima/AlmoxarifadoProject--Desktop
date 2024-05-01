@@ -29,6 +29,7 @@ namespace SISACON.FormsAdmin
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAdministrador));
             this.linklblAdmin = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
@@ -68,26 +69,27 @@ namespace SISACON.FormsAdmin
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel2.Location = new System.Drawing.Point(754, 308);
+            this.linkLabel2.Location = new System.Drawing.Point(710, 308);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(144, 19);
+            this.linkLabel2.Size = new System.Drawing.Size(242, 19);
             this.linkLabel2.TabIndex = 13;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Consulta de usuário";
+            this.linkLabel2.Text = "Consultar/Alterar dados de acesso";
             this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnConsultaUsuário
             // 
-            this.btnConsultaUsuário.Image = global::SISACON.Properties.Resources.Consulta;
-            this.btnConsultaUsuário.Location = new System.Drawing.Point(758, 133);
+            this.btnConsultaUsuário.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultaUsuário.Image")));
+            this.btnConsultaUsuário.Location = new System.Drawing.Point(757, 131);
             this.btnConsultaUsuário.Name = "btnConsultaUsuário";
-            this.btnConsultaUsuário.Size = new System.Drawing.Size(156, 156);
+            this.btnConsultaUsuário.Size = new System.Drawing.Size(157, 156);
             this.btnConsultaUsuário.TabIndex = 2;
             this.btnConsultaUsuário.UseVisualStyleBackColor = true;
+            this.btnConsultaUsuário.Click += new System.EventHandler(this.btnConsultaUsuário_Click);
             // 
             // btnCadastroPerfil
             // 
-            this.btnCadastroPerfil.Image = global::SISACON.Properties.Resources.Perfil;
+            this.btnCadastroPerfil.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastroPerfil.Image")));
             this.btnCadastroPerfil.Location = new System.Drawing.Point(429, 131);
             this.btnCadastroPerfil.Name = "btnCadastroPerfil";
             this.btnCadastroPerfil.Size = new System.Drawing.Size(176, 158);
@@ -97,7 +99,7 @@ namespace SISACON.FormsAdmin
             // 
             // btnCadastroUser
             // 
-            this.btnCadastroUser.Image = global::SISACON.Properties.Resources.CadastroUsuario;
+            this.btnCadastroUser.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastroUser.Image")));
             this.btnCadastroUser.Location = new System.Drawing.Point(111, 131);
             this.btnCadastroUser.Margin = new System.Windows.Forms.Padding(10);
             this.btnCadastroUser.Name = "btnCadastroUser";

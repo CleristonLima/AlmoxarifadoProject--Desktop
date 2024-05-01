@@ -56,6 +56,9 @@ namespace SISACON.FormsAdmin
             // 
             // groupBoxPerfil
             // 
+            this.groupBoxPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxPerfil.Controls.Add(this.lblTitle);
             this.groupBoxPerfil.Controls.Add(this.txtCodigoPerfil);
             this.groupBoxPerfil.Controls.Add(this.txtNomePerfil);
@@ -84,6 +87,9 @@ namespace SISACON.FormsAdmin
             // 
             // txtCodigoPerfil
             // 
+            this.txtCodigoPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCodigoPerfil.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigoPerfil.Location = new System.Drawing.Point(146, 117);
             this.txtCodigoPerfil.Name = "txtCodigoPerfil";
@@ -92,6 +98,9 @@ namespace SISACON.FormsAdmin
             // 
             // txtNomePerfil
             // 
+            this.txtNomePerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNomePerfil.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomePerfil.Location = new System.Drawing.Point(146, 65);
             this.txtNomePerfil.Name = "txtNomePerfil";

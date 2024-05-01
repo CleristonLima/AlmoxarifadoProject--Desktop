@@ -73,6 +73,16 @@ namespace SISACON.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CadastroUsuario1 {
+            get {
+                object obj = ResourceManager.GetObject("CadastroUsuario1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Consulta {
             get {
                 object obj = ResourceManager.GetObject("Consulta", resourceCulture);
@@ -136,16 +146,6 @@ namespace SISACON.Properties {
         internal static System.Drawing.Bitmap Sair {
             get {
                 object obj = ResourceManager.GetObject("Sair", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Setinha_Voltar {
-            get {
-                object obj = ResourceManager.GetObject("Setinha_Voltar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

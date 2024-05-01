@@ -1,7 +1,7 @@
 ﻿
 namespace SISACON.FormsAdmin
 {
-    partial class FormCadastroUsuario
+    partial class FormConsultaEAlteracaoDeDadosDeAcesso
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,11 @@ namespace SISACON.FormsAdmin
         /// </summary>
         private void InitializeComponent()
         {
+            this.groupBoxPesquisaUsuario = new System.Windows.Forms.GroupBox();
+            this.txtLoginPesquisa = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblUsuarioLogado = new System.Windows.Forms.Label();
+            this.btnPesquisar = new System.Windows.Forms.Button();
             this.groupBoxCadastro = new System.Windows.Forms.GroupBox();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
@@ -44,14 +49,77 @@ namespace SISACON.FormsAdmin
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblSenha = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblUsuarioLogado = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnLimpar = new System.Windows.Forms.Button();
+            this.groupBoxPesquisaUsuario.SuspendLayout();
             this.groupBoxCadastro.SuspendLayout();
             this.SuspendLayout();
             // 
+            // groupBoxPesquisaUsuario
+            // 
+            this.groupBoxPesquisaUsuario.Controls.Add(this.btnLimpar);
+            this.groupBoxPesquisaUsuario.Controls.Add(this.btnPesquisar);
+            this.groupBoxPesquisaUsuario.Controls.Add(this.txtLoginPesquisa);
+            this.groupBoxPesquisaUsuario.Controls.Add(this.label1);
+            this.groupBoxPesquisaUsuario.Font = new System.Drawing.Font("Calibri", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))));
+            this.groupBoxPesquisaUsuario.Location = new System.Drawing.Point(12, 29);
+            this.groupBoxPesquisaUsuario.Name = "groupBoxPesquisaUsuario";
+            this.groupBoxPesquisaUsuario.Size = new System.Drawing.Size(571, 93);
+            this.groupBoxPesquisaUsuario.TabIndex = 22;
+            this.groupBoxPesquisaUsuario.TabStop = false;
+            this.groupBoxPesquisaUsuario.Text = "Consulta de usuário";
+            // 
+            // txtLoginPesquisa
+            // 
+            this.txtLoginPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLoginPesquisa.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLoginPesquisa.Location = new System.Drawing.Point(62, 42);
+            this.txtLoginPesquisa.Name = "txtLoginPesquisa";
+            this.txtLoginPesquisa.Size = new System.Drawing.Size(256, 26);
+            this.txtLoginPesquisa.TabIndex = 17;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Login:";
+            // 
+            // lblUsuarioLogado
+            // 
+            this.lblUsuarioLogado.AutoSize = true;
+            this.lblUsuarioLogado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuarioLogado.Location = new System.Drawing.Point(870, 9);
+            this.lblUsuarioLogado.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.lblUsuarioLogado.Name = "lblUsuarioLogado";
+            this.lblUsuarioLogado.Size = new System.Drawing.Size(0, 15);
+            this.lblUsuarioLogado.TabIndex = 23;
+            this.lblUsuarioLogado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnPesquisar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnPesquisar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisar.ForeColor = System.Drawing.Color.Yellow;
+            this.btnPesquisar.Location = new System.Drawing.Point(338, 35);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(107, 37);
+            this.btnPesquisar.TabIndex = 18;
+            this.btnPesquisar.Text = "Pesquisar";
+            this.btnPesquisar.UseVisualStyleBackColor = false;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
+            // 
             // groupBoxCadastro
             // 
-            this.groupBoxCadastro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBoxCadastro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxCadastro.Controls.Add(this.btnVoltar);
             this.groupBoxCadastro.Controls.Add(this.btnSalvar);
@@ -67,23 +135,22 @@ namespace SISACON.FormsAdmin
             this.groupBoxCadastro.Controls.Add(this.lblEmail);
             this.groupBoxCadastro.Controls.Add(this.lblSenha);
             this.groupBoxCadastro.Controls.Add(this.label2);
-            this.groupBoxCadastro.Controls.Add(this.label1);
+            this.groupBoxCadastro.Controls.Add(this.label3);
             this.groupBoxCadastro.Font = new System.Drawing.Font("Calibri", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxCadastro.Location = new System.Drawing.Point(12, 27);
+            this.groupBoxCadastro.Location = new System.Drawing.Point(12, 156);
             this.groupBoxCadastro.Name = "groupBoxCadastro";
-            this.groupBoxCadastro.Size = new System.Drawing.Size(956, 383);
-            this.groupBoxCadastro.TabIndex = 0;
+            this.groupBoxCadastro.Size = new System.Drawing.Size(942, 402);
+            this.groupBoxCadastro.TabIndex = 24;
             this.groupBoxCadastro.TabStop = false;
             this.groupBoxCadastro.Text = "Cadastro de usuário";
-            this.groupBoxCadastro.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnVoltar
             // 
             this.btnVoltar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnVoltar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.ForeColor = System.Drawing.Color.Red;
-            this.btnVoltar.Location = new System.Drawing.Point(607, 331);
+            this.btnVoltar.Location = new System.Drawing.Point(602, 353);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(107, 37);
             this.btnVoltar.TabIndex = 14;
@@ -96,7 +163,7 @@ namespace SISACON.FormsAdmin
             this.btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSalvar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.ForeColor = System.Drawing.Color.Green;
-            this.btnSalvar.Location = new System.Drawing.Point(741, 331);
+            this.btnSalvar.Location = new System.Drawing.Point(736, 353);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(107, 37);
             this.btnSalvar.TabIndex = 13;
@@ -108,7 +175,7 @@ namespace SISACON.FormsAdmin
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(11, 337);
+            this.lblTitle.Location = new System.Drawing.Point(12, 336);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(155, 19);
             this.lblTitle.TabIndex = 12;
@@ -118,7 +185,7 @@ namespace SISACON.FormsAdmin
             // 
             this.cbxPerfil.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxPerfil.FormattingEnabled = true;
-            this.cbxPerfil.Location = new System.Drawing.Point(84, 288);
+            this.cbxPerfil.Location = new System.Drawing.Point(84, 285);
             this.cbxPerfil.Name = "cbxPerfil";
             this.cbxPerfil.Size = new System.Drawing.Size(176, 26);
             this.cbxPerfil.TabIndex = 11;
@@ -128,7 +195,7 @@ namespace SISACON.FormsAdmin
             // 
             this.cbxStatus.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxStatus.FormattingEnabled = true;
-            this.cbxStatus.Location = new System.Drawing.Point(84, 233);
+            this.cbxStatus.Location = new System.Drawing.Point(84, 230);
             this.cbxStatus.Name = "cbxStatus";
             this.cbxStatus.Size = new System.Drawing.Size(176, 26);
             this.cbxStatus.TabIndex = 10;
@@ -140,16 +207,15 @@ namespace SISACON.FormsAdmin
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmail.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(84, 186);
+            this.txtEmail.Location = new System.Drawing.Point(84, 183);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(872, 26);
+            this.txtEmail.Size = new System.Drawing.Size(858, 26);
             this.txtEmail.TabIndex = 9;
-            this.txtEmail.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // txtSenha
             // 
             this.txtSenha.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSenha.Location = new System.Drawing.Point(84, 140);
+            this.txtSenha.Location = new System.Drawing.Point(84, 137);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(307, 26);
@@ -158,11 +224,10 @@ namespace SISACON.FormsAdmin
             // txtLogin
             // 
             this.txtLogin.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLogin.Location = new System.Drawing.Point(84, 95);
+            this.txtLogin.Location = new System.Drawing.Point(84, 92);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(307, 26);
             this.txtLogin.TabIndex = 7;
-            this.txtLogin.TextChanged += new System.EventHandler(this.txtLogin_TextChanged);
             // 
             // txtNome
             // 
@@ -170,16 +235,16 @@ namespace SISACON.FormsAdmin
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNome.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(84, 46);
+            this.txtNome.Location = new System.Drawing.Point(84, 43);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(872, 26);
+            this.txtNome.Size = new System.Drawing.Size(858, 26);
             this.txtNome.TabIndex = 6;
             // 
             // lblPerfil
             // 
             this.lblPerfil.AutoSize = true;
             this.lblPerfil.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPerfil.Location = new System.Drawing.Point(11, 290);
+            this.lblPerfil.Location = new System.Drawing.Point(11, 287);
             this.lblPerfil.Name = "lblPerfil";
             this.lblPerfil.Size = new System.Drawing.Size(65, 19);
             this.lblPerfil.TabIndex = 5;
@@ -189,7 +254,7 @@ namespace SISACON.FormsAdmin
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(11, 236);
+            this.lblStatus.Location = new System.Drawing.Point(11, 233);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(72, 19);
             this.lblStatus.TabIndex = 4;
@@ -199,7 +264,7 @@ namespace SISACON.FormsAdmin
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(11, 188);
+            this.lblEmail.Location = new System.Drawing.Point(11, 185);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(62, 19);
             this.lblEmail.TabIndex = 3;
@@ -209,7 +274,7 @@ namespace SISACON.FormsAdmin
             // 
             this.lblSenha.AutoSize = true;
             this.lblSenha.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSenha.Location = new System.Drawing.Point(11, 142);
+            this.lblSenha.Location = new System.Drawing.Point(11, 139);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(71, 19);
             this.lblSenha.TabIndex = 2;
@@ -219,48 +284,51 @@ namespace SISACON.FormsAdmin
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 97);
+            this.label2.Location = new System.Drawing.Point(10, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "* Login:";
             // 
-            // label1
+            // label3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "* Nome:";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 19);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "* Nome:";
             // 
-            // lblUsuarioLogado
+            // btnLimpar
             // 
-            this.lblUsuarioLogado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblUsuarioLogado.AutoSize = true;
-            this.lblUsuarioLogado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioLogado.Location = new System.Drawing.Point(959, 9);
-            this.lblUsuarioLogado.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.lblUsuarioLogado.Name = "lblUsuarioLogado";
-            this.lblUsuarioLogado.Size = new System.Drawing.Size(0, 15);
-            this.lblUsuarioLogado.TabIndex = 19;
-            this.lblUsuarioLogado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnLimpar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnLimpar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.btnLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnLimpar.Location = new System.Drawing.Point(458, 35);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(107, 36);
+            this.btnLimpar.TabIndex = 25;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
-            // FormCadastroUsuario
+            // FormConsultaEAlteracaoDeDadosDeAcesso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(974, 422);
-            this.Controls.Add(this.lblUsuarioLogado);
+            this.ClientSize = new System.Drawing.Size(981, 569);
             this.Controls.Add(this.groupBoxCadastro);
-            this.Name = "FormCadastroUsuario";
-            this.Text = "CADASTRO DE USUÁRIO";
+            this.Controls.Add(this.lblUsuarioLogado);
+            this.Controls.Add(this.groupBoxPesquisaUsuario);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Name = "FormConsultaEAlteracaoDeDadosDeAcesso";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "CONSULTA E ALTERACAO DE DADOS DE ACESSO";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FormCadastroUsuario_Load);
+            this.Load += new System.EventHandler(this.FormConsultaEAlteracaoDeDadosDeAcesso_Load);
+            this.groupBoxPesquisaUsuario.ResumeLayout(false);
+            this.groupBoxPesquisaUsuario.PerformLayout();
             this.groupBoxCadastro.ResumeLayout(false);
             this.groupBoxCadastro.PerformLayout();
             this.ResumeLayout(false);
@@ -270,8 +338,15 @@ namespace SISACON.FormsAdmin
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBoxCadastro;
+        private System.Windows.Forms.GroupBox groupBoxPesquisaUsuario;
+        private System.Windows.Forms.TextBox txtLoginPesquisa;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblUsuarioLogado;
+        private System.Windows.Forms.Button btnPesquisar;
+        private System.Windows.Forms.GroupBox groupBoxCadastro;
+        private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ComboBox cbxPerfil;
         private System.Windows.Forms.ComboBox cbxStatus;
         private System.Windows.Forms.TextBox txtEmail;
@@ -283,9 +358,7 @@ namespace SISACON.FormsAdmin
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnVoltar;
-        private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnLimpar;
     }
 }

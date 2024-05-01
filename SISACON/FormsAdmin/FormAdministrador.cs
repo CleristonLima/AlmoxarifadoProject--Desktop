@@ -89,5 +89,11 @@ namespace SISACON.FormsAdmin
                 cadPerfil.Show();
             }
         }
+
+        private void btnConsultaUsuário_Click(object sender, EventArgs e)
+        {
+            var consultaPerfil = new SISACON.FormsAdmin.FormConsultaEAlteracaoDeDadosDeAcesso();
+            consultaPerfil.Show();
+        }
     }
 }
