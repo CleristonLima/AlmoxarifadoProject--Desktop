@@ -55,13 +55,14 @@ namespace SISACON.FormsAdmin
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(441, 308);
+            this.linkLabel1.Location = new System.Drawing.Point(489, 308);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(130, 19);
+            this.linkLabel1.Size = new System.Drawing.Size(47, 19);
             this.linkLabel1.TabIndex = 12;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Cadastro de perfil";
+            this.linkLabel1.Text = "Perfis";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // linkLabel2
             // 
@@ -92,6 +93,7 @@ namespace SISACON.FormsAdmin
             this.btnCadastroPerfil.Size = new System.Drawing.Size(176, 158);
             this.btnCadastroPerfil.TabIndex = 1;
             this.btnCadastroPerfil.UseVisualStyleBackColor = true;
+            this.btnCadastroPerfil.Click += new System.EventHandler(this.btnCadastroPerfil_Click);
             // 
             // btnCadastroUser
             // 
@@ -122,7 +124,7 @@ namespace SISACON.FormsAdmin
             // 
             this.lblUsuarioLogado.AutoSize = true;
             this.lblUsuarioLogado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioLogado.Location = new System.Drawing.Point(914, 24);
+            this.lblUsuarioLogado.Location = new System.Drawing.Point(884, 9);
             this.lblUsuarioLogado.Name = "lblUsuarioLogado";
             this.lblUsuarioLogado.Size = new System.Drawing.Size(0, 15);
             this.lblUsuarioLogado.TabIndex = 19;

@@ -22,7 +22,7 @@ namespace SISACON.AdminClass.PerfilDao
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT ID_PROFILE, NAME_PROFILE FROM DB_ALMOXARIFADO..TB_AD_PROFILE";
+                string query = "SELECT ID_PROFILE, NAME_PROFILE, CODE_PROFILE FROM DB_ALMOXARIFADO..TB_AD_PROFILE";
                 SqlCommand command = new SqlCommand(query, connection);
 
                 connection.Open();
@@ -32,8 +32,9 @@ namespace SISACON.AdminClass.PerfilDao
                 {
                     int id_profile = Convert.ToInt32(reader["ID_PROFILE"]);
                     string name_profile = Convert.ToString(reader["NAME_PROFILE"]);
+                    string code_profile = Convert.ToString(reader["CODE_PROFILE"]);
 
-                    Perfis perfil = new Perfis(id_profile, name_profile);
+                    Perfis perfil = new Perfis(id_profile, name_profile, code_profile);
                     perfis.Add(perfil);
                 }
 

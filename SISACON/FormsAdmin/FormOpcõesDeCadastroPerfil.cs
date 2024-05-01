@@ -7,24 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
-using SISACON.ConexaoBD;
 
-namespace SISACON.FormInitial
+namespace SISACON.FormsAdmin
 {
-    public partial class FormInitial : Form
+    public partial class FormOpcõesDeCadastroPerfil : Form
     {
-        private readonly string connectionString = ConexaoBancoDados.conn_;
-
-        public FormInitial()
+        public FormOpcõesDeCadastroPerfil()
         {
             InitializeComponent();
-
-            // Atualiza o texto da label com o nome do usuário logado
-            lblUsuarioLogado.Text = "Bem vindo: " + UsuarioLogado.Login;
         }
 
-        private void btnAdmin_Click(object sender, EventArgs e)
+        private void linkLabelCadPerfil_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
             {
@@ -34,13 +27,12 @@ namespace SISACON.FormInitial
             else
             {
                 // Exibe o formulário de inicialização do sistema
-                var admin = new SISACON.FormsAdmin.FormAdministrador();
-                admin.Show();
-                this.Hide();
+                var cadUsuario = new SISACON.FormsAdmin.FormCadastroPerfil();
+                cadUsuario.Show();
             }
         }
 
-        private void linklblAdmin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabelAtualizarCadPerfil_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
             {
@@ -50,9 +42,8 @@ namespace SISACON.FormInitial
             else
             {
                 // Exibe o formulário de inicialização do sistema
-                var admin = new SISACON.FormsAdmin.FormAdministrador();
-                admin.Show();
-                this.Hide();
+                var cadUsuarioAtualiza = new SISACON.FormsAdmin.FormAtualizaCadastroPerfil();
+                cadUsuarioAtualiza.Show();
             }
 
         }

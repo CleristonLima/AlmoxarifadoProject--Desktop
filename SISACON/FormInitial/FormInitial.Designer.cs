@@ -56,6 +56,7 @@ namespace SISACON.FormInitial
             this.linklblAdmin.TabIndex = 10;
             this.linklblAdmin.TabStop = true;
             this.linklblAdmin.Text = "Administração";
+            this.linklblAdmin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklblAdmin_LinkClicked);
             // 
             // linkLblRH
             // 

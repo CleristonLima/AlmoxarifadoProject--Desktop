@@ -37,6 +37,11 @@ namespace SISACON.FormsAdmin
 
         }
 
+        private void txtLogin_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
         // Método para preencher o ComboBox de status
         private void PreencherComboBoxStatus()
         {
@@ -101,7 +106,7 @@ namespace SISACON.FormsAdmin
 
             if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
             {
-                MessageBox.Show("Sem Conexão com a internet!!");
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
                 return;
             }
             else
@@ -109,7 +114,7 @@ namespace SISACON.FormsAdmin
                 if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtLogin.Text) ||
                 string.IsNullOrWhiteSpace(txtSenha.Text) || string.IsNullOrWhiteSpace(txtEmail.Text))
                 {
-                    MessageBox.Show("Por favor, preencha todos os campos obrigatórios.");
+                    MessageBox.Show("Por favor, preencha todos os campos obrigatórios.", "CAMPOS NÃO PREENCHIDOS!");
                     return;
                 }
 
@@ -123,6 +128,14 @@ namespace SISACON.FormsAdmin
                 int perfilID = (int)cbxPerfil.SelectedValue;
 
                 DateTime dataHoraAtual = DateTime.Now;
+
+                // Verifica se ja existe login
+
+                if(LoginExiste(login))
+                {
+                    MessageBox.Show("O login informado já existe. Por favor, escolha outro.", "LOGIN JA EXISTE!");
+                    return;
+                }
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -142,14 +155,42 @@ namespace SISACON.FormsAdmin
                 }
 
                 MessageBox.Show("Os dados foram salvos com sucesso!");
+
+                LimparCampos();
             }
+        }
+
+        private bool LoginExiste(string login)
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT COUNT(*) FROM DB_ALMOXARIFADO..TB_AD_LOGIN WHERE LOGIN_NAME = @Login";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Login", login);
+
+                int count = (int)command.ExecuteScalar();
+                return count > 0;
+            }
+        }
+
+        private void LimparCampos()
+        {
+            txtNome.Text = "";
+            txtLogin.Text = "";
+            txtSenha.Text = "";
+            txtEmail.Text = "";
+            cbxStatus.SelectedIndex = 0; // Define o ComboBox de status para o primeiro item
+            cbxPerfil.SelectedIndex = 0; // Define o ComboBox de perfil para o primeiro item
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
             {
-                MessageBox.Show("Sem Conexão com a internet!!");
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
                 return;
             }
             else
@@ -160,5 +201,6 @@ namespace SISACON.FormsAdmin
                 this.Hide();
             }
         }
+
     }
 }

@@ -96,7 +96,7 @@ namespace SISACON.FormsAdmin
             // 
             this.btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSalvar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.ForeColor = System.Drawing.Color.Blue;
+            this.btnSalvar.ForeColor = System.Drawing.Color.Green;
             this.btnSalvar.Location = new System.Drawing.Point(720, 401);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(107, 37);
@@ -160,6 +160,7 @@ namespace SISACON.FormsAdmin
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(307, 26);
             this.txtLogin.TabIndex = 7;
+            this.txtLogin.TextChanged += new System.EventHandler(this.txtLogin_TextChanged);
             // 
             // txtNome
             // 

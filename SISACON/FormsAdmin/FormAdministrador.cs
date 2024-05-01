@@ -43,7 +43,7 @@ namespace SISACON.FormsAdmin
         {
             if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
             {
-                MessageBox.Show("Sem Conexão com a internet!!");
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
                 return;
             }
             else
@@ -58,6 +58,36 @@ namespace SISACON.FormsAdmin
         private void FormAdministrador_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCadastroPerfil_Click(object sender, EventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+                // Exibe o formulário de inicialização do sistema
+                var cadPerfil = new SISACON.FormsAdmin.FormOpcõesDeCadastroPerfil();
+                cadPerfil.Show();
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+                // Exibe o formulário de inicialização do sistema
+                var cadPerfil = new SISACON.FormsAdmin.FormOpcõesDeCadastroPerfil();
+                cadPerfil.Show();
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ namespace SISACON
     public partial class FormLogin : Form
     {
         private readonly string connectionString = ConexaoBancoDados.conn_;
+        private int numeroTentativas = 0;
 
         public FormLogin()
         {
@@ -20,7 +21,7 @@ namespace SISACON
         {
             if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
             {
-                MessageBox.Show("Sem Conexão com a internet!!");
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
                 return;
             }
             // Obtém as credenciais do usuário do formulário
@@ -39,11 +40,29 @@ namespace SISACON
                 var initial = new SISACON.FormInitial.FormInitial();
                 initial.Show();
                 this.Hide();
-            }
+            } 
             else
             {
-                // Exibe uma mensagem de erro se as credenciais não forem válidas
-                MessageBox.Show("Nome de usuário ou senha inválidos.");
+                numeroTentativas++;
+
+                if (numeroTentativas >= 5)
+                {
+                    bool usuarioBloqueado = VerificarUsuarioBloqueado(login);
+
+                    if (!usuarioBloqueado)
+                    {
+                        BloquearUsuario(login);
+                        MessageBox.Show("Número máximo de tentativas de acesso foi excedido. Seu usuário foi bloqueado. Favor entrar em contato com o suporte!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Seu usuário já está bloqueado. Favor entrar em contato com o suporte!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Nome de usuário ou senha inválidos!");
+                }
             }
         }
 
@@ -60,6 +79,40 @@ namespace SISACON
 
                     int count = (int)command.ExecuteScalar();
                     return count > 0;
+                }
+            }
+        }
+
+        private bool VerificarUsuarioBloqueado(string login)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT BLOCK_USER FROM DB_ALMOXARIFADO..TB_AD_LOGIN WHERE LOGIN_NAME = @Login";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Login", login);
+                    object result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return (bool)result;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private void BloquearUsuario(string login)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE DB_ALMOXARIFADO..TB_AD_LOGIN SET BLOCK_USER = 1 WHERE LOGIN_NAME = @Login";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Login", login);
+                    command.ExecuteNonQuery();
                 }
             }
         }
