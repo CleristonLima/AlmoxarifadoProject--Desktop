@@ -29,7 +29,6 @@ namespace SISACON.FormsAdmin
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblUsuarioLogado = new System.Windows.Forms.Label();
             this.groupBoxPerfil = new System.Windows.Forms.GroupBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtCodigoPerfil = new System.Windows.Forms.TextBox();
@@ -40,19 +39,6 @@ namespace SISACON.FormsAdmin
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxPerfil.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblUsuarioLogado
-            // 
-            this.lblUsuarioLogado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblUsuarioLogado.AutoSize = true;
-            this.lblUsuarioLogado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioLogado.Location = new System.Drawing.Point(570, 9);
-            this.lblUsuarioLogado.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.lblUsuarioLogado.Name = "lblUsuarioLogado";
-            this.lblUsuarioLogado.Size = new System.Drawing.Size(0, 15);
-            this.lblUsuarioLogado.TabIndex = 20;
-            this.lblUsuarioLogado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBoxPerfil
             // 
@@ -160,7 +146,6 @@ namespace SISACON.FormsAdmin
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(679, 338);
             this.Controls.Add(this.groupBoxPerfil);
-            this.Controls.Add(this.lblUsuarioLogado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "FormCadastroPerfil";
@@ -170,13 +155,10 @@ namespace SISACON.FormsAdmin
             this.groupBoxPerfil.ResumeLayout(false);
             this.groupBoxPerfil.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblUsuarioLogado;
         private System.Windows.Forms.GroupBox groupBoxPerfil;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

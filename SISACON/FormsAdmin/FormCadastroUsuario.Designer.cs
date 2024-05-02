@@ -45,7 +45,6 @@ namespace SISACON.FormsAdmin
             this.lblSenha = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblUsuarioLogado = new System.Windows.Forms.Label();
             this.groupBoxCadastro.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -235,19 +234,6 @@ namespace SISACON.FormsAdmin
             this.label1.TabIndex = 0;
             this.label1.Text = "* Nome:";
             // 
-            // lblUsuarioLogado
-            // 
-            this.lblUsuarioLogado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblUsuarioLogado.AutoSize = true;
-            this.lblUsuarioLogado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioLogado.Location = new System.Drawing.Point(959, 9);
-            this.lblUsuarioLogado.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.lblUsuarioLogado.Name = "lblUsuarioLogado";
-            this.lblUsuarioLogado.Size = new System.Drawing.Size(0, 15);
-            this.lblUsuarioLogado.TabIndex = 19;
-            this.lblUsuarioLogado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // FormCadastroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -255,7 +241,6 @@ namespace SISACON.FormsAdmin
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(974, 422);
-            this.Controls.Add(this.lblUsuarioLogado);
             this.Controls.Add(this.groupBoxCadastro);
             this.Name = "FormCadastroUsuario";
             this.Text = "CADASTRO DE USUÁRIO";
@@ -264,14 +249,12 @@ namespace SISACON.FormsAdmin
             this.groupBoxCadastro.ResumeLayout(false);
             this.groupBoxCadastro.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.GroupBox groupBoxCadastro;
-        private System.Windows.Forms.Label lblUsuarioLogado;
         private System.Windows.Forms.ComboBox cbxPerfil;
         private System.Windows.Forms.ComboBox cbxStatus;
         private System.Windows.Forms.TextBox txtEmail;

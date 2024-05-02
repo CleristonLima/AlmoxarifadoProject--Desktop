@@ -22,7 +22,7 @@ namespace SISACON.FormsAdmin
         public FormConsultaEAlteracaoDeDadosDeAcesso()
         {
             InitializeComponent();
-            lblUsuarioLogado.Text = "Bem vindo: " + UsuarioLogado.Login;
+            //lblUsuarioLogado.Text = "Bem vindo: " + UsuarioLogado.Login;
 
             PreencherComboBoxStatus();
             PreencherComboBoxPerfil();
@@ -190,7 +190,7 @@ namespace SISACON.FormsAdmin
                                   "ID_PROFILE = @PerfilID," +
                                   "USER_UPDATE = @UsuarioLogado," +
                                   "DATE_UPDATE = @DataHoraCadastro " +
-                                  "WHERE ID_LOGIN = @LoginIDAtual";  // Adicione uma condição WHERE para atualizar apenas os perfis específicos
+                                  "WHERE ID_LOGIN = @LoginIDAtual";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@NamePeople", name);
                     command.Parameters.AddWithValue("@Login", login);

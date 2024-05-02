@@ -17,7 +17,7 @@ namespace SISACON.FormsAdmin
         public FormCadastroPerfil()
         {
             InitializeComponent();
-            lblUsuarioLogado.Text = "Bem vindo: " + UsuarioLogado.Login;
+            //lblUsuarioLogado.Text = "Bem vindo: " + UsuarioLogado.Login;
         }
 
         private void label1_Click(object sender, EventArgs e)

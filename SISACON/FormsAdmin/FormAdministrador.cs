@@ -20,7 +20,7 @@ namespace SISACON.FormsAdmin
         {
             InitializeComponent();
             // Atualiza o texto da label com o nome do usuário logado
-            lblUsuarioLogado.Text = "Bem vindo: " + UsuarioLogado.Login;
+            //lblUsuarioLogado.Text = "Bem vindo: " + UsuarioLogado.Login;
         }
 
         private void btnCadastroUser_Click(object sender, EventArgs e)
@@ -91,6 +91,12 @@ namespace SISACON.FormsAdmin
         }
 
         private void btnConsultaUsuário_Click(object sender, EventArgs e)
+        {
+            var consultaPerfil = new SISACON.FormsAdmin.FormConsultaEAlteracaoDeDadosDeAcesso();
+            consultaPerfil.Show();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var consultaPerfil = new SISACON.FormsAdmin.FormConsultaEAlteracaoDeDadosDeAcesso();
             consultaPerfil.Show();

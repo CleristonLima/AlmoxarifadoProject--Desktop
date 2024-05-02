@@ -177,6 +177,7 @@ namespace SISACON.FormInitial
             this.btnRH.Size = new System.Drawing.Size(160, 149);
             this.btnRH.TabIndex = 2;
             this.btnRH.UseVisualStyleBackColor = true;
+            this.btnRH.Click += new System.EventHandler(this.btnRH_Click);
             // 
             // btnAdmin
             // 

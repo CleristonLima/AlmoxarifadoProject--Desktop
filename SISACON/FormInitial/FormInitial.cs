@@ -55,5 +55,11 @@ namespace SISACON.FormInitial
             }
 
         }
+
+        private void btnRH_Click(object sender, EventArgs e)
+        {
+            var rh = new SISACON.FormsRH.FormRHMenu();
+            rh.Show();
+        }
     }
 }

@@ -30,10 +30,10 @@ namespace SISACON.FormsAdmin
         private void InitializeComponent()
         {
             this.groupBoxPesquisaUsuario = new System.Windows.Forms.GroupBox();
+            this.btnLimpar = new System.Windows.Forms.Button();
+            this.btnPesquisar = new System.Windows.Forms.Button();
             this.txtLoginPesquisa = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblUsuarioLogado = new System.Windows.Forms.Label();
-            this.btnPesquisar = new System.Windows.Forms.Button();
             this.groupBoxCadastro = new System.Windows.Forms.GroupBox();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
@@ -50,7 +50,6 @@ namespace SISACON.FormsAdmin
             this.lblSenha = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnLimpar = new System.Windows.Forms.Button();
             this.groupBoxPesquisaUsuario.SuspendLayout();
             this.groupBoxCadastro.SuspendLayout();
             this.SuspendLayout();
@@ -69,6 +68,33 @@ namespace SISACON.FormsAdmin
             this.groupBoxPesquisaUsuario.TabIndex = 22;
             this.groupBoxPesquisaUsuario.TabStop = false;
             this.groupBoxPesquisaUsuario.Text = "Consulta de usuário";
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnLimpar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.btnLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnLimpar.Location = new System.Drawing.Point(458, 35);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(107, 36);
+            this.btnLimpar.TabIndex = 25;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnPesquisar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnPesquisar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisar.ForeColor = System.Drawing.Color.Yellow;
+            this.btnPesquisar.Location = new System.Drawing.Point(338, 35);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(107, 37);
+            this.btnPesquisar.TabIndex = 18;
+            this.btnPesquisar.Text = "Pesquisar";
+            this.btnPesquisar.UseVisualStyleBackColor = false;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // txtLoginPesquisa
             // 
@@ -90,31 +116,6 @@ namespace SISACON.FormsAdmin
             this.label1.Size = new System.Drawing.Size(50, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Login:";
-            // 
-            // lblUsuarioLogado
-            // 
-            this.lblUsuarioLogado.AutoSize = true;
-            this.lblUsuarioLogado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioLogado.Location = new System.Drawing.Point(870, 9);
-            this.lblUsuarioLogado.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.lblUsuarioLogado.Name = "lblUsuarioLogado";
-            this.lblUsuarioLogado.Size = new System.Drawing.Size(0, 15);
-            this.lblUsuarioLogado.TabIndex = 23;
-            this.lblUsuarioLogado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnPesquisar
-            // 
-            this.btnPesquisar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnPesquisar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnPesquisar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisar.ForeColor = System.Drawing.Color.Yellow;
-            this.btnPesquisar.Location = new System.Drawing.Point(338, 35);
-            this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(107, 37);
-            this.btnPesquisar.TabIndex = 18;
-            this.btnPesquisar.Text = "Pesquisar";
-            this.btnPesquisar.UseVisualStyleBackColor = false;
-            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // groupBoxCadastro
             // 
@@ -300,26 +301,12 @@ namespace SISACON.FormsAdmin
             this.label3.TabIndex = 0;
             this.label3.Text = "* Nome:";
             // 
-            // btnLimpar
-            // 
-            this.btnLimpar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnLimpar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.btnLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnLimpar.Location = new System.Drawing.Point(458, 35);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(107, 36);
-            this.btnLimpar.TabIndex = 25;
-            this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
-            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
-            // 
             // FormConsultaEAlteracaoDeDadosDeAcesso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 569);
             this.Controls.Add(this.groupBoxCadastro);
-            this.Controls.Add(this.lblUsuarioLogado);
             this.Controls.Add(this.groupBoxPesquisaUsuario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormConsultaEAlteracaoDeDadosDeAcesso";
@@ -332,7 +319,6 @@ namespace SISACON.FormsAdmin
             this.groupBoxCadastro.ResumeLayout(false);
             this.groupBoxCadastro.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -341,7 +327,6 @@ namespace SISACON.FormsAdmin
         private System.Windows.Forms.GroupBox groupBoxPesquisaUsuario;
         private System.Windows.Forms.TextBox txtLoginPesquisa;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblUsuarioLogado;
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.GroupBox groupBoxCadastro;
         private System.Windows.Forms.Button btnVoltar;

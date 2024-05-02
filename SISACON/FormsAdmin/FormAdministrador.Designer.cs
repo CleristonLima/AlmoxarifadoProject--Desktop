@@ -37,7 +37,6 @@ namespace SISACON.FormsAdmin
             this.btnCadastroPerfil = new System.Windows.Forms.Button();
             this.btnCadastroUser = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
-            this.lblUsuarioLogado = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // linklblAdmin
@@ -76,6 +75,7 @@ namespace SISACON.FormsAdmin
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Consultar/Alterar dados de acesso";
             this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // btnConsultaUsuário
             // 
@@ -122,22 +122,11 @@ namespace SISACON.FormsAdmin
             this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.button1_Click);
             // 
-            // lblUsuarioLogado
-            // 
-            this.lblUsuarioLogado.AutoSize = true;
-            this.lblUsuarioLogado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioLogado.Location = new System.Drawing.Point(884, 9);
-            this.lblUsuarioLogado.Name = "lblUsuarioLogado";
-            this.lblUsuarioLogado.Size = new System.Drawing.Size(0, 15);
-            this.lblUsuarioLogado.TabIndex = 19;
-            this.lblUsuarioLogado.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // FormAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 450);
-            this.Controls.Add(this.lblUsuarioLogado);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
@@ -163,6 +152,5 @@ namespace SISACON.FormsAdmin
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Button btnVoltar;
-        private System.Windows.Forms.Label lblUsuarioLogado;
     }
 }

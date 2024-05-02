@@ -19,7 +19,7 @@ namespace SISACON.FormsAdmin
         public FormAtualizaCadastroPerfil()
         {
             InitializeComponent();
-            lblUsuarioLogado.Text = "Bem vindo: " + UsuarioLogado.Login;
+            //lblUsuarioLogado.Text = "Bem vindo: " + UsuarioLogado.Login;
 
             PreencherComboBoxPerfil();
         }
@@ -130,6 +130,11 @@ namespace SISACON.FormsAdmin
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormAtualizaCadastroPerfil_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

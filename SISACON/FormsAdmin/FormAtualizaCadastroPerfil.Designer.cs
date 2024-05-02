@@ -29,7 +29,6 @@ namespace SISACON.FormsAdmin
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblUsuarioLogado = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBoxPerfil = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,19 +43,6 @@ namespace SISACON.FormsAdmin
             this.groupBox1.SuspendLayout();
             this.groupBoxPerfil.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblUsuarioLogado
-            // 
-            this.lblUsuarioLogado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblUsuarioLogado.AutoSize = true;
-            this.lblUsuarioLogado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioLogado.Location = new System.Drawing.Point(575, 9);
-            this.lblUsuarioLogado.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.lblUsuarioLogado.Name = "lblUsuarioLogado";
-            this.lblUsuarioLogado.Size = new System.Drawing.Size(0, 15);
-            this.lblUsuarioLogado.TabIndex = 23;
-            this.lblUsuarioLogado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
@@ -111,7 +97,7 @@ namespace SISACON.FormsAdmin
                 | System.Drawing.FontStyle.Underline))));
             this.groupBoxPerfil.Location = new System.Drawing.Point(12, 160);
             this.groupBoxPerfil.Name = "groupBoxPerfil";
-            this.groupBoxPerfil.Size = new System.Drawing.Size(655, 289);
+            this.groupBoxPerfil.Size = new System.Drawing.Size(655, 291);
             this.groupBoxPerfil.TabIndex = 25;
             this.groupBoxPerfil.TabStop = false;
             this.groupBoxPerfil.Text = "Cadastro de Perfil";
@@ -149,7 +135,7 @@ namespace SISACON.FormsAdmin
             this.btnVoltar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnVoltar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.ForeColor = System.Drawing.Color.Red;
-            this.btnVoltar.Location = new System.Drawing.Point(387, 221);
+            this.btnVoltar.Location = new System.Drawing.Point(387, 222);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(107, 37);
             this.btnVoltar.TabIndex = 16;
@@ -162,7 +148,7 @@ namespace SISACON.FormsAdmin
             this.btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSalvar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.ForeColor = System.Drawing.Color.Green;
-            this.btnSalvar.Location = new System.Drawing.Point(521, 221);
+            this.btnSalvar.Location = new System.Drawing.Point(521, 222);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(107, 37);
             this.btnSalvar.TabIndex = 15;
@@ -197,12 +183,12 @@ namespace SISACON.FormsAdmin
             this.ClientSize = new System.Drawing.Size(683, 458);
             this.Controls.Add(this.groupBoxPerfil);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.lblUsuarioLogado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "FormAtualizaCadastroPerfil";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CADASTRO DE PERFIL - ATUALIZAÇÃO";
+            this.Load += new System.EventHandler(this.FormAtualizaCadastroPerfil_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBoxPerfil.ResumeLayout(false);
@@ -213,7 +199,6 @@ namespace SISACON.FormsAdmin
         }
 
         #endregion
-        private System.Windows.Forms.Label lblUsuarioLogado;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxPerfil;
