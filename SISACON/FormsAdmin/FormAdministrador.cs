@@ -101,5 +101,21 @@ namespace SISACON.FormsAdmin
             var consultaPerfil = new SISACON.FormsAdmin.FormConsultaEAlteracaoDeDadosDeAcesso();
             consultaPerfil.Show();
         }
+
+        private void linklblAdmin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!");
+                return;
+            }
+            else
+            {
+                // Exibe o formulário de inicialização do sistema
+                var cadastroUsuario = new SISACON.FormsAdmin.FormCadastroUsuario();
+                cadastroUsuario.Show();
+                this.Hide();
+            }
+        }
     }
 }

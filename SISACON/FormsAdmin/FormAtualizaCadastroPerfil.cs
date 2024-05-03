@@ -93,7 +93,7 @@ namespace SISACON.FormsAdmin
                            "SET NAME_PROFILE = @NameProfile, " +
                            "CODE_PROFILE = @CodeProfile, " +
                            "USER_UPDATE = @UsuarioLogado, " +
-                           "DATA_UPDATE = @DataHoraCadastro " +
+                           "DATE_UPDATE = @DataHoraCadastro " +
                            "WHERE ID_PROFILE = @ProfileId";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@NameProfile", nameProfile);

@@ -62,7 +62,7 @@ namespace SISACON.FormsAdmin
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "INSERT INTO DB_ALMOXARIFADO..TB_AD_PROFILE (ID_PROFILE, NAME_PROFILE, CODE_PROFILE, USER_INSERT, DATA_INSERT) " +
+                    string query = "INSERT INTO DB_ALMOXARIFADO..TB_AD_PROFILE (ID_PROFILE, NAME_PROFILE, CODE_PROFILE, USER_INSERT, DATE_INSERT) " +
                                                                    "VALUES (NEXT VALUE FOR SEQ_AD_PROFILE, @NameProfile, @CodeProfile, @UsuarioLogado, @DataHoraCadastro)";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@NameProfile", nameProfile);

@@ -50,6 +50,7 @@ namespace SISACON.FormsAdmin
             this.linklblAdmin.TabStop = true;
             this.linklblAdmin.Text = "Cadastro de usuário";
             this.linklblAdmin.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linklblAdmin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklblAdmin_LinkClicked);
             // 
             // linkLabel1
             // 
