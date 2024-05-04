@@ -98,6 +98,12 @@
     <Compile Include="FormsAdmin\FormOpcõesDeCadastroPerfil.Designer.cs">
       <DependentUpon>FormOpcõesDeCadastroPerfil.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsRH\FormCadastroDepartamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormCadastroDepartamento.Designer.cs">
+      <DependentUpon>FormCadastroDepartamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsRH\FormRHMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdminClass\StatusCadastroUsuario.cs" />
+    <Compile Include="RHClass\StatusCadastroDepartamento.cs" />
     <EmbeddedResource Include="FormInitial\FormInitial.resx">
       <DependentUpon>FormInitial.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsAdmin\FormOpcõesDeCadastroPerfil.resx">
       <DependentUpon>FormOpcõesDeCadastroPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormCadastroDepartamento.resx">
+      <DependentUpon>FormCadastroDepartamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormRHMenu.resx">
       <DependentUpon>FormRHMenu.cs</DependentUpon>
