@@ -1,7 +1,7 @@
 ﻿
 namespace SISACON.FormsRH
 {
-    partial class FormCadastroCargos
+    partial class FormAtualizaCargo
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,9 @@ namespace SISACON.FormsRH
         /// </summary>
         private void InitializeComponent()
         {
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxCargo = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBoxCadCargo = new System.Windows.Forms.GroupBox();
             this.cbxStatus = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,8 +40,44 @@ namespace SISACON.FormsRH
             this.txtCargo = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblCargo = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             this.groupBoxCadCargo.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.cbxCargo);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Font = new System.Drawing.Font("Calibri", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))));
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(529, 93);
+            this.groupBox1.TabIndex = 26;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Selecione o cargo";
+            // 
+            // cbxCargo
+            // 
+            this.cbxCargo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxCargo.FormattingEnabled = true;
+            this.cbxCargo.Location = new System.Drawing.Point(64, 56);
+            this.cbxCargo.Name = "cbxCargo";
+            this.cbxCargo.Size = new System.Drawing.Size(246, 26);
+            this.cbxCargo.TabIndex = 1;
+            this.cbxCargo.SelectedIndexChanged += new System.EventHandler(this.cbxDepartamento_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(6, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Cargo:";
             // 
             // groupBoxCadCargo
             // 
@@ -54,10 +93,10 @@ namespace SISACON.FormsRH
             this.groupBoxCadCargo.Controls.Add(this.lblCargo);
             this.groupBoxCadCargo.Font = new System.Drawing.Font("Calibri", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))));
-            this.groupBoxCadCargo.Location = new System.Drawing.Point(12, 21);
+            this.groupBoxCadCargo.Location = new System.Drawing.Point(12, 130);
             this.groupBoxCadCargo.Name = "groupBoxCadCargo";
-            this.groupBoxCadCargo.Size = new System.Drawing.Size(579, 283);
-            this.groupBoxCadCargo.TabIndex = 1;
+            this.groupBoxCadCargo.Size = new System.Drawing.Size(529, 266);
+            this.groupBoxCadCargo.TabIndex = 27;
             this.groupBoxCadCargo.TabStop = false;
             this.groupBoxCadCargo.Text = "Cadastro de cargos";
             // 
@@ -69,7 +108,6 @@ namespace SISACON.FormsRH
             this.cbxStatus.Name = "cbxStatus";
             this.cbxStatus.Size = new System.Drawing.Size(134, 26);
             this.cbxStatus.TabIndex = 26;
-            this.cbxStatus.SelectedIndexChanged += new System.EventHandler(this.cbxStatus_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -86,7 +124,7 @@ namespace SISACON.FormsRH
             this.btnVoltar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnVoltar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.ForeColor = System.Drawing.Color.Red;
-            this.btnVoltar.Location = new System.Drawing.Point(317, 213);
+            this.btnVoltar.Location = new System.Drawing.Point(267, 205);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(107, 37);
             this.btnVoltar.TabIndex = 24;
@@ -99,7 +137,7 @@ namespace SISACON.FormsRH
             this.btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSalvar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.ForeColor = System.Drawing.Color.Green;
-            this.btnSalvar.Location = new System.Drawing.Point(441, 213);
+            this.btnSalvar.Location = new System.Drawing.Point(391, 205);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(107, 37);
             this.btnSalvar.TabIndex = 23;
@@ -115,7 +153,7 @@ namespace SISACON.FormsRH
             this.txtCargo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCargo.Location = new System.Drawing.Point(137, 62);
             this.txtCargo.Name = "txtCargo";
-            this.txtCargo.Size = new System.Drawing.Size(442, 26);
+            this.txtCargo.Size = new System.Drawing.Size(392, 26);
             this.txtCargo.TabIndex = 21;
             // 
             // lblTitle
@@ -138,17 +176,20 @@ namespace SISACON.FormsRH
             this.lblCargo.TabIndex = 1;
             this.lblCargo.Text = "* Nome do Cargo:";
             // 
-            // FormCadastroCargos
+            // FormAtualizaCargo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 312);
+            this.ClientSize = new System.Drawing.Size(553, 404);
             this.Controls.Add(this.groupBoxCadCargo);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
-            this.Name = "FormCadastroCargos";
+            this.Name = "FormAtualizaCargo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CADASTRO DE CARGOS";
+            this.Text = "CADASTRO DE CARGO - ATUALIZAR";
+            this.Load += new System.EventHandler(this.FormAtualizaCargo_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBoxCadCargo.ResumeLayout(false);
             this.groupBoxCadCargo.PerformLayout();
             this.ResumeLayout(false);
@@ -157,6 +198,9 @@ namespace SISACON.FormsRH
 
         #endregion
 
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cbxCargo;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBoxCadCargo;
         private System.Windows.Forms.ComboBox cbxStatus;
         private System.Windows.Forms.Label label3;

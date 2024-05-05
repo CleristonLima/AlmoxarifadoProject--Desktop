@@ -30,6 +30,7 @@ namespace SISACON.FormsRH
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxDepartamento = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxCadDepartamento = new System.Windows.Forms.GroupBox();
             this.cbxStatus = new System.Windows.Forms.ComboBox();
@@ -41,7 +42,6 @@ namespace SISACON.FormsRH
             this.lblTitle = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.cbxDepartamento = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxCadDepartamento.SuspendLayout();
             this.SuspendLayout();
@@ -57,10 +57,20 @@ namespace SISACON.FormsRH
                 | System.Drawing.FontStyle.Underline))));
             this.groupBox1.Location = new System.Drawing.Point(12, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 100);
+            this.groupBox1.Size = new System.Drawing.Size(713, 100);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Selecione o Departamento";
+            this.groupBox1.Text = "Selecione o departamento";
+            // 
+            // cbxDepartamento
+            // 
+            this.cbxDepartamento.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxDepartamento.FormattingEnabled = true;
+            this.cbxDepartamento.Location = new System.Drawing.Point(125, 56);
+            this.cbxDepartamento.Name = "cbxDepartamento";
+            this.cbxDepartamento.Size = new System.Drawing.Size(291, 26);
+            this.cbxDepartamento.TabIndex = 1;
+            this.cbxDepartamento.SelectedIndexChanged += new System.EventHandler(this.cbxDepartamento_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -90,7 +100,7 @@ namespace SISACON.FormsRH
                 | System.Drawing.FontStyle.Underline))));
             this.groupBoxCadDepartamento.Location = new System.Drawing.Point(12, 155);
             this.groupBoxCadDepartamento.Name = "groupBoxCadDepartamento";
-            this.groupBoxCadDepartamento.Size = new System.Drawing.Size(776, 309);
+            this.groupBoxCadDepartamento.Size = new System.Drawing.Size(713, 309);
             this.groupBoxCadDepartamento.TabIndex = 26;
             this.groupBoxCadDepartamento.TabStop = false;
             this.groupBoxCadDepartamento.Text = "Cadastro do Departamento";
@@ -120,7 +130,7 @@ namespace SISACON.FormsRH
             this.btnVoltar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnVoltar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.ForeColor = System.Drawing.Color.Red;
-            this.btnVoltar.Location = new System.Drawing.Point(518, 264);
+            this.btnVoltar.Location = new System.Drawing.Point(455, 264);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(107, 37);
             this.btnVoltar.TabIndex = 24;
@@ -133,7 +143,7 @@ namespace SISACON.FormsRH
             this.btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSalvar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.ForeColor = System.Drawing.Color.Green;
-            this.btnSalvar.Location = new System.Drawing.Point(652, 264);
+            this.btnSalvar.Location = new System.Drawing.Point(589, 264);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(107, 37);
             this.btnSalvar.TabIndex = 23;
@@ -149,7 +159,7 @@ namespace SISACON.FormsRH
             this.txtSigla.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSigla.Location = new System.Drawing.Point(137, 115);
             this.txtSigla.Name = "txtSigla";
-            this.txtSigla.Size = new System.Drawing.Size(200, 26);
+            this.txtSigla.Size = new System.Drawing.Size(137, 26);
             this.txtSigla.TabIndex = 22;
             // 
             // txtDepartamento
@@ -160,7 +170,7 @@ namespace SISACON.FormsRH
             this.txtDepartamento.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDepartamento.Location = new System.Drawing.Point(137, 62);
             this.txtDepartamento.Name = "txtDepartamento";
-            this.txtDepartamento.Size = new System.Drawing.Size(639, 26);
+            this.txtDepartamento.Size = new System.Drawing.Size(576, 26);
             this.txtDepartamento.TabIndex = 21;
             // 
             // lblTitle
@@ -193,21 +203,11 @@ namespace SISACON.FormsRH
             this.label4.TabIndex = 1;
             this.label4.Text = "* Departamento:";
             // 
-            // cbxDepartamento
-            // 
-            this.cbxDepartamento.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxDepartamento.FormattingEnabled = true;
-            this.cbxDepartamento.Location = new System.Drawing.Point(125, 56);
-            this.cbxDepartamento.Name = "cbxDepartamento";
-            this.cbxDepartamento.Size = new System.Drawing.Size(291, 26);
-            this.cbxDepartamento.TabIndex = 1;
-            this.cbxDepartamento.SelectedIndexChanged += new System.EventHandler(this.cbxDepartamento_SelectedIndexChanged);
-            // 
             // FormAtualizaCadastroDepartamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 470);
+            this.ClientSize = new System.Drawing.Size(737, 470);
             this.Controls.Add(this.groupBoxCadDepartamento);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

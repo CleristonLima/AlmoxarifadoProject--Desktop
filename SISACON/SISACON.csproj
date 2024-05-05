@@ -104,6 +104,12 @@
     <Compile Include="FormsRH\FormAtualizaCadastroDepartamento.Designer.cs">
       <DependentUpon>FormAtualizaCadastroDepartamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsRH\FormAtualizaCargo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormAtualizaCargo.Designer.cs">
+      <DependentUpon>FormAtualizaCargo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsRH\FormCadastroCargos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdminClass\StatusCadastroUsuario.cs" />
     <Compile Include="RHClass\Cargo.cs" />
+    <Compile Include="RHClass\CargoDAO\CargoDAO.cs" />
     <Compile Include="RHClass\Departamento.cs" />
     <Compile Include="RHClass\DepartamentoDAO\DepartamentoDAO.cs" />
     <Compile Include="RHClass\StatusCadastroCargo.cs" />
@@ -156,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormAtualizaCadastroDepartamento.resx">
       <DependentUpon>FormAtualizaCadastroDepartamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormAtualizaCargo.resx">
+      <DependentUpon>FormAtualizaCargo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormCadastroCargos.resx">
       <DependentUpon>FormCadastroCargos.cs</DependentUpon>

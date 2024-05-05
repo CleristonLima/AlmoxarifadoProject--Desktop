@@ -72,6 +72,7 @@ namespace SISACON.FormsRH
             this.linkLblAtualizaCargos.TabStop = true;
             this.linkLblAtualizaCargos.Text = "Atualizar dados dos cargos";
             this.linkLblAtualizaCargos.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLblAtualizaCargos.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblAtualizaCargos_LinkClicked);
             // 
             // linkLblCadCargos
             // 
