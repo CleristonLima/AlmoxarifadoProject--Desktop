@@ -77,5 +77,20 @@ namespace SISACON.FormsRH
                 cadastroCargosAtualiza.Show();
             }
         }
+
+        private void linkLblCadFunc_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!");
+                return;
+            }
+            else
+            {
+                // Exibe o formulário de inicialização do sistema
+                var cadastroFuncionario = new SISACON.FormsRH.FormCadastroFunc();
+                cadastroFuncionario.Show();
+            }
+        }
     }
 }

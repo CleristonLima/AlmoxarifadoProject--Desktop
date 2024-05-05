@@ -122,6 +122,12 @@
     <Compile Include="FormsRH\FormCadastroDepartamento.Designer.cs">
       <DependentUpon>FormCadastroDepartamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsRH\FormCadastroFunc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormCadastroFunc.Designer.cs">
+      <DependentUpon>FormCadastroFunc.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsRH\FormRHMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormCadastroDepartamento.resx">
       <DependentUpon>FormCadastroDepartamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormCadastroFunc.resx">
+      <DependentUpon>FormCadastroFunc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormRHMenu.resx">
       <DependentUpon>FormRHMenu.cs</DependentUpon>

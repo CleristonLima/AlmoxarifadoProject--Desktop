@@ -29,10 +29,8 @@ namespace SISACON.FormsRH
             CargoDAO cargoDAO = new CargoDAO(connectionString);
             List<Cargo> carg = cargoDAO.ObterCargo();
 
-
-            // Define a fonte de dados do ComboBox
             cbxCargo.DataSource = carg;
-            // Define a propriedade DisplayMember para mostrar o nome completo
+
             cbxCargo.DisplayMember = "NAME_OFFICE";
             cbxCargo.ValueMember = "ID_OFFICE";
 

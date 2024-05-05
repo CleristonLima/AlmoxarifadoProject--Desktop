@@ -37,9 +37,10 @@ namespace SISACON.FormsRH
             this.groupBoxFuncionarios = new System.Windows.Forms.GroupBox();
             this.linkLblExcluirFuncionario = new System.Windows.Forms.LinkLabel();
             this.linkLblFerias = new System.Windows.Forms.LinkLabel();
-            this.linkLblLicenca = new System.Windows.Forms.LinkLabel();
+            this.linkLblDemissao = new System.Windows.Forms.LinkLabel();
             this.linkLblAtualizaFunc = new System.Windows.Forms.LinkLabel();
             this.linkLblCadFunc = new System.Windows.Forms.LinkLabel();
+            this.linkLblLicenca = new System.Windows.Forms.LinkLabel();
             this.groupBoxDepartamento.SuspendLayout();
             this.groupBoxFuncionarios.SuspendLayout();
             this.SuspendLayout();
@@ -118,9 +119,10 @@ namespace SISACON.FormsRH
             this.groupBoxFuncionarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxFuncionarios.Controls.Add(this.linkLblLicenca);
             this.groupBoxFuncionarios.Controls.Add(this.linkLblExcluirFuncionario);
             this.groupBoxFuncionarios.Controls.Add(this.linkLblFerias);
-            this.groupBoxFuncionarios.Controls.Add(this.linkLblLicenca);
+            this.groupBoxFuncionarios.Controls.Add(this.linkLblDemissao);
             this.groupBoxFuncionarios.Controls.Add(this.linkLblAtualizaFunc);
             this.groupBoxFuncionarios.Controls.Add(this.linkLblCadFunc);
             this.groupBoxFuncionarios.Font = new System.Drawing.Font("Calibri", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
@@ -156,17 +158,17 @@ namespace SISACON.FormsRH
             this.linkLblFerias.Text = "Férias remuneradas";
             this.linkLblFerias.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // linkLblLicenca
+            // linkLblDemissao
             // 
-            this.linkLblLicenca.AutoSize = true;
-            this.linkLblLicenca.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLblLicenca.Location = new System.Drawing.Point(332, 98);
-            this.linkLblLicenca.Name = "linkLblLicenca";
-            this.linkLblLicenca.Size = new System.Drawing.Size(176, 19);
-            this.linkLblLicenca.TabIndex = 17;
-            this.linkLblLicenca.TabStop = true;
-            this.linkLblLicenca.Text = "Licença dos funcionários";
-            this.linkLblLicenca.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLblDemissao.AutoSize = true;
+            this.linkLblDemissao.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLblDemissao.Location = new System.Drawing.Point(332, 98);
+            this.linkLblDemissao.Name = "linkLblDemissao";
+            this.linkLblDemissao.Size = new System.Drawing.Size(183, 19);
+            this.linkLblDemissao.TabIndex = 17;
+            this.linkLblDemissao.TabStop = true;
+            this.linkLblDemissao.Text = "Demissão de funcionários";
+            this.linkLblDemissao.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // linkLblAtualizaFunc
             // 
@@ -186,11 +188,24 @@ namespace SISACON.FormsRH
             this.linkLblCadFunc.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLblCadFunc.Location = new System.Drawing.Point(21, 53);
             this.linkLblCadFunc.Name = "linkLblCadFunc";
-            this.linkLblCadFunc.Size = new System.Drawing.Size(179, 19);
+            this.linkLblCadFunc.Size = new System.Drawing.Size(184, 19);
             this.linkLblCadFunc.TabIndex = 15;
             this.linkLblCadFunc.TabStop = true;
-            this.linkLblCadFunc.Text = "Cadastro de funcionários";
+            this.linkLblCadFunc.Text = "Admissão de funcionários";
             this.linkLblCadFunc.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLblCadFunc.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblCadFunc_LinkClicked);
+            // 
+            // linkLblLicenca
+            // 
+            this.linkLblLicenca.AutoSize = true;
+            this.linkLblLicenca.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLblLicenca.Location = new System.Drawing.Point(332, 147);
+            this.linkLblLicenca.Name = "linkLblLicenca";
+            this.linkLblLicenca.Size = new System.Drawing.Size(176, 19);
+            this.linkLblLicenca.TabIndex = 20;
+            this.linkLblLicenca.TabStop = true;
+            this.linkLblLicenca.Text = "Licença dos funcionários";
+            this.linkLblLicenca.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // FormRHMenu
             // 
@@ -220,10 +235,11 @@ namespace SISACON.FormsRH
         private System.Windows.Forms.GroupBox groupBoxFuncionarios;
         private System.Windows.Forms.LinkLabel linkLblAtualizaCargos;
         private System.Windows.Forms.LinkLabel linkLblCadCargos;
-        private System.Windows.Forms.LinkLabel linkLblLicenca;
+        private System.Windows.Forms.LinkLabel linkLblDemissao;
         private System.Windows.Forms.LinkLabel linkLblAtualizaFunc;
         private System.Windows.Forms.LinkLabel linkLblCadFunc;
         private System.Windows.Forms.LinkLabel linkLblExcluirFuncionario;
         private System.Windows.Forms.LinkLabel linkLblFerias;
+        private System.Windows.Forms.LinkLabel linkLblLicenca;
     }
 }
