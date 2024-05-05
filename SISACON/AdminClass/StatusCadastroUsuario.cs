@@ -9,7 +9,7 @@ namespace SISACON
     public class StatusCadastroUsuario
     {
         public int StatusID { get; set; }
-        public String Descricao { get; set; }
+        public string Descricao { get; set; }
 
         public StatusCadastroUsuario(int statusId, string descricao) 
         {

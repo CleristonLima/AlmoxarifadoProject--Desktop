@@ -50,11 +50,11 @@
     <Compile Include="AdminClass\Perfis.cs" />
     <Compile Include="ConexaoBD\ConexaoBancoDados.cs" />
     <Compile Include="ConexaoInternet\ConexaoInternet.cs" />
-    <Compile Include="FormInitial\FormInitial.cs">
+    <Compile Include="FormInitial\FormInicial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormInitial\FormInitial.Designer.cs">
-      <DependentUpon>FormInitial.cs</DependentUpon>
+    <Compile Include="FormInitial\FormInicial.Designer.cs">
+      <DependentUpon>FormInicial.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLogin\FormLogin.cs">
       <SubType>Form</SubType>
@@ -98,6 +98,18 @@
     <Compile Include="FormsAdmin\FormOpcõesDeCadastroPerfil.Designer.cs">
       <DependentUpon>FormOpcõesDeCadastroPerfil.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsRH\FormAtualizaCadastroDepartamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormAtualizaCadastroDepartamento.Designer.cs">
+      <DependentUpon>FormAtualizaCadastroDepartamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRH\FormCadastroCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormCadastroCargos.Designer.cs">
+      <DependentUpon>FormCadastroCargos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsRH\FormCadastroDepartamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,9 +125,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdminClass\StatusCadastroUsuario.cs" />
+    <Compile Include="RHClass\Cargo.cs" />
+    <Compile Include="RHClass\Departamento.cs" />
+    <Compile Include="RHClass\DepartamentoDAO\DepartamentoDAO.cs" />
+    <Compile Include="RHClass\StatusCadastroCargo.cs" />
     <Compile Include="RHClass\StatusCadastroDepartamento.cs" />
-    <EmbeddedResource Include="FormInitial\FormInitial.resx">
-      <DependentUpon>FormInitial.cs</DependentUpon>
+    <EmbeddedResource Include="FormInitial\FormInicial.resx">
+      <DependentUpon>FormInicial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
@@ -137,6 +153,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsAdmin\FormOpcõesDeCadastroPerfil.resx">
       <DependentUpon>FormOpcõesDeCadastroPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormAtualizaCadastroDepartamento.resx">
+      <DependentUpon>FormAtualizaCadastroDepartamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormCadastroCargos.resx">
+      <DependentUpon>FormCadastroCargos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormCadastroDepartamento.resx">
       <DependentUpon>FormCadastroDepartamento.cs</DependentUpon>

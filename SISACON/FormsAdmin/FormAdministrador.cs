@@ -49,7 +49,7 @@ namespace SISACON.FormsAdmin
             else
             {
                 // Exibe o formulário de inicialização do sistema
-                var voltar = new SISACON.FormInitial.FormInitial();
+                var voltar = new SISACON.FormInitial.FormInicial();
                 voltar.Show();
                 this.Hide();
             }

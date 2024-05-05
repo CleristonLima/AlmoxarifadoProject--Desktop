@@ -35,11 +35,11 @@ namespace SISACON.FormsRH
             this.linkLblAtualizaDadosDep = new System.Windows.Forms.LinkLabel();
             this.linkLblCadDepartamento = new System.Windows.Forms.LinkLabel();
             this.groupBoxFuncionarios = new System.Windows.Forms.GroupBox();
+            this.linkLblExcluirFuncionario = new System.Windows.Forms.LinkLabel();
+            this.linkLblFerias = new System.Windows.Forms.LinkLabel();
             this.linkLblLicenca = new System.Windows.Forms.LinkLabel();
             this.linkLblAtualizaFunc = new System.Windows.Forms.LinkLabel();
             this.linkLblCadFunc = new System.Windows.Forms.LinkLabel();
-            this.linkLblFerias = new System.Windows.Forms.LinkLabel();
-            this.linkLblExcluirFuncionario = new System.Windows.Forms.LinkLabel();
             this.groupBoxDepartamento.SuspendLayout();
             this.groupBoxFuncionarios.SuspendLayout();
             this.SuspendLayout();
@@ -84,6 +84,7 @@ namespace SISACON.FormsRH
             this.linkLblCadCargos.TabStop = true;
             this.linkLblCadCargos.Text = "Cadastro de cargos";
             this.linkLblCadCargos.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLblCadCargos.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblCadCargos_LinkClicked);
             // 
             // linkLblAtualizaDadosDep
             // 
@@ -96,6 +97,7 @@ namespace SISACON.FormsRH
             this.linkLblAtualizaDadosDep.TabStop = true;
             this.linkLblAtualizaDadosDep.Text = "Atualizar dados de departamento";
             this.linkLblAtualizaDadosDep.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLblAtualizaDadosDep.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblAtualizaDadosDep_LinkClicked);
             // 
             // linkLblCadDepartamento
             // 
@@ -128,6 +130,30 @@ namespace SISACON.FormsRH
             this.groupBoxFuncionarios.TabIndex = 1;
             this.groupBoxFuncionarios.TabStop = false;
             this.groupBoxFuncionarios.Text = "Pessoas";
+            // 
+            // linkLblExcluirFuncionario
+            // 
+            this.linkLblExcluirFuncionario.AutoSize = true;
+            this.linkLblExcluirFuncionario.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLblExcluirFuncionario.Location = new System.Drawing.Point(21, 98);
+            this.linkLblExcluirFuncionario.Name = "linkLblExcluirFuncionario";
+            this.linkLblExcluirFuncionario.Size = new System.Drawing.Size(137, 19);
+            this.linkLblExcluirFuncionario.TabIndex = 19;
+            this.linkLblExcluirFuncionario.TabStop = true;
+            this.linkLblExcluirFuncionario.Text = "Excluir funcionário";
+            this.linkLblExcluirFuncionario.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // linkLblFerias
+            // 
+            this.linkLblFerias.AutoSize = true;
+            this.linkLblFerias.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLblFerias.Location = new System.Drawing.Point(21, 147);
+            this.linkLblFerias.Name = "linkLblFerias";
+            this.linkLblFerias.Size = new System.Drawing.Size(142, 19);
+            this.linkLblFerias.TabIndex = 18;
+            this.linkLblFerias.TabStop = true;
+            this.linkLblFerias.Text = "Férias remuneradas";
+            this.linkLblFerias.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // linkLblLicenca
             // 
@@ -164,30 +190,6 @@ namespace SISACON.FormsRH
             this.linkLblCadFunc.TabStop = true;
             this.linkLblCadFunc.Text = "Cadastro de funcionários";
             this.linkLblCadFunc.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // linkLblFerias
-            // 
-            this.linkLblFerias.AutoSize = true;
-            this.linkLblFerias.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLblFerias.Location = new System.Drawing.Point(21, 147);
-            this.linkLblFerias.Name = "linkLblFerias";
-            this.linkLblFerias.Size = new System.Drawing.Size(142, 19);
-            this.linkLblFerias.TabIndex = 18;
-            this.linkLblFerias.TabStop = true;
-            this.linkLblFerias.Text = "Férias remuneradas";
-            this.linkLblFerias.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // linkLblExcluirFuncionario
-            // 
-            this.linkLblExcluirFuncionario.AutoSize = true;
-            this.linkLblExcluirFuncionario.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLblExcluirFuncionario.Location = new System.Drawing.Point(21, 98);
-            this.linkLblExcluirFuncionario.Name = "linkLblExcluirFuncionario";
-            this.linkLblExcluirFuncionario.Size = new System.Drawing.Size(137, 19);
-            this.linkLblExcluirFuncionario.TabIndex = 19;
-            this.linkLblExcluirFuncionario.TabStop = true;
-            this.linkLblExcluirFuncionario.Text = "Excluir funcionário";
-            this.linkLblExcluirFuncionario.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // FormRHMenu
             // 

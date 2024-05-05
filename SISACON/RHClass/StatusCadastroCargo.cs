@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SISACON.RHClass
 {
-    public class StatusCadastroDepartamento
+    public class StatusCadastroCargo
     {
         public int StatusID { get; set; }
         public string Descricao { get; set; }
 
-        public StatusCadastroDepartamento(int statusId, string descricao)
+        public StatusCadastroCargo(int statusId, string descricao)
         {
             StatusID = statusId;
             Descricao = descricao;

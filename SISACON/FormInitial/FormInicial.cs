@@ -11,11 +11,11 @@ using SISACON.ConexaoBD;
 
 namespace SISACON.FormInitial
 {
-    public partial class FormInitial : Form
+    public partial class FormInicial : Form
     {
         private readonly string connectionString = ConexaoBancoDados.conn_;
 
-        public FormInitial()
+        public FormInicial()
         {
             InitializeComponent();
 
@@ -58,8 +58,61 @@ namespace SISACON.FormInitial
 
         private void btnRH_Click(object sender, EventArgs e)
         {
-            var rh = new SISACON.FormsRH.FormRHMenu();
-            rh.Show();
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+
+                var rh = new SISACON.FormsRH.FormRHMenu();
+                rh.Show();
+            }
         }
+
+        private void linkLblRH_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+                var rh = new SISACON.FormsRH.FormRHMenu();
+                rh.Show();
+            }
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Form[] forms = Application.OpenForms.Cast<Form>().ToArray();
+
+            foreach (Form form in forms)
+            {
+                // Fecha o formulário atual, exceto o formulário principal (this)
+                if (form != this)
+                {
+                    form.Close();
+                }
+            }
+
+        }
+
+        private void linkLblSair_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form[] forms = Application.OpenForms.Cast<Form>().ToArray();
+
+            foreach (Form form in forms)
+            {
+                // Fecha o formulário atual, exceto o formulário principal (this)
+                if (form != this)
+                {
+                    form.Close();
+                }
+            }
+        }
+        
     }
 }

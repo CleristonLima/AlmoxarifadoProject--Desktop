@@ -58,7 +58,7 @@ namespace SISACON.FormsAdmin
             this.groupBox1.Size = new System.Drawing.Size(655, 95);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Selecione o perfil pra ser alterado";
+            this.groupBox1.Text = "Selecione o perfil";
             // 
             // comboBoxPerfil
             // 

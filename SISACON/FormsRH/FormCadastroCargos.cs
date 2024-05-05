@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace SISACON.FormsRH
 {
-    public partial class FormCadastroDepartamento : Form
+    public partial class FormCadastroCargos : Form
     {
-        public FormCadastroDepartamento()
+        public FormCadastroCargos()
         {
             InitializeComponent();
 
@@ -25,9 +25,9 @@ namespace SISACON.FormsRH
         private void PreencherComboBoxStatus()
         {
             // Criar uma lista de itens de status
-            List<StatusCadastroDepartamento> statusList = new List<StatusCadastroDepartamento>();
-            statusList.Add(new StatusCadastroDepartamento(0, "Inativo"));
-            statusList.Add(new StatusCadastroDepartamento(1, "Ativo"));
+            List<StatusCadastroCargo> statusList = new List<StatusCadastroCargo>();
+            statusList.Add(new StatusCadastroCargo(0, "Inativo"));
+            statusList.Add(new StatusCadastroCargo(1, "Ativo"));
 
             // Associar a lista ao ComboBox
             cbxStatus.DataSource = statusList;
@@ -40,7 +40,7 @@ namespace SISACON.FormsRH
             if (cbxStatus.SelectedItem != null)
             {
                 // Obter o item selecionado
-                StatusCadastroDepartamento selectedStatus = (StatusCadastroDepartamento)cbxStatus.SelectedItem;
+                StatusCadastroCargo selectedStatus = (StatusCadastroCargo)cbxStatus.SelectedItem;
 
                 // Obter o ID do status selecionado
                 int selectedValue = selectedStatus.StatusID;
@@ -59,34 +59,30 @@ namespace SISACON.FormsRH
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(txtDepartamento.Text) || string.IsNullOrWhiteSpace(txtSigla.Text))
+                if (string.IsNullOrWhiteSpace(txtCargo.Text))
                 {
                     MessageBox.Show("Por favor, preencha todos os campos obrigatórios.", "CAMPOS NÃO PREENCHIDOS!");
                     return;
                 }
                 string usuarioLogado = UsuarioLogado.Login;
-
-                string nameDepartment = txtDepartamento.Text;
-                string codeDepartment = txtSigla.Text;
-                int statusDep = (int)cbxStatus.SelectedValue;
+                string nameOffice = txtCargo.Text;
+                int statusOffice = (int)cbxStatus.SelectedValue;
 
                 DateTime dataHoraAtual = DateTime.Now;
 
-                if (DepartamentoExiste(codeDepartment))
+                if (CargoExiste(nameOffice))
                 {
-                    MessageBox.Show("A sigla do departamento informado já existe.", "SIGLA JA EXISTE!");
+                    MessageBox.Show("O cargo informado já existe.", "CARGO JA EXISTE!");
                     return;
                 }
-
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "INSERT INTO DB_ALMOXARIFADO..TB_HR_DEPARTMENTS (ID_DEPARTMENT, NAME_DEPARTMENT, CODE_DEPARTMENT, STATUS_DEPARTMENT, USER_INSERT, DATE_INSERT) " +
-                                                                   "VALUES (NEXT VALUE FOR SEQ_HR_DEPARTMENTS, @NameDepartment, @CodeDepartment, @StatusDepartment, @UsuarioLogado, @DataHoraCadastro)";
+                    string query = "INSERT INTO DB_ALMOXARIFADO..TB_HR_OFFICE (ID_OFFICE, NAME_OFFICE, STATUS_OFFICE, USER_INSERT, DATE_INSERT) " +
+                                                                   "VALUES (NEXT VALUE FOR SEQ_HR_OFFICE, @NameOffice, @StatusOffice, @UsuarioLogado, @DataHoraCadastro)";
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@NameDepartment", nameDepartment);
-                    command.Parameters.AddWithValue("@CodeDepartment", codeDepartment);
-                    command.Parameters.AddWithValue("@StatusDepartment", statusDep);
+                    command.Parameters.AddWithValue("@NameOffice", nameOffice);
+                    command.Parameters.AddWithValue("@StatusOffice", statusOffice);
                     command.Parameters.AddWithValue("@UsuarioLogado", usuarioLogado);
                     command.Parameters.AddWithValue("@DataHoraCadastro", dataHoraAtual);
                     command.ExecuteNonQuery();
@@ -96,9 +92,11 @@ namespace SISACON.FormsRH
                     LimparCampos();
                 }
             }
+
         }
 
-        private bool DepartamentoExiste(string codeDepartment)
+
+        private bool CargoExiste(string nameCargo)
         {
             string connectionString = ConexaoBancoDados.conn_;
 
@@ -106,40 +104,25 @@ namespace SISACON.FormsRH
             {
 
                 connection.Open();
-                string query = "SELECT COUNT(*) FROM DB_ALMOXARIFADO..TB_HR_DEPARTMENTS WHERE CODE_DEPARTMENT = @CodeDepartment";
+                string query = "SELECT COUNT(*) FROM DB_ALMOXARIFADO..TB_HR_OFFICE WHERE NAME_OFFICE = @NameOffice";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@CodeDepartment", codeDepartment);
+                command.Parameters.AddWithValue("@NameOffice", nameCargo);
 
                 int count = (int)command.ExecuteScalar();
                 return count > 0;
 
             }
-
         }
 
         private void LimparCampos()
         {
-            txtDepartamento.Text = "";
-            txtSigla.Text = "";
+            txtCargo.Text = "";
             cbxStatus.SelectedIndex = 1;
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
-            {
-                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
-                return;
-            }
-            else
-            {
-                this.Close();
-            }
-        }
-
-        private void txtSigla_TextChanged(object sender, EventArgs e)
-        {
-
+            this.Close();
         }
     }
 }

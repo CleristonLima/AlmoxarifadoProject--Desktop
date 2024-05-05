@@ -37,7 +37,7 @@ namespace SISACON
                 UsuarioLogado.Login = login;
 
                 // Exibe o formulário de inicialização do sistema
-                var initial = new SISACON.FormInitial.FormInitial();
+                var initial = new SISACON.FormInitial.FormInicial();
                 initial.Show();
                 this.Hide();
             } 
@@ -52,11 +52,11 @@ namespace SISACON
                     if (!usuarioBloqueado)
                     {
                         BloquearUsuario(login);
-                        MessageBox.Show("Número máximo de tentativas de acesso foi excedido. Seu usuário foi bloqueado. Favor entrar em contato com o suporte!");
+                        MessageBox.Show("Número máximo de tentativas de acesso foi excedido! Seu usuário foi bloqueado! Favor entrar em contato com o suporte!", "USUÁRIO BLOQUEADO!");
                     }
                     else
                     {
-                        MessageBox.Show("Seu usuário já está bloqueado. Favor entrar em contato com o suporte!");
+                        MessageBox.Show("Seu usuário consta como bloqueado. Favor entrar em contato com o suporte!", "USUÁRIO BLOQUEADO!");
                     }
                 }
                 else

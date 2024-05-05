@@ -31,5 +31,36 @@ namespace SISACON.FormsRH
                 cadastroDep.Show();
             }
         }
+
+        private void linkLblAtualizaDadosDep_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!");
+                return;
+            }
+            else
+            {
+                // Exibe o formulário de inicialização do sistema
+                var cadastroDepAtualiza = new SISACON.FormsRH.FormAtualizaCadastroDepartamento();
+                cadastroDepAtualiza.Show();
+            }
+
+        }
+
+        private void linkLblCadCargos_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!");
+                return;
+            }
+            else
+            {
+                // Exibe o formulário de inicialização do sistema
+                var cadastroCargos = new SISACON.FormsRH.FormCadastroCargos();
+                cadastroCargos.Show();
+            }
+        }
     }
 }

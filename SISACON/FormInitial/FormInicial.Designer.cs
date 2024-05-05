@@ -1,7 +1,7 @@
 ﻿
 namespace SISACON.FormInitial
 {
-    partial class FormInitial
+    partial class FormInicial
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace SISACON.FormInitial
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInitial));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInicial));
             this.linklblAdmin = new System.Windows.Forms.LinkLabel();
             this.linkLblRH = new System.Windows.Forms.LinkLabel();
             this.linkLblMaquinas = new System.Windows.Forms.LinkLabel();
@@ -68,6 +68,7 @@ namespace SISACON.FormInitial
             this.linkLblRH.TabIndex = 11;
             this.linkLblRH.TabStop = true;
             this.linkLblRH.Text = "Recursos Humanos";
+            this.linkLblRH.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblRH_LinkClicked);
             // 
             // linkLblMaquinas
             // 
@@ -112,6 +113,7 @@ namespace SISACON.FormInitial
             this.linkLblSair.TabIndex = 16;
             this.linkLblSair.TabStop = true;
             this.linkLblSair.Text = "Sair";
+            this.linkLblSair.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblSair_LinkClicked);
             // 
             // label1
             // 
@@ -141,6 +143,7 @@ namespace SISACON.FormInitial
             this.btnSair.Size = new System.Drawing.Size(104, 158);
             this.btnSair.TabIndex = 15;
             this.btnSair.UseVisualStyleBackColor = true;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // btnFerramentas
             // 
@@ -189,7 +192,7 @@ namespace SISACON.FormInitial
             this.btnAdmin.UseVisualStyleBackColor = true;
             this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
             // 
-            // FormInitial
+            // FormInicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -209,7 +212,7 @@ namespace SISACON.FormInitial
             this.Controls.Add(this.btnRH);
             this.Controls.Add(this.btnAdmin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "FormInitial";
+            this.Name = "FormInicial";
             this.Text = "INICIO";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
