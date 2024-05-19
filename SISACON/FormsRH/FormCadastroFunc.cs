@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SISACON.ConexaoBD;
+using SISACON.RHClass;
+using SISACON.RHClass.EstadoDAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -42,6 +45,8 @@ namespace SISACON.FormsRH
             };
 
             txtCPFCNPJ.Leave += txtCPFCNPJ_Leave;
+
+            PreencherComboEstado();
         }
 
         private void pictureBoxFoto_Click(object sender, EventArgs e)
@@ -209,6 +214,28 @@ namespace SISACON.FormsRH
             digito = digito + resto.ToString();
 
             return cnpj.EndsWith(digito);
+        }
+
+        private void cbxEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxEstado.SelectedItem != null)
+            {
+
+                SelecionaEstado selectedEstado = (SelecionaEstado)cbxEstado.SelectedItem;
+
+                // Obter o ID do estado selecionado
+                int selectedEstadoId = selectedEstado.ID_UF;
+            }
+        }
+
+        private void PreencherComboEstado()
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+            EstadoDAO estadoDAO = new EstadoDAO(connectionString);
+            List<SelecionaEstado> estado = estadoDAO.ObterEstado();
+            cbxEstado.DataSource = estado;
+            cbxEstado.DisplayMember = "CODE_UF";
+            cbxEstado.ValueMember = "ID_UF";
         }
     }
 }

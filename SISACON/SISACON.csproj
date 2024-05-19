@@ -141,6 +141,8 @@
     <Compile Include="RHClass\CargoDAO\CargoDAO.cs" />
     <Compile Include="RHClass\Departamento.cs" />
     <Compile Include="RHClass\DepartamentoDAO\DepartamentoDAO.cs" />
+    <Compile Include="RHClass\EstadoDAO\EstadoDAO.cs" />
+    <Compile Include="RHClass\SelecionaEstado.cs" />
     <Compile Include="RHClass\StatusCadastroCargo.cs" />
     <Compile Include="RHClass\StatusCadastroDepartamento.cs" />
     <EmbeddedResource Include="FormInitial\FormInicial.resx">
