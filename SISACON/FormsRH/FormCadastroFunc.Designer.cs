@@ -91,7 +91,7 @@ namespace SISACON.FormsRH
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.cbxTipoConta = new System.Windows.Forms.ComboBox();
             this.txtSalario = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxTipoContratacao = new System.Windows.Forms.ComboBox();
             this.cbxEstadoCivil = new System.Windows.Forms.ComboBox();
             this.txtBoxNomePai = new System.Windows.Forms.TextBox();
             this.txtBoxNomeMae = new System.Windows.Forms.TextBox();
@@ -138,7 +138,7 @@ namespace SISACON.FormsRH
                 | System.Drawing.FontStyle.Underline))));
             this.groupBoxCadFunc.Location = new System.Drawing.Point(12, 12);
             this.groupBoxCadFunc.Name = "groupBoxCadFunc";
-            this.groupBoxCadFunc.Size = new System.Drawing.Size(917, 857);
+            this.groupBoxCadFunc.Size = new System.Drawing.Size(952, 857);
             this.groupBoxCadFunc.TabIndex = 0;
             this.groupBoxCadFunc.TabStop = false;
             this.groupBoxCadFunc.Text = "Admissão do Funcionario";
@@ -153,7 +153,7 @@ namespace SISACON.FormsRH
             this.tabCtlCadFunc.Location = new System.Drawing.Point(7, 32);
             this.tabCtlCadFunc.Name = "tabCtlCadFunc";
             this.tabCtlCadFunc.SelectedIndex = 0;
-            this.tabCtlCadFunc.Size = new System.Drawing.Size(904, 819);
+            this.tabCtlCadFunc.Size = new System.Drawing.Size(939, 819);
             this.tabCtlCadFunc.TabIndex = 0;
             // 
             // tabPageDadosPessoais
@@ -201,7 +201,7 @@ namespace SISACON.FormsRH
             this.tabPageDadosPessoais.Location = new System.Drawing.Point(4, 28);
             this.tabPageDadosPessoais.Name = "tabPageDadosPessoais";
             this.tabPageDadosPessoais.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDadosPessoais.Size = new System.Drawing.Size(896, 787);
+            this.tabPageDadosPessoais.Size = new System.Drawing.Size(862, 787);
             this.tabPageDadosPessoais.TabIndex = 0;
             this.tabPageDadosPessoais.Text = "Dados pessoais";
             this.tabPageDadosPessoais.UseVisualStyleBackColor = true;
@@ -211,7 +211,7 @@ namespace SISACON.FormsRH
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(704, 224);
+            this.label2.Location = new System.Drawing.Point(670, 224);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(130, 19);
             this.label2.TabIndex = 42;
@@ -222,7 +222,7 @@ namespace SISACON.FormsRH
             this.btnVoltar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnVoltar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.ForeColor = System.Drawing.Color.Red;
-            this.btnVoltar.Location = new System.Drawing.Point(631, 724);
+            this.btnVoltar.Location = new System.Drawing.Point(597, 724);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(107, 37);
             this.btnVoltar.TabIndex = 41;
@@ -234,7 +234,7 @@ namespace SISACON.FormsRH
             this.btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSalvar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.ForeColor = System.Drawing.Color.Green;
-            this.btnSalvar.Location = new System.Drawing.Point(750, 724);
+            this.btnSalvar.Location = new System.Drawing.Point(716, 724);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(107, 37);
             this.btnSalvar.TabIndex = 40;
@@ -268,6 +268,7 @@ namespace SISACON.FormsRH
             this.cbxCargo.Name = "cbxCargo";
             this.cbxCargo.Size = new System.Drawing.Size(264, 26);
             this.cbxCargo.TabIndex = 37;
+            this.cbxCargo.SelectedIndexChanged += new System.EventHandler(this.cbxCargo_SelectedIndexChanged);
             // 
             // cbxDepartamento
             // 
@@ -277,6 +278,7 @@ namespace SISACON.FormsRH
             this.cbxDepartamento.Name = "cbxDepartamento";
             this.cbxDepartamento.Size = new System.Drawing.Size(264, 26);
             this.cbxDepartamento.TabIndex = 36;
+            this.cbxDepartamento.SelectedIndexChanged += new System.EventHandler(this.cbxDepartamento_SelectedIndexChanged);
             // 
             // cbxEscolaridade
             // 
@@ -286,6 +288,7 @@ namespace SISACON.FormsRH
             this.cbxEscolaridade.Name = "cbxEscolaridade";
             this.cbxEscolaridade.Size = new System.Drawing.Size(264, 26);
             this.cbxEscolaridade.TabIndex = 35;
+            this.cbxEscolaridade.SelectedIndexChanged += new System.EventHandler(this.cbxEscolaridade_SelectedIndexChanged);
             // 
             // cbxSexo
             // 
@@ -295,6 +298,7 @@ namespace SISACON.FormsRH
             this.cbxSexo.Name = "cbxSexo";
             this.cbxSexo.Size = new System.Drawing.Size(112, 26);
             this.cbxSexo.TabIndex = 34;
+            this.cbxSexo.SelectedIndexChanged += new System.EventHandler(this.cbxSexo_SelectedIndexChanged);
             // 
             // cbxEstado
             // 
@@ -385,7 +389,7 @@ namespace SISACON.FormsRH
             // 
             this.pictureBoxFoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxFoto.Location = new System.Drawing.Point(679, 41);
+            this.pictureBoxFoto.Location = new System.Drawing.Point(645, 41);
             this.pictureBoxFoto.Name = "pictureBoxFoto";
             this.pictureBoxFoto.Size = new System.Drawing.Size(178, 168);
             this.pictureBoxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -401,7 +405,7 @@ namespace SISACON.FormsRH
             this.txtNome.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(148, 25);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(424, 26);
+            this.txtNome.Size = new System.Drawing.Size(441, 26);
             this.txtNome.TabIndex = 22;
             // 
             // lblFoto
@@ -410,7 +414,7 @@ namespace SISACON.FormsRH
             this.lblFoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFoto.AutoSize = true;
             this.lblFoto.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFoto.Location = new System.Drawing.Point(734, 19);
+            this.lblFoto.Location = new System.Drawing.Point(700, 19);
             this.lblFoto.Name = "lblFoto";
             this.lblFoto.Size = new System.Drawing.Size(71, 19);
             this.lblFoto.TabIndex = 18;
@@ -607,7 +611,7 @@ namespace SISACON.FormsRH
             this.tabPageDetalhes.Controls.Add(this.comboBox2);
             this.tabPageDetalhes.Controls.Add(this.cbxTipoConta);
             this.tabPageDetalhes.Controls.Add(this.txtSalario);
-            this.tabPageDetalhes.Controls.Add(this.comboBox1);
+            this.tabPageDetalhes.Controls.Add(this.cbxTipoContratacao);
             this.tabPageDetalhes.Controls.Add(this.cbxEstadoCivil);
             this.tabPageDetalhes.Controls.Add(this.txtBoxNomePai);
             this.tabPageDetalhes.Controls.Add(this.txtBoxNomeMae);
@@ -641,7 +645,7 @@ namespace SISACON.FormsRH
             this.tabPageDetalhes.Location = new System.Drawing.Point(4, 28);
             this.tabPageDetalhes.Name = "tabPageDetalhes";
             this.tabPageDetalhes.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDetalhes.Size = new System.Drawing.Size(913, 787);
+            this.tabPageDetalhes.Size = new System.Drawing.Size(931, 787);
             this.tabPageDetalhes.TabIndex = 1;
             this.tabPageDetalhes.Text = "Detalhes da admissão";
             this.tabPageDetalhes.UseVisualStyleBackColor = true;
@@ -651,7 +655,7 @@ namespace SISACON.FormsRH
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(640, 730);
+            this.button1.Location = new System.Drawing.Point(692, 730);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(107, 37);
             this.button1.TabIndex = 58;
@@ -663,7 +667,7 @@ namespace SISACON.FormsRH
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Green;
-            this.button2.Location = new System.Drawing.Point(764, 730);
+            this.button2.Location = new System.Drawing.Point(816, 730);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(107, 37);
             this.button2.TabIndex = 57;
@@ -685,7 +689,7 @@ namespace SISACON.FormsRH
             this.dateTimePickerDataEmissaoCNH.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePickerDataEmissaoCNH.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerDataEmissaoCNH.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDataEmissaoCNH.Location = new System.Drawing.Point(567, 622);
+            this.dateTimePickerDataEmissaoCNH.Location = new System.Drawing.Point(593, 622);
             this.dateTimePickerDataEmissaoCNH.Name = "dateTimePickerDataEmissaoCNH";
             this.dateTimePickerDataEmissaoCNH.Size = new System.Drawing.Size(135, 26);
             this.dateTimePickerDataEmissaoCNH.TabIndex = 55;
@@ -703,7 +707,7 @@ namespace SISACON.FormsRH
             this.dateTimePickerDataVencimentoCNH.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePickerDataVencimentoCNH.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerDataVencimentoCNH.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDataVencimentoCNH.Location = new System.Drawing.Point(567, 565);
+            this.dateTimePickerDataVencimentoCNH.Location = new System.Drawing.Point(593, 565);
             this.dateTimePickerDataVencimentoCNH.Name = "dateTimePickerDataVencimentoCNH";
             this.dateTimePickerDataVencimentoCNH.Size = new System.Drawing.Size(135, 26);
             this.dateTimePickerDataVencimentoCNH.TabIndex = 53;
@@ -720,7 +724,7 @@ namespace SISACON.FormsRH
             // 
             this.txtSerieReservista.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtSerieReservista.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSerieReservista.Location = new System.Drawing.Point(525, 515);
+            this.txtSerieReservista.Location = new System.Drawing.Point(551, 515);
             this.txtSerieReservista.Name = "txtSerieReservista";
             this.txtSerieReservista.Size = new System.Drawing.Size(209, 26);
             this.txtSerieReservista.TabIndex = 51;
@@ -737,16 +741,16 @@ namespace SISACON.FormsRH
             // 
             this.txtSecao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSecao.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSecao.Location = new System.Drawing.Point(703, 458);
+            this.txtSecao.Location = new System.Drawing.Point(755, 458);
             this.txtSecao.Name = "txtSecao";
-            this.txtSecao.Size = new System.Drawing.Size(168, 26);
+            this.txtSecao.Size = new System.Drawing.Size(166, 26);
             this.txtSecao.TabIndex = 49;
             // 
             // txtZona
             // 
             this.txtZona.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtZona.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtZona.Location = new System.Drawing.Point(436, 458);
+            this.txtZona.Location = new System.Drawing.Point(462, 458);
             this.txtZona.Name = "txtZona";
             this.txtZona.Size = new System.Drawing.Size(168, 26);
             this.txtZona.TabIndex = 48;
@@ -764,7 +768,7 @@ namespace SISACON.FormsRH
             this.dateTimePickerDataEmissaoCLT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerDataEmissaoCLT.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerDataEmissaoCLT.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDataEmissaoCLT.Location = new System.Drawing.Point(755, 399);
+            this.dateTimePickerDataEmissaoCLT.Location = new System.Drawing.Point(786, 397);
             this.dateTimePickerDataEmissaoCLT.Name = "dateTimePickerDataEmissaoCLT";
             this.dateTimePickerDataEmissaoCLT.Size = new System.Drawing.Size(135, 26);
             this.dateTimePickerDataEmissaoCLT.TabIndex = 46;
@@ -773,7 +777,7 @@ namespace SISACON.FormsRH
             // 
             this.txtSerie.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtSerie.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSerie.Location = new System.Drawing.Point(436, 400);
+            this.txtSerie.Location = new System.Drawing.Point(462, 400);
             this.txtSerie.Name = "txtSerie";
             this.txtSerie.Size = new System.Drawing.Size(168, 26);
             this.txtSerie.TabIndex = 45;
@@ -790,16 +794,16 @@ namespace SISACON.FormsRH
             // 
             this.txtConta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtConta.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConta.Location = new System.Drawing.Point(703, 347);
+            this.txtConta.Location = new System.Drawing.Point(755, 347);
             this.txtConta.Name = "txtConta";
-            this.txtConta.Size = new System.Drawing.Size(187, 26);
+            this.txtConta.Size = new System.Drawing.Size(166, 26);
             this.txtConta.TabIndex = 43;
             // 
             // txtAgencia
             // 
             this.txtAgencia.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtAgencia.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgencia.Location = new System.Drawing.Point(436, 348);
+            this.txtAgencia.Location = new System.Drawing.Point(462, 348);
             this.txtAgencia.Name = "txtAgencia";
             this.txtAgencia.Size = new System.Drawing.Size(168, 26);
             this.txtAgencia.TabIndex = 42;
@@ -818,7 +822,7 @@ namespace SISACON.FormsRH
             this.cbxTipoConta.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cbxTipoConta.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxTipoConta.FormattingEnabled = true;
-            this.cbxTipoConta.Location = new System.Drawing.Point(525, 293);
+            this.cbxTipoConta.Location = new System.Drawing.Point(551, 293);
             this.cbxTipoConta.Name = "cbxTipoConta";
             this.cbxTipoConta.Size = new System.Drawing.Size(187, 26);
             this.cbxTipoConta.TabIndex = 40;
@@ -831,15 +835,16 @@ namespace SISACON.FormsRH
             this.txtSalario.Size = new System.Drawing.Size(168, 26);
             this.txtSalario.TabIndex = 39;
             // 
-            // comboBox1
+            // cbxTipoContratacao
             // 
-            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comboBox1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(525, 237);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(141, 26);
-            this.comboBox1.TabIndex = 38;
+            this.cbxTipoContratacao.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cbxTipoContratacao.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxTipoContratacao.FormattingEnabled = true;
+            this.cbxTipoContratacao.Location = new System.Drawing.Point(551, 237);
+            this.cbxTipoContratacao.Name = "cbxTipoContratacao";
+            this.cbxTipoContratacao.Size = new System.Drawing.Size(141, 26);
+            this.cbxTipoContratacao.TabIndex = 38;
+            this.cbxTipoContratacao.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // cbxEstadoCivil
             // 
@@ -849,6 +854,7 @@ namespace SISACON.FormsRH
             this.cbxEstadoCivil.Name = "cbxEstadoCivil";
             this.cbxEstadoCivil.Size = new System.Drawing.Size(168, 26);
             this.cbxEstadoCivil.TabIndex = 37;
+            this.cbxEstadoCivil.SelectedIndexChanged += new System.EventHandler(this.cbxEstadoCivil_SelectedIndexChanged);
             // 
             // txtBoxNomePai
             // 
@@ -858,7 +864,7 @@ namespace SISACON.FormsRH
             this.txtBoxNomePai.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxNomePai.Location = new System.Drawing.Point(124, 181);
             this.txtBoxNomePai.Name = "txtBoxNomePai";
-            this.txtBoxNomePai.Size = new System.Drawing.Size(720, 26);
+            this.txtBoxNomePai.Size = new System.Drawing.Size(772, 26);
             this.txtBoxNomePai.TabIndex = 36;
             // 
             // txtBoxNomeMae
@@ -869,7 +875,7 @@ namespace SISACON.FormsRH
             this.txtBoxNomeMae.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxNomeMae.Location = new System.Drawing.Point(127, 131);
             this.txtBoxNomeMae.Name = "txtBoxNomeMae";
-            this.txtBoxNomeMae.Size = new System.Drawing.Size(717, 26);
+            this.txtBoxNomeMae.Size = new System.Drawing.Size(769, 26);
             this.txtBoxNomeMae.TabIndex = 35;
             // 
             // cbxEstadoNascimento
@@ -877,10 +883,11 @@ namespace SISACON.FormsRH
             this.cbxEstadoNascimento.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cbxEstadoNascimento.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxEstadoNascimento.FormattingEnabled = true;
-            this.cbxEstadoNascimento.Location = new System.Drawing.Point(703, 75);
+            this.cbxEstadoNascimento.Location = new System.Drawing.Point(729, 75);
             this.cbxEstadoNascimento.Name = "cbxEstadoNascimento";
             this.cbxEstadoNascimento.Size = new System.Drawing.Size(112, 26);
             this.cbxEstadoNascimento.TabIndex = 34;
+            this.cbxEstadoNascimento.SelectedIndexChanged += new System.EventHandler(this.cbxEstadoNascimento_SelectedIndexChanged);
             // 
             // txtBoxNaturalidade
             // 
@@ -906,7 +913,7 @@ namespace SISACON.FormsRH
             this.lblDataEmissaoCNH.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblDataEmissaoCNH.AutoSize = true;
             this.lblDataEmissaoCNH.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataEmissaoCNH.Location = new System.Drawing.Point(383, 625);
+            this.lblDataEmissaoCNH.Location = new System.Drawing.Point(409, 625);
             this.lblDataEmissaoCNH.Name = "lblDataEmissaoCNH";
             this.lblDataEmissaoCNH.Size = new System.Drawing.Size(178, 19);
             this.lblDataEmissaoCNH.TabIndex = 30;
@@ -927,7 +934,7 @@ namespace SISACON.FormsRH
             this.lblDataVencimento.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblDataVencimento.AutoSize = true;
             this.lblDataVencimento.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataVencimento.Location = new System.Drawing.Point(383, 570);
+            this.lblDataVencimento.Location = new System.Drawing.Point(409, 570);
             this.lblDataVencimento.Name = "lblDataVencimento";
             this.lblDataVencimento.Size = new System.Drawing.Size(151, 19);
             this.lblDataVencimento.TabIndex = 28;
@@ -948,7 +955,7 @@ namespace SISACON.FormsRH
             this.lblSerieReservista.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblSerieReservista.AutoSize = true;
             this.lblSerieReservista.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSerieReservista.Location = new System.Drawing.Point(381, 517);
+            this.lblSerieReservista.Location = new System.Drawing.Point(407, 517);
             this.lblSerieReservista.Name = "lblSerieReservista";
             this.lblSerieReservista.Size = new System.Drawing.Size(138, 19);
             this.lblSerieReservista.TabIndex = 26;
@@ -969,7 +976,7 @@ namespace SISACON.FormsRH
             this.lblSecao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSecao.AutoSize = true;
             this.lblSecao.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecao.Location = new System.Drawing.Point(625, 460);
+            this.lblSecao.Location = new System.Drawing.Point(677, 460);
             this.lblSecao.Name = "lblSecao";
             this.lblSecao.Size = new System.Drawing.Size(53, 19);
             this.lblSecao.TabIndex = 24;
@@ -980,7 +987,7 @@ namespace SISACON.FormsRH
             this.lblZona.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblZona.AutoSize = true;
             this.lblZona.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZona.Location = new System.Drawing.Point(383, 460);
+            this.lblZona.Location = new System.Drawing.Point(409, 460);
             this.lblZona.Name = "lblZona";
             this.lblZona.Size = new System.Drawing.Size(47, 19);
             this.lblZona.TabIndex = 23;
@@ -1001,18 +1008,19 @@ namespace SISACON.FormsRH
             this.lblEmissao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEmissao.AutoSize = true;
             this.lblEmissao.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmissao.Location = new System.Drawing.Point(625, 402);
+            this.lblEmissao.Location = new System.Drawing.Point(656, 402);
             this.lblEmissao.Name = "lblEmissao";
             this.lblEmissao.Size = new System.Drawing.Size(124, 19);
             this.lblEmissao.TabIndex = 21;
             this.lblEmissao.Text = "Data de emissão:";
+            this.lblEmissao.Click += new System.EventHandler(this.lblEmissao_Click);
             // 
             // lblSerie
             // 
             this.lblSerie.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblSerie.AutoSize = true;
             this.lblSerie.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSerie.Location = new System.Drawing.Point(381, 402);
+            this.lblSerie.Location = new System.Drawing.Point(407, 402);
             this.lblSerie.Name = "lblSerie";
             this.lblSerie.Size = new System.Drawing.Size(47, 19);
             this.lblSerie.TabIndex = 20;
@@ -1034,7 +1042,7 @@ namespace SISACON.FormsRH
             this.lblTipoConta.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblTipoConta.AutoSize = true;
             this.lblTipoConta.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoConta.Location = new System.Drawing.Point(351, 296);
+            this.lblTipoConta.Location = new System.Drawing.Point(377, 296);
             this.lblTipoConta.Name = "lblTipoConta";
             this.lblTipoConta.Size = new System.Drawing.Size(119, 19);
             this.lblTipoConta.TabIndex = 18;
@@ -1045,7 +1053,7 @@ namespace SISACON.FormsRH
             this.lblConta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblConta.AutoSize = true;
             this.lblConta.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConta.Location = new System.Drawing.Point(625, 350);
+            this.lblConta.Location = new System.Drawing.Point(677, 350);
             this.lblConta.Name = "lblConta";
             this.lblConta.Size = new System.Drawing.Size(65, 19);
             this.lblConta.TabIndex = 17;
@@ -1056,7 +1064,7 @@ namespace SISACON.FormsRH
             this.lblAgencia.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblAgencia.AutoSize = true;
             this.lblAgencia.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgencia.Location = new System.Drawing.Point(351, 350);
+            this.lblAgencia.Location = new System.Drawing.Point(377, 350);
             this.lblAgencia.Name = "lblAgencia";
             this.lblAgencia.Size = new System.Drawing.Size(79, 19);
             this.lblAgencia.TabIndex = 16;
@@ -1087,7 +1095,7 @@ namespace SISACON.FormsRH
             this.lblTipoContratacao.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblTipoContratacao.AutoSize = true;
             this.lblTipoContratacao.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoContratacao.Location = new System.Drawing.Point(351, 240);
+            this.lblTipoContratacao.Location = new System.Drawing.Point(377, 240);
             this.lblTipoContratacao.Name = "lblTipoContratacao";
             this.lblTipoContratacao.Size = new System.Drawing.Size(163, 19);
             this.lblTipoContratacao.TabIndex = 13;
@@ -1128,7 +1136,7 @@ namespace SISACON.FormsRH
             this.lblEstadoNasc.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblEstadoNasc.AutoSize = true;
             this.lblEstadoNasc.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstadoNasc.Location = new System.Drawing.Point(522, 78);
+            this.lblEstadoNasc.Location = new System.Drawing.Point(548, 78);
             this.lblEstadoNasc.Name = "lblEstadoNasc";
             this.lblEstadoNasc.Size = new System.Drawing.Size(175, 19);
             this.lblEstadoNasc.TabIndex = 9;
@@ -1249,7 +1257,7 @@ namespace SISACON.FormsRH
         private System.Windows.Forms.Label lblSecao;
         private System.Windows.Forms.Label lblZona;
         private System.Windows.Forms.TextBox txtSalario;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxTipoContratacao;
         private System.Windows.Forms.ComboBox cbxEstadoCivil;
         private System.Windows.Forms.TextBox txtBoxNomePai;
         private System.Windows.Forms.TextBox txtBoxNomeMae;

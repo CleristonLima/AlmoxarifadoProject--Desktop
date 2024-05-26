@@ -1,6 +1,12 @@
 ﻿using SISACON.ConexaoBD;
 using SISACON.RHClass;
+using SISACON.RHClass.CargoDAO;
+using SISACON.RHClass.DepartamentoDAO;
+using SISACON.RHClass.EscolaridadeDAO;
+using SISACON.RHClass.EstadoCivilDAO;
 using SISACON.RHClass.EstadoDAO;
+using SISACON.RHClass.SexoDAO;
+using SISACON.RHClass.TipoContratacaoDAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,6 +53,13 @@ namespace SISACON.FormsRH
             txtCPFCNPJ.Leave += txtCPFCNPJ_Leave;
 
             PreencherComboEstado();
+            PreencherComboxSexo();
+            PreencherComboxEscolaridade();
+            PreencherComboxDepartamento();
+            PreencherComboxCargo();
+            PreencherComboEstadoNasc();
+            PreencherComboEstadoCivil();
+            PreencherComboxTipoContratacao();
         }
 
         private void pictureBoxFoto_Click(object sender, EventArgs e)
@@ -236,6 +249,165 @@ namespace SISACON.FormsRH
             cbxEstado.DataSource = estado;
             cbxEstado.DisplayMember = "CODE_UF";
             cbxEstado.ValueMember = "ID_UF";
+        }
+
+        private void cbxSexo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSexo.SelectedItem != null)
+            {
+
+                SelecionaSexo selectedSexo = (SelecionaSexo)cbxSexo.SelectedItem;
+
+                // Obter o ID do estado selecionado
+                int selectedSexoId = selectedSexo.ID_SEX_EMPLO;
+            }
+        }
+
+        private void PreencherComboxSexo()
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+            SexoDAO sexoDAO = new SexoDAO(connectionString);
+            List<SelecionaSexo> sexo = sexoDAO.ObterSexo();
+            cbxSexo.DataSource = sexo;
+            cbxSexo.DisplayMember = "NomeSexo";
+            cbxSexo.ValueMember = "ID_SEX_EMPLO";
+        }
+
+        private void cbxEscolaridade_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxEscolaridade.SelectedItem != null)
+            {
+
+                SelecionaEscolaridade selectedEscolaridade = (SelecionaEscolaridade)cbxEscolaridade.SelectedItem;
+
+                // Obter o ID do estado selecionado
+                int selectedEducationId = selectedEscolaridade.ID_EDUCATION;
+            }
+        }
+
+        private void PreencherComboxEscolaridade()
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+            EscolaridadeDAO escolaridadeDAO = new EscolaridadeDAO(connectionString);
+            List<SelecionaEscolaridade> escola = escolaridadeDAO.ObterEscolaridade();
+            cbxEscolaridade.DataSource = escola;
+            cbxEscolaridade.DisplayMember = "NAME_EDUCATION";
+            cbxEscolaridade.ValueMember = "ID_EDUCATION";
+        }
+
+        private void cbxDepartamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxDepartamento.SelectedItem != null)
+            {
+
+                Departamento selectedDepartamento = (Departamento)cbxDepartamento.SelectedItem;
+
+                // Obter o ID do estado selecionado
+                int selectedDepartamentoId = selectedDepartamento.ID_DEPARTMENT;
+            }
+        }
+
+        private void PreencherComboxDepartamento()
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+            DepartamentoDAO departamentoDAO = new DepartamentoDAO(connectionString);
+            List<Departamento> departamento = departamentoDAO.ObterDepartamento();
+            cbxDepartamento.DataSource = departamento;
+            cbxDepartamento.DisplayMember = "NAME_DEPARTMENT";
+            cbxDepartamento.ValueMember = "ID_DEPARTMENT";
+        }
+
+        private void cbxCargo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxCargo.SelectedItem != null)
+            {
+
+                Cargo selectedCargo = (Cargo)cbxCargo.SelectedItem;
+
+                // Obter o ID do estado selecionado
+                int selectedCargoId = selectedCargo.ID_OFFICE;
+            }
+        }
+
+        private void PreencherComboxCargo()
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+            CargoDAO cargoDAO = new CargoDAO(connectionString);
+            List<Cargo> cargo = cargoDAO.ObterCargo();
+            cbxCargo.DataSource = cargo;
+            cbxCargo.DisplayMember = "NAME_OFFICE";
+            cbxCargo.ValueMember = "ID_OFFICE";
+        }
+
+        private void cbxEstadoNascimento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxEstadoNascimento.SelectedItem != null)
+            {
+
+                SelecionaEstado selectedEstadoNasc = (SelecionaEstado)cbxEstadoNascimento.SelectedItem;
+
+                // Obter o ID do estado selecionado
+                int selectedEstadoNascId = selectedEstadoNasc.ID_UF;
+            }
+        }
+
+        private void PreencherComboEstadoNasc()
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+            EstadoDAO estadoDAO = new EstadoDAO(connectionString);
+            List<SelecionaEstado> estado = estadoDAO.ObterEstado();
+            cbxEstadoNascimento.DataSource = estado;
+            cbxEstadoNascimento.DisplayMember = "CODE_UF";
+            cbxEstadoNascimento.ValueMember = "ID_UF";
+        }
+
+        private void lblEmissao_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxEstadoCivil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxEstadoCivil.SelectedItem != null)
+            {
+
+                SelecionaEstadoCivil selectedEstadoCivil = (SelecionaEstadoCivil)cbxEstadoCivil.SelectedItem;
+
+                // Obter o ID do estado selecionado
+                int selectedEstadoNascId = selectedEstadoCivil.ID_CIVIL_STATE;
+            }
+        }
+
+        private void PreencherComboEstadoCivil()
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+            EstadoCivilDAO estadoCivilDAO = new EstadoCivilDAO(connectionString);
+            List<SelecionaEstadoCivil> estadoCivil = estadoCivilDAO.ObterEstadoCivil();
+            cbxEstadoCivil.DataSource = estadoCivil;
+            cbxEstadoCivil.DisplayMember = "DESC_CIVIL_STATE";
+            cbxEstadoCivil.ValueMember = "ID_CIVIL_STATE";
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxTipoContratacao.SelectedItem != null)
+            {
+
+                SelecionaTipoContratacao selectedTipoContratacao = (SelecionaTipoContratacao)cbxTipoContratacao.SelectedItem;
+
+                // Obter o ID do estado selecionado
+                int selectedTipoContratacaoId = selectedTipoContratacao.ID_TYPE_HIRING;
+            }
+        }
+
+        private void PreencherComboxTipoContratacao()
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+            TipoContratacaoDAO tipoContratacaoDAO = new TipoContratacaoDAO(connectionString);
+            List<SelecionaTipoContratacao> tipoContratacao = tipoContratacaoDAO.ObterTipoContratacao();
+            cbxTipoContratacao.DataSource = tipoContratacao;
+            cbxTipoContratacao.DisplayMember = "DESC_HIRING";
+            cbxTipoContratacao.ValueMember = "ID_TYPE_HIRING";
         }
     }
 }
