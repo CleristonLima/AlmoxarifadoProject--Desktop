@@ -52,6 +52,10 @@ namespace SISACON.FormsRH
 
             txtCPFCNPJ.Leave += txtCPFCNPJ_Leave;
 
+            // Adicionando Handlers para os eventos TextChanged das TextBox da agência e conta
+            txtAgencia.TextChanged += txtAgencia_TextChanged;
+            txtConta.TextChanged += txtConta_TextChanged;
+
             PreencherComboEstado();
             PreencherComboxSexo();
             PreencherComboxEscolaridade();
@@ -60,6 +64,8 @@ namespace SISACON.FormsRH
             PreencherComboEstadoNasc();
             PreencherComboEstadoCivil();
             PreencherComboxTipoContratacao();
+            PreencherComboxTipoConta();
+            PreencherComboxBanco();
         }
 
         private void pictureBoxFoto_Click(object sender, EventArgs e)
@@ -96,15 +102,18 @@ namespace SISACON.FormsRH
                 if (IsCpfCnpjValido(cpfCnpj))
                 {
                     //MessageBox.Show("CPF ou CNPJ válido!", "VALIDAÇÃO");
+                    txtCPFCNPJ.BackColor = System.Drawing.Color.LightGreen;
                 }
                 else
                 {
                     MessageBox.Show("CPF ou CNPJ inválido!", "DADOS INVÁLIDOS!");
+                    txtCPFCNPJ.BackColor = System.Drawing.Color.LightCoral;
                 }
             }
             else if (cpfCnpj.Length > 0)
             {
                 MessageBox.Show("CPF ou CNPJ incompleto!", "DADOS INVÁLIDOS!");
+                txtCPFCNPJ.BackColor = System.Drawing.Color.LightCoral;
             }
         }
 
@@ -236,7 +245,6 @@ namespace SISACON.FormsRH
 
                 SelecionaEstado selectedEstado = (SelecionaEstado)cbxEstado.SelectedItem;
 
-                // Obter o ID do estado selecionado
                 int selectedEstadoId = selectedEstado.ID_UF;
             }
         }
@@ -258,7 +266,6 @@ namespace SISACON.FormsRH
 
                 SelecionaSexo selectedSexo = (SelecionaSexo)cbxSexo.SelectedItem;
 
-                // Obter o ID do estado selecionado
                 int selectedSexoId = selectedSexo.ID_SEX_EMPLO;
             }
         }
@@ -280,7 +287,6 @@ namespace SISACON.FormsRH
 
                 SelecionaEscolaridade selectedEscolaridade = (SelecionaEscolaridade)cbxEscolaridade.SelectedItem;
 
-                // Obter o ID do estado selecionado
                 int selectedEducationId = selectedEscolaridade.ID_EDUCATION;
             }
         }
@@ -302,7 +308,6 @@ namespace SISACON.FormsRH
 
                 Departamento selectedDepartamento = (Departamento)cbxDepartamento.SelectedItem;
 
-                // Obter o ID do estado selecionado
                 int selectedDepartamentoId = selectedDepartamento.ID_DEPARTMENT;
             }
         }
@@ -324,7 +329,6 @@ namespace SISACON.FormsRH
 
                 Cargo selectedCargo = (Cargo)cbxCargo.SelectedItem;
 
-                // Obter o ID do estado selecionado
                 int selectedCargoId = selectedCargo.ID_OFFICE;
             }
         }
@@ -346,7 +350,6 @@ namespace SISACON.FormsRH
 
                 SelecionaEstado selectedEstadoNasc = (SelecionaEstado)cbxEstadoNascimento.SelectedItem;
 
-                // Obter o ID do estado selecionado
                 int selectedEstadoNascId = selectedEstadoNasc.ID_UF;
             }
         }
@@ -373,7 +376,6 @@ namespace SISACON.FormsRH
 
                 SelecionaEstadoCivil selectedEstadoCivil = (SelecionaEstadoCivil)cbxEstadoCivil.SelectedItem;
 
-                // Obter o ID do estado selecionado
                 int selectedEstadoNascId = selectedEstadoCivil.ID_CIVIL_STATE;
             }
         }
@@ -395,7 +397,6 @@ namespace SISACON.FormsRH
 
                 SelecionaTipoContratacao selectedTipoContratacao = (SelecionaTipoContratacao)cbxTipoContratacao.SelectedItem;
 
-                // Obter o ID do estado selecionado
                 int selectedTipoContratacaoId = selectedTipoContratacao.ID_TYPE_HIRING;
             }
         }
@@ -408,6 +409,160 @@ namespace SISACON.FormsRH
             cbxTipoContratacao.DataSource = tipoContratacao;
             cbxTipoContratacao.DisplayMember = "DESC_HIRING";
             cbxTipoContratacao.ValueMember = "ID_TYPE_HIRING";
+        }
+
+        private void cbxTipoConta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxTipoConta.SelectedItem != null)
+            {
+
+                SelecionaTipoConta selectedTipoConta = (SelecionaTipoConta)cbxTipoConta.SelectedItem;
+
+                int selectedTipoContaId = selectedTipoConta.ID_TYPE_COUNT;
+            }
+
+        }
+
+        private void PreencherComboxTipoConta()
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+            TipoContaDAO tipoContaDAO = new TipoContaDAO(connectionString);
+            List<SelecionaTipoConta> conta = tipoContaDAO.ObterTipoConta();
+            cbxTipoConta.DataSource = conta;
+            cbxTipoConta.DisplayMember = "NomeConta";
+            cbxTipoConta.ValueMember = "ID_TYPE_COUNT";
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxBanco.SelectedItem != null)
+            {
+
+                SelecionaBanco selectedBanco = (SelecionaBanco)cbxBanco.SelectedItem;
+
+                int selectedBancoId = selectedBanco.ID_BANK;
+            }
+        }
+
+        private void PreencherComboxBanco()
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+            BancoDAO bancoDAO = new BancoDAO(connectionString);
+            List<SelecionaBanco> banco = bancoDAO.ObterBanco();
+            cbxBanco.DataSource = banco;
+            cbxBanco.DisplayMember = "NameBank";
+            cbxBanco.ValueMember = "ID_BANK";
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAgencia_TextChanged(object sender, EventArgs e)
+        {
+            if (ValidarAgencia(txtAgencia.Text))
+            {
+                txtAgencia.BackColor = System.Drawing.Color.LightGreen;
+            }
+            else
+            {
+                txtAgencia.BackColor = System.Drawing.Color.LightCoral;
+            }
+        }
+
+        private bool ValidarAgencia(string agencia)
+        {
+            return Regex.IsMatch(agencia, @"^\d{4}$");
+        }
+
+        private void txtConta_TextChanged(object sender, EventArgs e)
+        {
+            if (ValidarConta(txtConta.Text))
+            {
+                txtConta.BackColor = System.Drawing.Color.LightGreen;
+            }
+            else
+            {
+                txtConta.BackColor = System.Drawing.Color.LightCoral;
+            }
+        }
+
+        private bool ValidarConta(string conta)
+        {
+            // Verifica se a conta está no formato XXXXX-X ou XXXXXXX
+            return Regex.IsMatch(conta, @"^\d{5}-\d{1}$") || Regex.IsMatch(conta, @"^\d{6}$");
+        }
+
+        private bool VerificarAgenciaEConta(string agencia, string conta)
+        {
+            if (!ValidarAgencia(agencia))
+            {
+                return false;
+            }
+
+            if (!ValidarConta(conta))
+            {
+                return false;
+            }
+
+            return VerificarDigitoVerificador(conta);
+        }
+
+        private bool VerificarDigitoVerificador(string conta)
+        {
+            conta = conta.Replace(" ", "");
+
+            string numeroConta;
+            string digitoVerificador;
+
+            // Verificar se a conta contém um hífen
+            if (conta.Contains('-'))
+            {
+                var partes = conta.Split('-');
+                numeroConta = partes[0];
+                digitoVerificador = partes[1];
+            }
+            else
+            {
+                // Se não houver hífen, assumimos que o último caractere é o dígito verificador
+                numeroConta = conta.Substring(0, conta.Length - 1);
+                digitoVerificador = conta.Substring(conta.Length - 1);
+            }
+
+            // Calcular o dígito verificador
+            int soma = 0;
+            foreach (var c in numeroConta)
+            {
+                soma += int.Parse(c.ToString());
+            }
+
+            int digitoCalculado = soma % 10;
+
+            // Verificar se o dígito verificador calculado é igual ao fornecido
+            return digitoCalculado.ToString() == digitoVerificador;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Para verificar a agencia e conta
+            string agencia = txtAgencia.Text;
+            string conta = txtConta.Text;
+
+            if (txtAgencia.BackColor == System.Drawing.Color.LightGreen && txtConta.BackColor == System.Drawing.Color.LightGreen)
+            {
+                if (VerificarAgenciaEConta(agencia, conta))
+                {
+                    MessageBox.Show("Agência e Conta válidas!", "VALIDAÇÃO");
+                    // Proceda com a operação de submissão
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Agência e Conta Inválidas!", "INVALIDAÇÃO");
+            }
+
         }
     }
 }
