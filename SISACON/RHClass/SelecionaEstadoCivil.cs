@@ -12,6 +12,8 @@ namespace SISACON.RHClass
 
         public string DESC_CIVIL_STATE { get; set; }
 
+        public SelecionaEstadoCivil() { }
+
         public SelecionaEstadoCivil(int id_civil_state, string desc_civil_state)
         {
             ID_CIVIL_STATE = id_civil_state;

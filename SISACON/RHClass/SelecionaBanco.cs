@@ -17,6 +17,7 @@ namespace SISACON.RHClass
             get { return $"{ID_BANK} - {DESC_BANK}"; }
         }
 
+        public SelecionaBanco() { }
 
         public SelecionaBanco(int id_bank, string desc_bank)
         {

@@ -14,6 +14,8 @@ namespace SISACON.RHClass
 
         public string DESC_UF { get; set; }
 
+        public SelecionaEstado() { }
+
         public SelecionaEstado(int id_uf, string code_uf, string desc_uf)
         {
             ID_UF = id_uf;

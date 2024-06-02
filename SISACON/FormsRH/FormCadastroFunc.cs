@@ -254,9 +254,19 @@ namespace SISACON.FormsRH
             string connectionString = ConexaoBancoDados.conn_;
             EstadoDAO estadoDAO = new EstadoDAO(connectionString);
             List<SelecionaEstado> estado = estadoDAO.ObterEstado();
-            cbxEstado.DataSource = estado;
+
+            List<SelecionaEstado> estadoComPrompt = new List<SelecionaEstado>
+            {
+                new SelecionaEstado { ID_UF = -1, CODE_UF = "--Selecione" }
+            };            
+
+            estadoComPrompt.AddRange(estado);
+
+            cbxEstado.DataSource = estadoComPrompt;
             cbxEstado.DisplayMember = "CODE_UF";
             cbxEstado.ValueMember = "ID_UF";
+
+            cbxEstado.SelectedIndex = 0;
         }
 
         private void cbxSexo_SelectedIndexChanged(object sender, EventArgs e)
@@ -275,9 +285,19 @@ namespace SISACON.FormsRH
             string connectionString = ConexaoBancoDados.conn_;
             SexoDAO sexoDAO = new SexoDAO(connectionString);
             List<SelecionaSexo> sexo = sexoDAO.ObterSexo();
-            cbxSexo.DataSource = sexo;
+
+            List<SelecionaSexo> sexoComPrompt = new List<SelecionaSexo>
+            {
+                new SelecionaSexo { ID_SEX_EMPLO = -1, CODE_SEX_EMPLO = "", DESC_SEX_EMPLO = "-Selecione" }
+            };
+
+            sexoComPrompt.AddRange(sexo);
+
+            cbxSexo.DataSource = sexoComPrompt;
             cbxSexo.DisplayMember = "NomeSexo";
             cbxSexo.ValueMember = "ID_SEX_EMPLO";
+
+            cbxSexo.SelectedIndex = 0;
         }
 
         private void cbxEscolaridade_SelectedIndexChanged(object sender, EventArgs e)
@@ -296,9 +316,19 @@ namespace SISACON.FormsRH
             string connectionString = ConexaoBancoDados.conn_;
             EscolaridadeDAO escolaridadeDAO = new EscolaridadeDAO(connectionString);
             List<SelecionaEscolaridade> escola = escolaridadeDAO.ObterEscolaridade();
-            cbxEscolaridade.DataSource = escola;
+
+            List<SelecionaEscolaridade> escolaComPrompt = new List<SelecionaEscolaridade>
+            {
+                new SelecionaEscolaridade { ID_EDUCATION = -1, NAME_EDUCATION = "--Selecione" }
+            };
+
+            escolaComPrompt.AddRange(escola);
+
+            cbxEscolaridade.DataSource = escolaComPrompt;
             cbxEscolaridade.DisplayMember = "NAME_EDUCATION";
             cbxEscolaridade.ValueMember = "ID_EDUCATION";
+
+            cbxEscolaridade.SelectedIndex = 0;
         }
 
         private void cbxDepartamento_SelectedIndexChanged(object sender, EventArgs e)
@@ -317,9 +347,19 @@ namespace SISACON.FormsRH
             string connectionString = ConexaoBancoDados.conn_;
             DepartamentoDAO departamentoDAO = new DepartamentoDAO(connectionString);
             List<Departamento> departamento = departamentoDAO.ObterDepartamento();
-            cbxDepartamento.DataSource = departamento;
+
+            List<Departamento> departamentoComPrompt = new List<Departamento>
+            {
+                new Departamento { ID_DEPARTMENT = -1, NAME_DEPARTMENT = "--Selecione" }
+            };
+
+            departamentoComPrompt.AddRange(departamento);
+
+            cbxDepartamento.DataSource = departamentoComPrompt;
             cbxDepartamento.DisplayMember = "NAME_DEPARTMENT";
             cbxDepartamento.ValueMember = "ID_DEPARTMENT";
+
+            cbxDepartamento.SelectedIndex = 0;
         }
 
         private void cbxCargo_SelectedIndexChanged(object sender, EventArgs e)
@@ -338,9 +378,19 @@ namespace SISACON.FormsRH
             string connectionString = ConexaoBancoDados.conn_;
             CargoDAO cargoDAO = new CargoDAO(connectionString);
             List<Cargo> cargo = cargoDAO.ObterCargo();
-            cbxCargo.DataSource = cargo;
+
+            List<Cargo> cargoComPrompt = new List<Cargo>
+            {
+                new Cargo { ID_OFFICE = -1, NAME_OFFICE = "--Selecione" }
+            };
+
+            cargoComPrompt.AddRange(cargo);
+
+            cbxCargo.DataSource = cargoComPrompt;
             cbxCargo.DisplayMember = "NAME_OFFICE";
             cbxCargo.ValueMember = "ID_OFFICE";
+
+            cbxCargo.SelectedIndex = 0;
         }
 
         private void cbxEstadoNascimento_SelectedIndexChanged(object sender, EventArgs e)
@@ -359,9 +409,19 @@ namespace SISACON.FormsRH
             string connectionString = ConexaoBancoDados.conn_;
             EstadoDAO estadoDAO = new EstadoDAO(connectionString);
             List<SelecionaEstado> estado = estadoDAO.ObterEstado();
-            cbxEstadoNascimento.DataSource = estado;
+
+            List<SelecionaEstado> estadoNascComPrompt = new List<SelecionaEstado>
+            {
+                new SelecionaEstado { ID_UF = -1, CODE_UF = "--Selecione" }
+            };
+
+            estadoNascComPrompt.AddRange(estado);
+
+            cbxEstadoNascimento.DataSource = estadoNascComPrompt;
             cbxEstadoNascimento.DisplayMember = "CODE_UF";
             cbxEstadoNascimento.ValueMember = "ID_UF";
+
+            cbxEstadoNascimento.SelectedIndex = 0;
         }
 
         private void lblEmissao_Click(object sender, EventArgs e)
@@ -385,9 +445,19 @@ namespace SISACON.FormsRH
             string connectionString = ConexaoBancoDados.conn_;
             EstadoCivilDAO estadoCivilDAO = new EstadoCivilDAO(connectionString);
             List<SelecionaEstadoCivil> estadoCivil = estadoCivilDAO.ObterEstadoCivil();
-            cbxEstadoCivil.DataSource = estadoCivil;
+
+            List<SelecionaEstadoCivil> estadoCivilComPrompt = new List<SelecionaEstadoCivil>
+            {
+                new SelecionaEstadoCivil { ID_CIVIL_STATE = -1, DESC_CIVIL_STATE = "--Selecione" }
+            };
+
+            estadoCivilComPrompt.AddRange(estadoCivil);
+
+            cbxEstadoCivil.DataSource = estadoCivilComPrompt;
             cbxEstadoCivil.DisplayMember = "DESC_CIVIL_STATE";
             cbxEstadoCivil.ValueMember = "ID_CIVIL_STATE";
+
+            cbxEstadoCivil.SelectedIndex = 0;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -406,9 +476,19 @@ namespace SISACON.FormsRH
             string connectionString = ConexaoBancoDados.conn_;
             TipoContratacaoDAO tipoContratacaoDAO = new TipoContratacaoDAO(connectionString);
             List<SelecionaTipoContratacao> tipoContratacao = tipoContratacaoDAO.ObterTipoContratacao();
-            cbxTipoContratacao.DataSource = tipoContratacao;
+
+            List<SelecionaTipoContratacao> tipoContratacaoComPrompt = new List<SelecionaTipoContratacao>
+            {
+                new SelecionaTipoContratacao { ID_TYPE_HIRING = -1, DESC_HIRING = "--Selecione" }
+            };
+
+            tipoContratacaoComPrompt.AddRange(tipoContratacao);
+
+            cbxTipoContratacao.DataSource = tipoContratacaoComPrompt;
             cbxTipoContratacao.DisplayMember = "DESC_HIRING";
             cbxTipoContratacao.ValueMember = "ID_TYPE_HIRING";
+
+            cbxTipoContratacao.SelectedIndex = 0;
         }
 
         private void cbxTipoConta_SelectedIndexChanged(object sender, EventArgs e)
@@ -428,9 +508,19 @@ namespace SISACON.FormsRH
             string connectionString = ConexaoBancoDados.conn_;
             TipoContaDAO tipoContaDAO = new TipoContaDAO(connectionString);
             List<SelecionaTipoConta> conta = tipoContaDAO.ObterTipoConta();
-            cbxTipoConta.DataSource = conta;
+
+            List<SelecionaTipoConta> tipoContaComPrompt = new List<SelecionaTipoConta>
+            {
+                new SelecionaTipoConta { ID_TYPE_COUNT = -1, CODE_TYPE_COUNT = "", NAME_TYPE_COUNT = "-Selecione" }
+            };
+
+            tipoContaComPrompt.AddRange(conta);
+
+            cbxTipoConta.DataSource = tipoContaComPrompt;
             cbxTipoConta.DisplayMember = "NomeConta";
             cbxTipoConta.ValueMember = "ID_TYPE_COUNT";
+
+            cbxTipoConta.SelectedIndex = 0;
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -449,9 +539,19 @@ namespace SISACON.FormsRH
             string connectionString = ConexaoBancoDados.conn_;
             BancoDAO bancoDAO = new BancoDAO(connectionString);
             List<SelecionaBanco> banco = bancoDAO.ObterBanco();
-            cbxBanco.DataSource = banco;
+
+            List<SelecionaBanco> bancoComPrompt = new List<SelecionaBanco>
+            {
+                new SelecionaBanco { ID_BANK = 0, DESC_BANK = "Selecione" }
+            };
+
+            bancoComPrompt.AddRange(banco);
+
+            cbxBanco.DataSource = bancoComPrompt;
             cbxBanco.DisplayMember = "NameBank";
             cbxBanco.ValueMember = "ID_BANK";
+
+            cbxBanco.SelectedIndex = 0;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -490,8 +590,7 @@ namespace SISACON.FormsRH
 
         private bool ValidarConta(string conta)
         {
-            // Verifica se a conta está no formato XXXXX-X ou XXXXXXX
-            return Regex.IsMatch(conta, @"^\d{5}-\d{1}$") || Regex.IsMatch(conta, @"^\d{6}$");
+            return Regex.IsMatch(conta, @"^\d{5}-\d{1}$") || Regex.IsMatch(conta, @"^\d{8}$");
         }
 
         private bool VerificarAgenciaEConta(string agencia, string conta)
@@ -551,11 +650,14 @@ namespace SISACON.FormsRH
 
             if (txtAgencia.BackColor == System.Drawing.Color.LightGreen && txtConta.BackColor == System.Drawing.Color.LightGreen)
             {
-                if (VerificarAgenciaEConta(agencia, conta))
+                /*if (VerificarAgenciaEConta(agencia, conta))
                 {
                     MessageBox.Show("Agência e Conta válidas!", "VALIDAÇÃO");
                     // Proceda com a operação de submissão
-                }
+                }*/
+
+                VerificarAgenciaEConta(agencia, conta);
+
 
             }
             else
@@ -563,6 +665,45 @@ namespace SISACON.FormsRH
                 MessageBox.Show("Agência e Conta Inválidas!", "INVALIDAÇÃO");
             }
 
+        }
+
+        private void btnProximo_Click(object sender, EventArgs e)
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+
+                tabCtlCadFunc.SelectedIndex = 1;
+
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+
+                tabCtlCadFunc.SelectedIndex = 0;
+
+            }
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -18,6 +18,8 @@ namespace SISACON.RHClass
 
         public string NomeCompletoDepto { get; set; } // Propriedade para armazenar o nome completo e a sigla
 
+        public Departamento() { }
+
         public Departamento(int id_departament, string name_department, string code_department, int status_department)
         {
             ID_DEPARTMENT = id_departament;

@@ -19,6 +19,8 @@ namespace SISACON.RHClass
             get { return $"{CODE_TYPE_COUNT} - {NAME_TYPE_COUNT}"; }
         }
 
+        public SelecionaTipoConta() { }
+
 
         public SelecionaTipoConta(int id_type_count, string code_type_count, string name_type_count)
         {

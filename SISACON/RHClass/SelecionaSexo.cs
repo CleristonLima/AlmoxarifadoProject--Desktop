@@ -19,6 +19,8 @@ namespace SISACON.RHClass
             get { return $"{CODE_SEX_EMPLO} - {DESC_SEX_EMPLO}"; }
         }
 
+        public SelecionaSexo() { }
+
         public SelecionaSexo(int id_sex_emplo, string code_sex_emplo, string desc_sex_emplo)
         {
             ID_SEX_EMPLO = id_sex_emplo;

@@ -12,6 +12,7 @@ namespace SISACON.RHClass
 
         public string DESC_HIRING { get; set; }
 
+        public SelecionaTipoContratacao() { }
 
         public SelecionaTipoContratacao(int id_type_hiring, string desc_hiring)
         {
