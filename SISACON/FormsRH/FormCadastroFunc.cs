@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -642,30 +643,7 @@ namespace SISACON.FormsRH
             return digitoCalculado.ToString() == digitoVerificador;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // Para verificar a agencia e conta
-            string agencia = txtAgencia.Text;
-            string conta = txtConta.Text;
-
-            if (txtAgencia.BackColor == System.Drawing.Color.LightGreen && txtConta.BackColor == System.Drawing.Color.LightGreen)
-            {
-                /*if (VerificarAgenciaEConta(agencia, conta))
-                {
-                    MessageBox.Show("Agência e Conta válidas!", "VALIDAÇÃO");
-                    // Proceda com a operação de submissão
-                }*/
-
-                VerificarAgenciaEConta(agencia, conta);
-
-
-            }
-            else
-            {
-                MessageBox.Show("Agência e Conta Inválidas!", "INVALIDAÇÃO");
-            }
-
-        }
+        
 
         private void btnProximo_Click(object sender, EventArgs e)
         {
@@ -699,6 +677,98 @@ namespace SISACON.FormsRH
                 tabCtlCadFunc.SelectedIndex = 0;
 
             }
+        }
+
+        // Botão Salvar
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            string connectionString = ConexaoBancoDados.conn_;
+
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+                // Para verificar a agencia e conta
+                string agencia = txtAgencia.Text;
+                string conta = txtConta.Text;
+
+                if (txtAgencia.BackColor == System.Drawing.Color.LightGreen && txtConta.BackColor == System.Drawing.Color.LightGreen)
+                {
+                    /*if (VerificarAgenciaEConta(agencia, conta))
+                    {
+                        MessageBox.Show("Agência e Conta válidas!", "VALIDAÇÃO");
+                        // Proceda com a operação de submissão
+                    }*/
+
+                    VerificarAgenciaEConta(agencia, conta);
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Agência e Conta Inválidas!", "INVALIDAÇÃO");
+                }
+
+                string usuarioLogado = UsuarioLogado.Login;
+                // Dados da tabela TB_HR_EMPLOYEES
+                string name = txtNome.Text;
+                string rgRne = txtRGRNE.Text;
+                string cpfCnpj = txtCPFCNPJ.Text;
+                DateTime bornDate = dateTimePickerDataNasc.Value.Date;
+                string zipCode = txtCEP.Text;
+                string address = txtEndereco.Text;
+                string number = txtNumero.Text;
+                string complement = txtComplemento.Text;
+                string district = txtBairro.Text;
+                string city = txtCidade.Text;
+                string state = cbxEstado.Text;
+                string sex = cbxSexo.Text;
+                string department = cbxDepartamento.Text;
+                string nameLeader = cbxSuperior.Text;
+                // Converte a imagem em bytes
+                byte[] photo;
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    pictureBoxFoto.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // Substitua Jpeg pelo formato da sua imagem, se necessário
+                    photo = ms.ToArray();
+                }
+
+                string office = cbxCargo.Text;
+                string education = cbxEscolaridade.Text;
+
+                // Dados da tabela TB_HR_EMPLOYEES_HIRING
+
+                DateTime dateHiring = dateTimePickerHiring.Value.Date;
+                string bornCity = txtBoxNaturalidade.Text;
+                string stateBorn = cbxEstadoNascimento.Text;
+                string nameMother = txtBoxNomeMae.Text;
+                string nameFather = txtBoxNomePai.Text;
+                string civilState = cbxEstadoCivil.Text;
+                string typeHiring = cbxTipoContratacao.Text;
+                string salary = txtSalario.Text;
+                string typeCount = cbxTipoConta.Text;
+                string bank = cbxBanco.Text;
+                int agency = int.Parse(txtAgencia.Text);
+                string count = txtConta.Text;
+                int numberCLT = int.Parse(txtCLT.Text);
+                string serie = txtSerie.Text;
+                DateTime dateEmissionCLT = dateTimePickerDataEmissaoCLT.Value.Date;
+                int voterRegistration = int.Parse(txtEleitor.Text);
+                int zoneRegistration = int.Parse(txtZona.Text);
+                string sessionRegistration = txtSecao.Text;
+                int numberReservist = int.Parse(txtReservista.Text);
+                string serieReservist = txtSerieReservista.Text;
+                int numberDriverLicense = int.Parse(txtCNH.Text);
+                DateTime dateValidateDriverLicense = dateTimePickerDataVencimentoCNH.Value.Date;
+                string typeDriver = txtCategoria.Text;
+                DateTime dateEmissionDriverLicense = dateTimePickerDataEmissaoCNH.Value.Date;
+
+            }
+
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
