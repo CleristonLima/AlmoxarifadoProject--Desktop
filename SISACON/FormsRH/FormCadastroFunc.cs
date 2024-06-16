@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -656,8 +657,106 @@ namespace SISACON.FormsRH
             }
             else
             {
+                string usuarioLogado = UsuarioLogado.Login;
+                DateTime dataHoraAtual = DateTime.Now;
 
-                tabCtlCadFunc.SelectedIndex = 1;
+                // Dados da tabela TB_HR_EMPLOYEES
+                string name = txtNome.Text;
+                string rgRne = txtRGRNE.Text;
+                string cpfCnpj = txtCPFCNPJ.Text;
+                DateTime bornDate = dateTimePickerDataNasc.Value.Date;
+                string zipCode = txtCEP.Text;
+                string address = txtEndereco.Text;
+                string number = txtNumero.Text;
+                string complement = txtComplemento.Text;
+                string district = txtBairro.Text;
+                string city = txtCidade.Text;
+                int state = (int)cbxEstado.SelectedValue;
+                int sex = (int)cbxSexo.SelectedValue;
+                int department = (int)cbxDepartamento.SelectedValue;
+                string nameLeader = cbxSuperior.Text;
+                // Converte a imagem em bytes
+                byte[] photo;
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    pictureBoxFoto.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // Substitua Jpeg pelo formato da sua imagem, se necessário
+                    photo = ms.ToArray();
+                }
+
+                int office = (int)cbxCargo.SelectedValue;
+                int education = (int)cbxEscolaridade.SelectedValue;
+                string phoneNumber1 = txtPhone1.Text;
+                string phoneNumber2 = txtPhone2.Text;
+                string email = txtEmail.Text;
+
+                string connection = ConexaoBancoDados.conn_;
+                using (SqlConnection conn = new SqlConnection(connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+
+                        // Verificar se o CPF já existe na tabela
+
+                        string queryCheckCpf = "SELECT COUNT(*) FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES WHERE CPF_CNPJ = @cpfCnpj";
+
+                        SqlCommand commandCheckCpf = new SqlCommand(queryCheckCpf, conn, transaction);
+                        commandCheckCpf.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
+
+                        int cpfCount = (int)commandCheckCpf.ExecuteScalar();
+
+                        if (cpfCount > 0)
+                        {
+                            throw new Exception("O CPF informado já está cadastrado.");
+                        }
+
+                        // Para inserir na tabela TB_HR_EMPLOYEES
+
+                        string queryEmployees = "INSERT INTO DB_ALMOXARIFADO..TB_HR_EMPLOYEES (ID_EMPLO, NAME_EMPLO, RG_RNE, CPF_CNPJ, BORN_DATE, ZIP_CODE, ADDRESS_EMPLO, NUMBER, COMPLEMENT, DISTRICT, CITY, UF_ID, ID_SEX_EMPLO, ID_DEPARTMENT, NAME_LEADER, PHOTO, USER_INSERT, DATE_INSERT, ID_OFFICE, ID_EDUCATION, PHONE_NUMBER_1, PHONE_NUMBER_2, EMAIL)" +
+                                                                                  "VALUES(NEXT VALUE FOR SEQ_HR_EMPLOYEES, @nameEmplo, @rgRne, @cpfCnpj, @bornDate, @zipCode, @addressEmplo, @number, @complement, @district, @city, @ufId, @idSexEmplo, @idDepartment, @nameLeader, @photo, @userInsert, @dateInsert, @idOffice, @idEducation, @phoneNumber1, @phoneNumber2, @email)";
+
+                        SqlCommand command = new SqlCommand(queryEmployees, conn, transaction);
+
+                        // Adicionando os dados
+
+                        command.Parameters.AddWithValue("@nameEmplo", name);
+                        command.Parameters.AddWithValue("@rgRne", rgRne);
+                        command.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
+                        command.Parameters.AddWithValue("@bornDate", bornDate);
+                        command.Parameters.AddWithValue("@zipCode", zipCode);
+                        command.Parameters.AddWithValue("@addressEmplo", address);
+                        command.Parameters.AddWithValue("@number", number);
+                        command.Parameters.AddWithValue("@complement", complement);
+                        command.Parameters.AddWithValue("@district", district);
+                        command.Parameters.AddWithValue("@city", city);
+                        command.Parameters.AddWithValue("@ufId", state);
+                        command.Parameters.AddWithValue("@idSexEmplo", sex);
+                        command.Parameters.AddWithValue("@idDepartment", department);
+                        command.Parameters.AddWithValue("@nameLeader", nameLeader);
+                        command.Parameters.AddWithValue("@photo", photo);
+                        command.Parameters.AddWithValue("@userInsert", usuarioLogado);
+                        command.Parameters.AddWithValue("@dateInsert", dataHoraAtual);
+                        command.Parameters.AddWithValue("@idOffice", office);
+                        command.Parameters.AddWithValue("@idEducation", education);
+                        command.Parameters.AddWithValue("@phoneNumber1", phoneNumber1);
+                        command.Parameters.AddWithValue("@phoneNumber2", phoneNumber2);
+                        command.Parameters.AddWithValue("@email", email);
+
+                        command.ExecuteNonQuery();
+                        transaction.Commit();
+
+                        MessageBox.Show("Dados cadastrados com sucesso!", "Sucesso");
+
+                        tabCtlCadFunc.SelectedIndex = 1;
+                    
+                    } catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show($"Erro ao inserir dados: {ex.Message}", "Erro");
+                    }
+                }
 
             }
         }
@@ -714,59 +813,101 @@ namespace SISACON.FormsRH
                 }
 
                 string usuarioLogado = UsuarioLogado.Login;
-                // Dados da tabela TB_HR_EMPLOYEES
-                string name = txtNome.Text;
-                string rgRne = txtRGRNE.Text;
-                string cpfCnpj = txtCPFCNPJ.Text;
-                DateTime bornDate = dateTimePickerDataNasc.Value.Date;
-                string zipCode = txtCEP.Text;
-                string address = txtEndereco.Text;
-                string number = txtNumero.Text;
-                string complement = txtComplemento.Text;
-                string district = txtBairro.Text;
-                string city = txtCidade.Text;
-                string state = cbxEstado.Text;
-                string sex = cbxSexo.Text;
-                string department = cbxDepartamento.Text;
-                string nameLeader = cbxSuperior.Text;
-                // Converte a imagem em bytes
-                byte[] photo;
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    pictureBoxFoto.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // Substitua Jpeg pelo formato da sua imagem, se necessário
-                    photo = ms.ToArray();
-                }
+                DateTime dataHoraAtual = DateTime.Now;
 
-                string office = cbxCargo.Text;
-                string education = cbxEscolaridade.Text;
+                string cpfCnpj = txtCPFCNPJ.Text;
 
                 // Dados da tabela TB_HR_EMPLOYEES_HIRING
 
                 DateTime dateHiring = dateTimePickerHiring.Value.Date;
+                string nacionality = txtNacionalidade.Text;
                 string bornCity = txtBoxNaturalidade.Text;
-                string stateBorn = cbxEstadoNascimento.Text;
+                int stateBorn = (int)cbxEstadoNascimento.SelectedValue;
                 string nameMother = txtBoxNomeMae.Text;
                 string nameFather = txtBoxNomePai.Text;
-                string civilState = cbxEstadoCivil.Text;
-                string typeHiring = cbxTipoContratacao.Text;
+                int civilState = (int)cbxEstadoCivil.SelectedValue;
+                int typeHiring = (int)cbxTipoContratacao.SelectedValue;
                 string salary = txtSalario.Text;
-                string typeCount = cbxTipoConta.Text;
-                string bank = cbxBanco.Text;
+                int typeCount = (int)cbxTipoConta.SelectedValue;
+                int bank = (int)cbxBanco.SelectedValue;
                 int agency = int.Parse(txtAgencia.Text);
-                string count = txtConta.Text;
+                string countSalary = txtConta.Text;
                 int numberCLT = int.Parse(txtCLT.Text);
                 string serie = txtSerie.Text;
                 DateTime dateEmissionCLT = dateTimePickerDataEmissaoCLT.Value.Date;
-                int voterRegistration = int.Parse(txtEleitor.Text);
+                long voterRegistration = long.Parse(txtEleitor.Text);
                 int zoneRegistration = int.Parse(txtZona.Text);
                 string sessionRegistration = txtSecao.Text;
                 int numberReservist = int.Parse(txtReservista.Text);
                 string serieReservist = txtSerieReservista.Text;
-                int numberDriverLicense = int.Parse(txtCNH.Text);
+                long numberDriverLicense = long.Parse(txtCNH.Text);
                 DateTime dateValidateDriverLicense = dateTimePickerDataVencimentoCNH.Value.Date;
                 string typeDriver = txtCategoria.Text;
                 DateTime dateEmissionDriverLicense = dateTimePickerDataEmissaoCNH.Value.Date;
 
+                string connection = ConexaoBancoDados.conn_;
+                using (SqlConnection conn = new SqlConnection(connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+
+                        // Para inserir na tabela TB_HR_EMPLOYEES_HIRING
+
+                        //Pegando o ID da primeira tabela
+                        string queryGetEmploId = "SELECT ID_EMPLO FROM TB_HR_EMPLOYEES WHERE CPF_CNPJ = @cpfCnpj";
+                        SqlCommand commandGetEmploId = new SqlCommand(queryGetEmploId, conn, transaction);
+                        commandGetEmploId.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
+                        int emploId = Convert.ToInt32(commandGetEmploId.ExecuteScalar());
+
+                        string queryEmployeesHiring = "INSERT INTO DB_ALMOXARIFADO..TB_HR_EMPLOYEES_HIRING (ID_EMP_X_HIR, ID_EMPLO, DATE_HIRING, BORN_CITY, UF_ID_BORN, NACIONALITY, NAME_MOTHER, NAME_FATHER, ID_CIVIL_STATE, ID_TYPE_HIRING, SALARY, ID_BANK, ID_TYPE_COUNT, AGENCY, COUNT_SALARY, CLT_NUMBER, SERIE, EMISSION_DATE_CLT, VOTER_REGISTRATION, ZONE_REGISTRATION, SESSION_REGISTRATION, NUMBER_RESERVIST, SERIE_RESERVIST, NUMBER_DRIVER_LICENSE, DATE_VALIDATE, TYPE_DRIVER, EMISSION_DATE_DRIVER_LICENSE, USER_INSERT, DATE_INSERT)" +
+                                                                                             "VALUES (NEXT VALUE FOR SEQ_HR_EMPLOYEES_HIRING, @emploId, @dateHiring, @bornCity, @ufIdBorn, @nacionality, @nameMother, @nameFather, @idCivilState, @idTypeHiring, @salary, @idBank, @idTypeCount, @agency, @countSalary, @numberCLT, @serie, @emissionDateClt, @voterRegistration, @zoneRegistration, @sessionRegistration, @numberReservist, @serieReservist, @numberDriverLicense, @dateValidateDriverLicense, @typeDriver, @emissionDateDriverLicense, @userInsert, @dateInsert)";
+
+                        SqlCommand commandEmployeesHiring = new SqlCommand(queryEmployeesHiring, conn, transaction);
+
+                        commandEmployeesHiring.Parameters.AddWithValue("@emploId", emploId);
+                        commandEmployeesHiring.Parameters.AddWithValue("@dateHiring", dateHiring);
+                        commandEmployeesHiring.Parameters.AddWithValue("@bornCity", bornCity);
+                        commandEmployeesHiring.Parameters.AddWithValue("@ufIdBorn", stateBorn);
+                        commandEmployeesHiring.Parameters.AddWithValue("@nacionality", nacionality);
+                        commandEmployeesHiring.Parameters.AddWithValue("@nameMother", nameMother);
+                        commandEmployeesHiring.Parameters.AddWithValue("@nameFather", nameFather);
+                        commandEmployeesHiring.Parameters.AddWithValue("@idCivilState", civilState);
+                        commandEmployeesHiring.Parameters.AddWithValue("@idTypeHiring", typeHiring);
+                        commandEmployeesHiring.Parameters.AddWithValue("@salary", salary);
+                        commandEmployeesHiring.Parameters.AddWithValue("@idTypeCount", typeCount);
+                        commandEmployeesHiring.Parameters.AddWithValue("@idBank", bank);
+                        commandEmployeesHiring.Parameters.AddWithValue("@agency", agency);
+                        commandEmployeesHiring.Parameters.AddWithValue("@countSalary", countSalary);
+                        commandEmployeesHiring.Parameters.AddWithValue("@numberCLT", numberCLT);
+                        commandEmployeesHiring.Parameters.AddWithValue("@serie", serie);
+                        commandEmployeesHiring.Parameters.AddWithValue("@emissionDateClt", dateEmissionCLT);
+                        commandEmployeesHiring.Parameters.AddWithValue("@voterRegistration", voterRegistration);
+                        commandEmployeesHiring.Parameters.AddWithValue("@zoneRegistration", zoneRegistration);
+                        commandEmployeesHiring.Parameters.AddWithValue("@sessionRegistration", sessionRegistration);
+                        commandEmployeesHiring.Parameters.AddWithValue("@numberReservist", numberReservist);
+                        commandEmployeesHiring.Parameters.AddWithValue("@serieReservist", serieReservist);
+                        commandEmployeesHiring.Parameters.AddWithValue("@numberDriverLicense", numberDriverLicense);
+                        commandEmployeesHiring.Parameters.AddWithValue("@dateValidateDriverLicense", dateValidateDriverLicense);
+                        commandEmployeesHiring.Parameters.AddWithValue("@typeDriver", typeDriver);
+                        commandEmployeesHiring.Parameters.AddWithValue("@emissionDateDriverLicense", dateEmissionDriverLicense);
+                        commandEmployeesHiring.Parameters.AddWithValue("@userInsert", usuarioLogado);
+                        commandEmployeesHiring.Parameters.AddWithValue("@dateInsert", dataHoraAtual);
+
+                        commandEmployeesHiring.ExecuteNonQuery();
+                        transaction.Commit();
+
+                        MessageBox.Show("Dados cadastrados com sucesso!", "Sucesso");
+
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show($"Erro ao inserir dados: {ex.Message}", "Erro");
+                    }
+                }
             }
 
         }
@@ -774,6 +915,11 @@ namespace SISACON.FormsRH
         private void btnFechar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
