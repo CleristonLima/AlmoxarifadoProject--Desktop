@@ -68,11 +68,15 @@ namespace SISACON.FormsRH
             PreencherComboxTipoContratacao();
             PreencherComboxTipoConta();
             PreencherComboxBanco();
+
+            this.Load += new EventHandler(FormCadastroFunc_Load);
         }
+
+
 
         private void pictureBoxFoto_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -92,7 +96,7 @@ namespace SISACON.FormsRH
 
         private void txtCPFCNPJ_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void txtCPFCNPJ_Leave(object sender, EventArgs e)
@@ -260,7 +264,7 @@ namespace SISACON.FormsRH
             List<SelecionaEstado> estadoComPrompt = new List<SelecionaEstado>
             {
                 new SelecionaEstado { ID_UF = -1, CODE_UF = "--Selecione" }
-            };            
+            };
 
             estadoComPrompt.AddRange(estado);
 
@@ -644,7 +648,7 @@ namespace SISACON.FormsRH
             return digitoCalculado.ToString() == digitoVerificador;
         }
 
-        
+
 
         private void btnProximo_Click(object sender, EventArgs e)
         {
@@ -750,8 +754,9 @@ namespace SISACON.FormsRH
                         MessageBox.Show("Dados cadastrados com sucesso!", "Sucesso");
 
                         tabCtlCadFunc.SelectedIndex = 1;
-                    
-                    } catch (Exception ex)
+
+                    }
+                    catch (Exception ex)
                     {
                         transaction.Rollback();
                         MessageBox.Show($"Erro ao inserir dados: {ex.Message}", "Erro");
@@ -827,7 +832,15 @@ namespace SISACON.FormsRH
                 string nameFather = txtBoxNomePai.Text;
                 int civilState = (int)cbxEstadoCivil.SelectedValue;
                 int typeHiring = (int)cbxTipoContratacao.SelectedValue;
-                string salary = txtSalario.Text;
+
+                decimal salary;
+
+                if (!decimal.TryParse(txtSalario.Text, out salary))
+                {
+                    MessageBox.Show("O valor do salário é inválido. Insira um valor decimal.", "Erro de validação");
+                    return;
+                }
+
                 int typeCount = (int)cbxTipoConta.SelectedValue;
                 int bank = (int)cbxBanco.SelectedValue;
                 int agency = int.Parse(txtAgencia.Text);
@@ -862,7 +875,7 @@ namespace SISACON.FormsRH
                         commandGetEmploId.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
                         int emploId = Convert.ToInt32(commandGetEmploId.ExecuteScalar());
 
-                        string queryEmployeesHiring = "INSERT INTO DB_ALMOXARIFADO..TB_HR_EMPLOYEES_HIRING (ID_EMP_X_HIR, ID_EMPLO, DATE_HIRING, BORN_CITY, UF_ID_BORN, NACIONALITY, NAME_MOTHER, NAME_FATHER, ID_CIVIL_STATE, ID_TYPE_HIRING, SALARY, ID_BANK, ID_TYPE_COUNT, AGENCY, COUNT_SALARY, CLT_NUMBER, SERIE, EMISSION_DATE_CLT, VOTER_REGISTRATION, ZONE_REGISTRATION, SESSION_REGISTRATION, NUMBER_RESERVIST, SERIE_RESERVIST, NUMBER_DRIVER_LICENSE, DATE_VALIDATE, TYPE_DRIVER, EMISSION_DATE_DRIVER_LICENSE, USER_INSERT, DATE_INSERT)" +
+                        string queryEmployeesHiring = "INSERT INTO DB_ALMOXARIFADO..TB_HR_EMPLOYEES_HIRING (ID_EMP_X_HIR, ID_EMPLO, DATE_HIRING, BORN_CITY, UF_ID_BORN, NACIONALITY, NAME_MOTHER, NAME_FATHER, ID_CIVIL_STATE, ID_TYPE_HIRING, SALARY, ID_BANK, ID_TYPE_COUNT, AGENCY, COUNT_SALARY, CLT_NUMBER, SERIE, EMISSION_DATE_CLT, VOTER_REGISTRATION, ZONE_REGISTRATION, SESSION_REGISTRATION, NUMBER_RESERVIST, SERIE_RESERVIST, NUMBER_DRIVER_LICENSE, DATE_VALIDATE_DRIVER_LICENSE, TYPE_DRIVER, EMISSION_DATE_DRIVER_LICENSE, USER_INSERT, DATE_INSERT)" +
                                                                                              "VALUES (NEXT VALUE FOR SEQ_HR_EMPLOYEES_HIRING, @emploId, @dateHiring, @bornCity, @ufIdBorn, @nacionality, @nameMother, @nameFather, @idCivilState, @idTypeHiring, @salary, @idBank, @idTypeCount, @agency, @countSalary, @numberCLT, @serie, @emissionDateClt, @voterRegistration, @zoneRegistration, @sessionRegistration, @numberReservist, @serieReservist, @numberDriverLicense, @dateValidateDriverLicense, @typeDriver, @emissionDateDriverLicense, @userInsert, @dateInsert)";
 
                         SqlCommand commandEmployeesHiring = new SqlCommand(queryEmployeesHiring, conn, transaction);
@@ -921,5 +934,58 @@ namespace SISACON.FormsRH
         {
 
         }
+
+        // Vai trazer os campos de datas em branco em caso de ser não opcional
+        private void FormCadastroFunc_Load(object sender, EventArgs e)
+        {
+            // Configurar DateTimePicker para mostrar vazio inicialmente
+            ConfigurarDateTimePicker(dateTimePickerDataEmissaoCLT);
+            ConfigurarDateTimePicker(dateTimePickerDataVencimentoCNH);
+            ConfigurarDateTimePicker(dateTimePickerDataEmissaoCNH);
+        }
+
+        private void ConfigurarDateTimePicker(DateTimePicker dtp)
+        {
+            dtp.Format = DateTimePickerFormat.Custom;
+            dtp.CustomFormat = " "; // Espaço em branco para mostrar vazio
+            dtp.ValueChanged += new EventHandler(DateTimePicker_ValueChanged);
+        }
+
+        private void DateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            dtp.Format = DateTimePickerFormat.Custom;
+            dtp.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void dateTimePickerDataNasc_ValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dateTimePickerDataEmissaoCLT_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerDataEmissaoCLT.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDataEmissaoCLT.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void dateTimePickerDataVencimentoCNH_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerDataVencimentoCNH.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDataVencimentoCNH.CustomFormat = "dd/MM/yyyy";
+
+        }
+
+        private void dateTimePickerDataEmissaoCNH_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerDataEmissaoCNH.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDataEmissaoCNH.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void lblSecao_Click(object sender, EventArgs e)
+        {
+
+        }
     }
+    
 }
