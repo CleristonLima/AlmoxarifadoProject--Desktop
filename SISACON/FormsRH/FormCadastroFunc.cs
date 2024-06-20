@@ -567,34 +567,34 @@ namespace SISACON.FormsRH
 
         private void txtAgencia_TextChanged(object sender, EventArgs e)
         {
-            if (ValidarAgencia(txtAgencia.Text))
+            /*if (ValidarAgencia(txtAgencia.Text))
             {
                 txtAgencia.BackColor = System.Drawing.Color.LightGreen;
             }
             else
             {
                 txtAgencia.BackColor = System.Drawing.Color.LightCoral;
-            }
+            }*/
         }
 
-        private bool ValidarAgencia(string agencia)
+        /*private bool ValidarAgencia(string agencia)
         {
             return Regex.IsMatch(agencia, @"^\d{4}$");
-        }
+        }*/
 
         private void txtConta_TextChanged(object sender, EventArgs e)
         {
-            if (ValidarConta(txtConta.Text))
+            /*if (ValidarConta(txtConta.Text))
             {
                 txtConta.BackColor = System.Drawing.Color.LightGreen;
             }
             else
             {
                 txtConta.BackColor = System.Drawing.Color.LightCoral;
-            }
+            }*/
         }
 
-        private bool ValidarConta(string conta)
+       /* private bool ValidarConta(string conta)
         {
             return Regex.IsMatch(conta, @"^\d{5}-\d{1}$") || Regex.IsMatch(conta, @"^\d{8}$");
         }
@@ -646,7 +646,7 @@ namespace SISACON.FormsRH
 
             // Verificar se o dígito verificador calculado é igual ao fornecido
             return digitoCalculado.ToString() == digitoVerificador;
-        }
+        }*/
 
 
 
@@ -797,16 +797,16 @@ namespace SISACON.FormsRH
             else
             {
                 // Para verificar a agencia e conta
-                string agencia = txtAgencia.Text;
+               /* string agencia = txtAgencia.Text;
                 string conta = txtConta.Text;
 
                 if (txtAgencia.BackColor == System.Drawing.Color.LightGreen && txtConta.BackColor == System.Drawing.Color.LightGreen)
                 {
-                    /*if (VerificarAgenciaEConta(agencia, conta))
+                    if (VerificarAgenciaEConta(agencia, conta))
                     {
                         MessageBox.Show("Agência e Conta válidas!", "VALIDAÇÃO");
                         // Proceda com a operação de submissão
-                    }*/
+                    }
 
                     VerificarAgenciaEConta(agencia, conta);
 
@@ -815,7 +815,7 @@ namespace SISACON.FormsRH
                 else
                 {
                     MessageBox.Show("Agência e Conta Inválidas!", "INVALIDAÇÃO");
-                }
+                }*/
 
                 string usuarioLogado = UsuarioLogado.Login;
                 DateTime dataHoraAtual = DateTime.Now;
@@ -870,7 +870,7 @@ namespace SISACON.FormsRH
                         // Para inserir na tabela TB_HR_EMPLOYEES_HIRING
 
                         //Pegando o ID da primeira tabela
-                        string queryGetEmploId = "SELECT ID_EMPLO FROM TB_HR_EMPLOYEES WHERE CPF_CNPJ = @cpfCnpj";
+                        string queryGetEmploId = "SELECT ID_EMPLO FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES WHERE CPF_CNPJ = @cpfCnpj";
                         SqlCommand commandGetEmploId = new SqlCommand(queryGetEmploId, conn, transaction);
                         commandGetEmploId.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
                         int emploId = Convert.ToInt32(commandGetEmploId.ExecuteScalar());
@@ -927,7 +927,57 @@ namespace SISACON.FormsRH
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            string connectionString = ConexaoBancoDados.conn_;
+
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Se voltar o cadastro será cancelado, deseja fazer isso?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                
+                if (result == DialogResult.Yes)
+                { 
+                
+                    string cpfCnpj = txtCPFCNPJ.Text;
+
+
+                    string connection = ConexaoBancoDados.conn_;
+
+                    using (SqlConnection conn = new SqlConnection(connection))
+                     {
+                        conn.Open();
+                        SqlTransaction transaction = conn.BeginTransaction();
+
+                        try
+                        {
+                            string deleteEmplo = "DELETE FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES WHERE CPF_CNPJ = @cpfCnpj";
+                            using (SqlCommand cmd = new SqlCommand(deleteEmplo, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                            MessageBox.Show("Cadastro cancelado com sucesso!", "Sucesso");
+
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show($"Erro ao cancelar cadastro: {ex.Message}", "Erro");
+                        }
+                        finally
+                        {
+                            conn.Close();
+                        }
+
+                        this.Close();
+                    }
+                }
+            }
         }
 
         private void label6_Click(object sender, EventArgs e)
