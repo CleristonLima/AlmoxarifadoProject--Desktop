@@ -92,5 +92,20 @@ namespace SISACON.FormsRH
                 cadastroFuncionario.Show();
             }
         }
+
+        private void linkLblAtualizaFunc_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!");
+                return;
+            }
+            else
+            {
+                // Exibe o formulário de inicialização do sistema
+                var consultaFuncionario = new SISACON.FormsRH.FormConsultaFunc();
+                consultaFuncionario.Show();
+            }
+        }
     }
 }

@@ -1169,7 +1169,7 @@ namespace SISACON.FormsRH
 
             List<SelecionaSuperior> superiorComPrompt = new List<SelecionaSuperior>
             {
-                new SelecionaSuperior { NAME = "", OFFICE = "-Selecione" }
+                new SelecionaSuperior { NAME = "", OFFICE = "" }
             };
 
             superiorComPrompt.AddRange(superior);

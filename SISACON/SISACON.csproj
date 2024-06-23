@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -128,6 +129,12 @@
     <Compile Include="FormsRH\FormCadastroFunc.Designer.cs">
       <DependentUpon>FormCadastroFunc.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsRH\FormConsultaFunc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormConsultaFunc.Designer.cs">
+      <DependentUpon>FormConsultaFunc.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsRH\FormRHMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormCadastroFunc.resx">
       <DependentUpon>FormCadastroFunc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormConsultaFunc.resx">
+      <DependentUpon>FormConsultaFunc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormRHMenu.resx">
       <DependentUpon>FormRHMenu.cs</DependentUpon>
