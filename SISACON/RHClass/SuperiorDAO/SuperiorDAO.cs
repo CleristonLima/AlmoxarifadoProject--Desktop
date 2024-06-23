@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace SISACON.RHClass.CargoDAO
 {
-    public class CargoDAO
+    public class SuperiorDAO
     {
         private readonly string connectionString = ConexaoBancoDados.conn_;
 
-        public CargoDAO(string connectionString)
+        public SuperiorDAO(string connectionString)
         {
             this.connectionString = connectionString;
         }
 
-        public List<Cargo> ObterCargo()
+        public List<SelecionaSuperior> ObterSuperior()
         {
-            List<Cargo> cargo = new List<Cargo>();
+            List<SelecionaSuperior> superior = new List<SelecionaSuperior>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT ID_OFFICE, NAME_OFFICE, STATUS_OFFICE, POSITION_OF_TRUST  FROM DB_ALMOXARIFADO..TB_HR_OFFICE";
+                string query = "SELECT HRE.NAME_EMPLO, HRO.NAME_OFFICE FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES HRE INNER JOIN TB_HR_OFFICE HRO ON HRO.ID_OFFICE = HRE.ID_OFFICE WHERE HRO.POSITION_OF_TRUST = 1";
                 SqlCommand command = new SqlCommand(query, connection);
 
                 connection.Open();
@@ -31,19 +31,17 @@ namespace SISACON.RHClass.CargoDAO
 
                 while (reader.Read())
                 {
-                    int id_office = Convert.ToInt32(reader["ID_OFFICE"]);
+                    string name_emplo = Convert.ToString(reader["NAME_EMPLO"]);
                     string name_office = Convert.ToString(reader["NAME_OFFICE"]);
-                    int status_office = Convert.ToInt32(reader["STATUS_OFFICE"]);
-                    int positionTrust = Convert.ToInt32(reader["POSITION_OF_TRUST"]);
 
-                    Cargo car = new Cargo(id_office, name_office, status_office, positionTrust);
-                    cargo.Add(car);
+                    SelecionaSuperior sup = new SelecionaSuperior(name_emplo, name_office);
+                    superior.Add(sup);
                 }
 
                 reader.Close();
             }
 
-            return cargo;
+            return superior;
         }
     }
 }

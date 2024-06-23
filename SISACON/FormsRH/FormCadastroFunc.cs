@@ -24,6 +24,7 @@ namespace SISACON.FormsRH
 {
     public partial class FormCadastroFunc : Form
     {
+
         public FormCadastroFunc()
         {
             InitializeComponent();
@@ -68,10 +69,11 @@ namespace SISACON.FormsRH
             PreencherComboxTipoContratacao();
             PreencherComboxTipoConta();
             PreencherComboxBanco();
+            PreencherComboxSuperior();
 
             this.Load += new EventHandler(FormCadastroFunc_Load);
-        }
 
+        }
 
 
         private void pictureBoxFoto_Click(object sender, EventArgs e)
@@ -661,6 +663,14 @@ namespace SISACON.FormsRH
             }
             else
             {
+                if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtRGRNE.Text) || string.IsNullOrWhiteSpace(txtCPFCNPJ.Text) || string.IsNullOrWhiteSpace(txtCEP.Text) ||
+                    string.IsNullOrWhiteSpace(txtEndereco.Text) || string.IsNullOrWhiteSpace(txtNumero.Text) || string.IsNullOrWhiteSpace(txtBairro.Text) || string.IsNullOrWhiteSpace(txtCidade.Text) ||
+                    string.IsNullOrWhiteSpace(txtPhone1.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) || cbxEstado.SelectedIndex == -1 || cbxSexo.SelectedIndex == -1 || cbxDepartamento.SelectedIndex == -1 || cbxCargo.SelectedIndex == -1 || cbxEscolaridade.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Por favor, preencha todos os campos obrigatórios.", "CAMPOS NÃO PREENCHIDOS!");
+                    return;
+                }
+
                 string usuarioLogado = UsuarioLogado.Login;
                 DateTime dataHoraAtual = DateTime.Now;
 
@@ -680,11 +690,14 @@ namespace SISACON.FormsRH
                 int department = (int)cbxDepartamento.SelectedValue;
                 string nameLeader = cbxSuperior.Text;
                 // Converte a imagem em bytes
-                byte[] photo;
-                using (MemoryStream ms = new MemoryStream())
+                byte[] photo = null;
+                if (pictureBoxFoto.Image != null)
                 {
-                    pictureBoxFoto.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // Substitua Jpeg pelo formato da sua imagem, se necessário
-                    photo = ms.ToArray();
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        pictureBoxFoto.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // Substitua Jpeg pelo formato da sua imagem, se necessário
+                        photo = ms.ToArray();
+                    }
                 }
 
                 int office = (int)cbxCargo.SelectedValue;
@@ -713,7 +726,7 @@ namespace SISACON.FormsRH
 
                         if (cpfCount > 0)
                         {
-                            throw new Exception("O CPF informado já está cadastrado.");
+                            MessageBox.Show("O CPF informado já está cadastrado no sistema.", "CPF EXISTENTE!!");
                         }
 
                         // Para inserir na tabela TB_HR_EMPLOYEES
@@ -739,7 +752,6 @@ namespace SISACON.FormsRH
                         command.Parameters.AddWithValue("@idSexEmplo", sex);
                         command.Parameters.AddWithValue("@idDepartment", department);
                         command.Parameters.AddWithValue("@nameLeader", nameLeader);
-                        command.Parameters.AddWithValue("@photo", photo);
                         command.Parameters.AddWithValue("@userInsert", usuarioLogado);
                         command.Parameters.AddWithValue("@dateInsert", dataHoraAtual);
                         command.Parameters.AddWithValue("@idOffice", office);
@@ -747,6 +759,23 @@ namespace SISACON.FormsRH
                         command.Parameters.AddWithValue("@phoneNumber1", phoneNumber1);
                         command.Parameters.AddWithValue("@phoneNumber2", phoneNumber2);
                         command.Parameters.AddWithValue("@email", email);
+
+                        // Verifica se a foto é nula
+                        SqlParameter photoParam = new SqlParameter("@photo", SqlDbType.VarBinary);
+
+                        if (photo != null)
+                        {
+                            //command.Parameters.AddWithValue("@photo", photo);
+                            photoParam.Value = photo;
+                        }
+
+                        else
+                        {
+                            //command.Parameters.AddWithValue("@photo", DBNull.Value);
+                            photoParam.Value = DBNull.Value;
+                        }
+
+                        command.Parameters.Add(photoParam);
 
                         command.ExecuteNonQuery();
                         transaction.Commit();
@@ -796,28 +825,35 @@ namespace SISACON.FormsRH
             }
             else
             {
-                // Para verificar a agencia e conta
-               /* string agencia = txtAgencia.Text;
-                string conta = txtConta.Text;
-
-                if (txtAgencia.BackColor == System.Drawing.Color.LightGreen && txtConta.BackColor == System.Drawing.Color.LightGreen)
+                if (string.IsNullOrWhiteSpace(txtNacionalidade.Text) || string.IsNullOrWhiteSpace(txtBoxNaturalidade.Text) || string.IsNullOrWhiteSpace(txtBoxNomeMae.Text) || string.IsNullOrWhiteSpace(txtAgencia.Text) ||
+                    string.IsNullOrWhiteSpace(txtSalario.Text) || string.IsNullOrWhiteSpace(txtConta.Text) || cbxEstadoNascimento.SelectedIndex == -1 || cbxEstadoCivil.SelectedIndex == -1 || cbxTipoContratacao.SelectedIndex == -1 || 
+                    cbxTipoConta.SelectedIndex == -1 || cbxBanco.SelectedIndex == -1)
                 {
-                    if (VerificarAgenciaEConta(agencia, conta))
-                    {
-                        MessageBox.Show("Agência e Conta válidas!", "VALIDAÇÃO");
-                        // Proceda com a operação de submissão
-                    }
-
-                    VerificarAgenciaEConta(agencia, conta);
-
-
+                    MessageBox.Show("Por favor, preencha todos os campos obrigatórios.", "CAMPOS NÃO PREENCHIDOS!");
+                    return;
                 }
-                else
-                {
-                    MessageBox.Show("Agência e Conta Inválidas!", "INVALIDAÇÃO");
-                }*/
+                    // Para verificar a agencia e conta
+                    /* string agencia = txtAgencia.Text;
+                     string conta = txtConta.Text;
 
-                string usuarioLogado = UsuarioLogado.Login;
+                     if (txtAgencia.BackColor == System.Drawing.Color.LightGreen && txtConta.BackColor == System.Drawing.Color.LightGreen)
+                     {
+                         if (VerificarAgenciaEConta(agencia, conta))
+                         {
+                             MessageBox.Show("Agência e Conta válidas!", "VALIDAÇÃO");
+                             // Proceda com a operação de submissão
+                         }
+
+                         VerificarAgenciaEConta(agencia, conta);
+
+
+                     }
+                     else
+                     {
+                         MessageBox.Show("Agência e Conta Inválidas!", "INVALIDAÇÃO");
+                     }*/
+
+                    string usuarioLogado = UsuarioLogado.Login;
                 DateTime dataHoraAtual = DateTime.Now;
 
                 string cpfCnpj = txtCPFCNPJ.Text;
@@ -847,16 +883,16 @@ namespace SISACON.FormsRH
                 string countSalary = txtConta.Text;
                 int numberCLT = int.Parse(txtCLT.Text);
                 string serie = txtSerie.Text;
-                DateTime dateEmissionCLT = dateTimePickerDataEmissaoCLT.Value.Date;
+                DateTime? dateEmissionCLT = string.IsNullOrWhiteSpace(dateTimePickerDataEmissaoCLT.Text) ? (DateTime?)null : dateTimePickerDataEmissaoCLT.Value.Date;
                 long voterRegistration = long.Parse(txtEleitor.Text);
                 int zoneRegistration = int.Parse(txtZona.Text);
                 string sessionRegistration = txtSecao.Text;
                 int numberReservist = int.Parse(txtReservista.Text);
                 string serieReservist = txtSerieReservista.Text;
                 long numberDriverLicense = long.Parse(txtCNH.Text);
-                DateTime dateValidateDriverLicense = dateTimePickerDataVencimentoCNH.Value.Date;
+                DateTime? dateValidateDriverLicense = string.IsNullOrWhiteSpace(dateTimePickerDataVencimentoCNH.Text) ? (DateTime?)null : dateTimePickerDataVencimentoCNH.Value.Date;
                 string typeDriver = txtCategoria.Text;
-                DateTime dateEmissionDriverLicense = dateTimePickerDataEmissaoCNH.Value.Date;
+                DateTime? dateEmissionDriverLicense = string.IsNullOrWhiteSpace(dateTimePickerDataEmissaoCNH.Text) ? (DateTime?)null : dateTimePickerDataEmissaoCNH.Value.Date;
 
                 string connection = ConexaoBancoDados.conn_;
                 using (SqlConnection conn = new SqlConnection(connection))
@@ -896,16 +932,16 @@ namespace SISACON.FormsRH
                         commandEmployeesHiring.Parameters.AddWithValue("@countSalary", countSalary);
                         commandEmployeesHiring.Parameters.AddWithValue("@numberCLT", numberCLT);
                         commandEmployeesHiring.Parameters.AddWithValue("@serie", serie);
-                        commandEmployeesHiring.Parameters.AddWithValue("@emissionDateClt", dateEmissionCLT);
+                        commandEmployeesHiring.Parameters.AddWithValue("@emissionDateClt", (object)dateEmissionCLT ?? DBNull.Value);
                         commandEmployeesHiring.Parameters.AddWithValue("@voterRegistration", voterRegistration);
                         commandEmployeesHiring.Parameters.AddWithValue("@zoneRegistration", zoneRegistration);
                         commandEmployeesHiring.Parameters.AddWithValue("@sessionRegistration", sessionRegistration);
                         commandEmployeesHiring.Parameters.AddWithValue("@numberReservist", numberReservist);
                         commandEmployeesHiring.Parameters.AddWithValue("@serieReservist", serieReservist);
                         commandEmployeesHiring.Parameters.AddWithValue("@numberDriverLicense", numberDriverLicense);
-                        commandEmployeesHiring.Parameters.AddWithValue("@dateValidateDriverLicense", dateValidateDriverLicense);
+                        commandEmployeesHiring.Parameters.AddWithValue("@dateValidateDriverLicense", (object)dateValidateDriverLicense ?? DBNull.Value);
                         commandEmployeesHiring.Parameters.AddWithValue("@typeDriver", typeDriver);
-                        commandEmployeesHiring.Parameters.AddWithValue("@emissionDateDriverLicense", dateEmissionDriverLicense);
+                        commandEmployeesHiring.Parameters.AddWithValue("@emissionDateDriverLicense", (object)dateEmissionDriverLicense ?? DBNull.Value);
                         commandEmployeesHiring.Parameters.AddWithValue("@userInsert", usuarioLogado);
                         commandEmployeesHiring.Parameters.AddWithValue("@dateInsert", dataHoraAtual);
 
@@ -914,15 +950,91 @@ namespace SISACON.FormsRH
 
                         MessageBox.Show("Dados cadastrados com sucesso!", "Sucesso");
 
+                        LimparCampos();
+
+                        tabCtlCadFunc.SelectedIndex = 0;
+
                     }
                     catch (Exception ex)
                     {
-                        transaction.Rollback();
+                        try
+                        {
+                            if (transaction.Connection != null)
+                            {
+                                transaction.Rollback();
+                            }
+                        }
+                        catch (Exception rollbackEx)
+                        {
+                            MessageBox.Show($"Erro ao reverter a transação: {rollbackEx.Message}", "Erro");
+                        }
+
                         MessageBox.Show($"Erro ao inserir dados: {ex.Message}", "Erro");
                     }
                 }
             }
+        }
+    
 
+        private void LimparCampos()
+        {
+            // Limpando os campos que são referente a tabela TB_HR_EMPLOYEES
+            txtNome.Text = "";
+            txtRGRNE.Text = "";
+            txtCPFCNPJ.Text = "";
+            dateTimePickerDataNasc.Value = DateTime.Today;
+            txtCEP.Text = "";
+            txtEndereco.Text = "";
+            txtNumero.Text = "";
+            txtComplemento.Text = "";
+            txtBairro.Text = "";
+            txtCidade.Text = "";
+            cbxEstado.SelectedIndex = -1;
+            cbxSexo.SelectedIndex = -1;
+            cbxDepartamento.SelectedIndex = -1;
+            cbxSuperior.SelectedIndex = -1;
+            pictureBoxFoto.Image = null;
+            cbxCargo.SelectedIndex = -1;
+            cbxEscolaridade.SelectedIndex = -1;
+            txtPhone1.Text = "";
+            txtPhone2.Text = "";
+            txtEmail.Text = "";
+
+            // Limpando os campos que são referente a tabela TB_HR_EMPLOYEES_HIRING
+            txtNacionalidade.Text = "";
+            txtBoxNaturalidade.Text = "";
+            txtBoxNomeMae.Text = "";
+            txtBoxNomePai.Text = "";
+            cbxTipoConta.SelectedIndex = -1;
+            cbxBanco.SelectedIndex = -1;
+            cbxEstadoCivil.SelectedIndex = -1;
+            cbxTipoContratacao.SelectedIndex = -1;
+            txtSalario.Text = "";
+            txtAgencia.Text = "";
+            txtConta.Text = "";
+            txtCLT.Text = "";
+            txtSerie.Text = "";
+
+            dateTimePickerDataEmissaoCLT.CustomFormat = " ";
+            dateTimePickerDataEmissaoCLT.Format = DateTimePickerFormat.Custom;
+
+            txtEleitor.Text = "";
+            txtZona.Text = "";
+            txtSecao.Text = "";
+            txtReservista.Text = "";
+            txtSerieReservista.Text = "";
+            txtCNH.Text = "";
+
+            dateTimePickerDataVencimentoCNH.CustomFormat = " ";
+            dateTimePickerDataVencimentoCNH.Format = DateTimePickerFormat.Custom;
+
+            txtCategoria.Text = "";
+
+            dateTimePickerDataEmissaoCNH.CustomFormat = " ";
+            dateTimePickerDataEmissaoCNH.Format = DateTimePickerFormat.Custom;
+
+            // Opcionalmente, defina o foco para o primeiro campo para facilitar o próximo cadastro
+            txtNome.Focus();
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
@@ -1035,6 +1147,38 @@ namespace SISACON.FormsRH
         private void lblSecao_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbxSuperior_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (cbxSuperior.SelectedItem != null)
+            {
+
+                SelecionaSuperior selectedSuperior = (SelecionaSuperior)cbxSuperior.SelectedItem;
+
+                string selectedSup = selectedSuperior.NameSuperior;
+            }
+        }
+
+        private void PreencherComboxSuperior()
+        {
+            string connectionString = ConexaoBancoDados.conn_;
+            SuperiorDAO superiorDAO = new SuperiorDAO(connectionString);
+            List<SelecionaSuperior> superior = superiorDAO.ObterSuperior();
+
+            List<SelecionaSuperior> superiorComPrompt = new List<SelecionaSuperior>
+            {
+                new SelecionaSuperior { NAME = "", OFFICE = "-Selecione" }
+            };
+
+            superiorComPrompt.AddRange(superior);
+
+            cbxSuperior.DataSource = superiorComPrompt;
+            cbxSuperior.DisplayMember = "NameSuperior";
+            cbxSuperior.ValueMember = "NameSuperior";
+
+            cbxSuperior.SelectedIndex = 0;
         }
     }
     

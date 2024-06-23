@@ -66,7 +66,18 @@ namespace SISACON.FormsRH
                 {
                     cbxStatus.SelectedItem = "Ativo";
                 }
+
+                if (selectedCargo.POSITION_OF_TRUST == 0)
+                {
+                    chkCargoConfianca.Checked = false;
+                }
+                else
+                {
+                    chkCargoConfianca.Checked = true;
+                }
+ 
             }
+
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -77,6 +88,7 @@ namespace SISACON.FormsRH
 
             string nameOffice = txtCargo.Text;
             int statusOffice;
+            bool positionTrust = chkCargoConfianca.Checked;
 
             if (cbxStatus.Text == "Ativo")
             {
@@ -102,12 +114,14 @@ namespace SISACON.FormsRH
                 string query = "UPDATE DB_ALMOXARIFADO..TB_HR_OFFICE " +
                        "SET NAME_OFFICE = @NameOffice, " +
                        "STATUS_OFFICE = @StatusOffice, " +
+                       "POSITION_OF_TRUST = @PositionTrust, " +
                        "USER_UPDATE = @UsuarioLogado, " +
                        "DATE_UPDATE = @DataHoraCadastro " +
                        "WHERE ID_OFFICE = @OfficeId";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@NameOffice", nameOffice);
                 command.Parameters.AddWithValue("@StatusOffice", statusOffice);
+                command.Parameters.AddWithValue("@PositionTrust", positionTrust);
                 command.Parameters.AddWithValue("@OfficeId", officeId);
                 command.Parameters.AddWithValue("@UsuarioLogado", usuarioLogado);
                 command.Parameters.AddWithValue("@DataHoraCadastro", dataHoraAtual);

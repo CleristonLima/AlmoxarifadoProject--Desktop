@@ -67,6 +67,7 @@ namespace SISACON.FormsRH
                 string usuarioLogado = UsuarioLogado.Login;
                 string nameOffice = txtCargo.Text;
                 int statusOffice = (int)cbxStatus.SelectedValue;
+                bool positionOfTrust = chkCargoConfianca.Checked;
 
                 DateTime dataHoraAtual = DateTime.Now;
 
@@ -78,11 +79,12 @@ namespace SISACON.FormsRH
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "INSERT INTO DB_ALMOXARIFADO..TB_HR_OFFICE (ID_OFFICE, NAME_OFFICE, STATUS_OFFICE, USER_INSERT, DATE_INSERT) " +
-                                                                   "VALUES (NEXT VALUE FOR SEQ_HR_OFFICE, @NameOffice, @StatusOffice, @UsuarioLogado, @DataHoraCadastro)";
+                    string query = "INSERT INTO DB_ALMOXARIFADO..TB_HR_OFFICE (ID_OFFICE, NAME_OFFICE, STATUS_OFFICE, POSITION_OF_TRUST, USER_INSERT, DATE_INSERT) " +
+                                                                   "VALUES (NEXT VALUE FOR SEQ_HR_OFFICE, @NameOffice, @StatusOffice, @PositionTrust, @UsuarioLogado, @DataHoraCadastro)";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@NameOffice", nameOffice);
                     command.Parameters.AddWithValue("@StatusOffice", statusOffice);
+                    command.Parameters.AddWithValue("@PositionTrust", positionOfTrust);
                     command.Parameters.AddWithValue("@UsuarioLogado", usuarioLogado);
                     command.Parameters.AddWithValue("@DataHoraCadastro", dataHoraAtual);
                     command.ExecuteNonQuery();
@@ -118,6 +120,7 @@ namespace SISACON.FormsRH
         {
             txtCargo.Text = "";
             cbxStatus.SelectedIndex = 1;
+            chkCargoConfianca.Checked = false;
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)

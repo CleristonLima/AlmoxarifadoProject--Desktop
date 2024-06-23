@@ -145,6 +145,7 @@
     <Compile Include="RHClass\EscolaridadeDAO\EscolaridadeDAO.cs" />
     <Compile Include="RHClass\EstadoCivilDAO\EstadoCivilDAO.cs" />
     <Compile Include="RHClass\EstadoDAO\EstadoDAO.cs" />
+    <Compile Include="RHClass\SelecionaSuperior.cs" />
     <Compile Include="RHClass\SelecionaEscolaridade.cs" />
     <Compile Include="RHClass\SelecionaBanco.cs" />
     <Compile Include="RHClass\SelecionaTipoConta.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="RHClass\SexoDAO\SexoDAO.cs" />
     <Compile Include="RHClass\StatusCadastroCargo.cs" />
     <Compile Include="RHClass\StatusCadastroDepartamento.cs" />
+    <Compile Include="RHClass\SuperiorDAO\SuperiorDAO.cs" />
     <Compile Include="RHClass\TipoContaDAO\TipoContaDAO.cs" />
     <Compile Include="RHClass\TipoContratacaoDAO\TipoContratacaoDAO.cs" />
     <EmbeddedResource Include="FormInitial\FormInicial.resx">

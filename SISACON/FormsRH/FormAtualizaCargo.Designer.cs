@@ -40,6 +40,7 @@ namespace SISACON.FormsRH
             this.txtCargo = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblCargo = new System.Windows.Forms.Label();
+            this.chkCargoConfianca = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxCadCargo.SuspendLayout();
             this.SuspendLayout();
@@ -84,6 +85,7 @@ namespace SISACON.FormsRH
             this.groupBoxCadCargo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxCadCargo.Controls.Add(this.chkCargoConfianca);
             this.groupBoxCadCargo.Controls.Add(this.cbxStatus);
             this.groupBoxCadCargo.Controls.Add(this.label3);
             this.groupBoxCadCargo.Controls.Add(this.btnVoltar);
@@ -176,6 +178,17 @@ namespace SISACON.FormsRH
             this.lblCargo.TabIndex = 1;
             this.lblCargo.Text = "* Nome do Cargo:";
             // 
+            // chkCargoConfianca
+            // 
+            this.chkCargoConfianca.AutoSize = true;
+            this.chkCargoConfianca.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCargoConfianca.Location = new System.Drawing.Point(333, 112);
+            this.chkCargoConfianca.Name = "chkCargoConfianca";
+            this.chkCargoConfianca.Size = new System.Drawing.Size(165, 23);
+            this.chkCargoConfianca.TabIndex = 29;
+            this.chkCargoConfianca.Text = "Cargo de confiança?";
+            this.chkCargoConfianca.UseVisualStyleBackColor = true;
+            // 
             // FormAtualizaCargo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -209,5 +222,6 @@ namespace SISACON.FormsRH
         private System.Windows.Forms.TextBox txtCargo;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblCargo;
+        private System.Windows.Forms.CheckBox chkCargoConfianca;
     }
 }
