@@ -30,11 +30,11 @@ namespace SISACON.FormsRH
         private void InitializeComponent()
         {
             this.gpboxConsulta = new System.Windows.Forms.GroupBox();
+            this.lblConsulta = new System.Windows.Forms.Label();
+            this.lblCampos = new System.Windows.Forms.Label();
+            this.btnPesquisar = new System.Windows.Forms.Button();
             this.txtCPFCNPJ = new System.Windows.Forms.TextBox();
             this.lblCPFCNPJ = new System.Windows.Forms.Label();
-            this.btnPesquisar = new System.Windows.Forms.Button();
-            this.lblCampos = new System.Windows.Forms.Label();
-            this.lblConsulta = new System.Windows.Forms.Label();
             this.gpboxConsulta.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +57,39 @@ namespace SISACON.FormsRH
             this.gpboxConsulta.Text = "Atualização de dados do funcionario";
             this.gpboxConsulta.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // lblConsulta
+            // 
+            this.lblConsulta.AutoSize = true;
+            this.lblConsulta.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulta.Location = new System.Drawing.Point(7, 42);
+            this.lblConsulta.Name = "lblConsulta";
+            this.lblConsulta.Size = new System.Drawing.Size(397, 19);
+            this.lblConsulta.TabIndex = 58;
+            this.lblConsulta.Text = "Para atualização dos dados por favor informe o CPF ou CNPJ";
+            // 
+            // lblCampos
+            // 
+            this.lblCampos.AutoSize = true;
+            this.lblCampos.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCampos.Location = new System.Drawing.Point(7, 134);
+            this.lblCampos.Name = "lblCampos";
+            this.lblCampos.Size = new System.Drawing.Size(155, 19);
+            this.lblCampos.TabIndex = 57;
+            this.lblCampos.Text = "* Campos obrigatórios";
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnPesquisar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisar.ForeColor = System.Drawing.Color.Yellow;
+            this.btnPesquisar.Location = new System.Drawing.Point(433, 82);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(119, 33);
+            this.btnPesquisar.TabIndex = 28;
+            this.btnPesquisar.Text = "Pesquisar";
+            this.btnPesquisar.UseVisualStyleBackColor = false;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
+            // 
             // txtCPFCNPJ
             // 
             this.txtCPFCNPJ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -76,38 +109,6 @@ namespace SISACON.FormsRH
             this.lblCPFCNPJ.Size = new System.Drawing.Size(88, 19);
             this.lblCPFCNPJ.TabIndex = 26;
             this.lblCPFCNPJ.Text = "* CPF/CNPJ:";
-            // 
-            // btnPesquisar
-            // 
-            this.btnPesquisar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnPesquisar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisar.ForeColor = System.Drawing.Color.Yellow;
-            this.btnPesquisar.Location = new System.Drawing.Point(433, 82);
-            this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(119, 33);
-            this.btnPesquisar.TabIndex = 28;
-            this.btnPesquisar.Text = "Pesquisar";
-            this.btnPesquisar.UseVisualStyleBackColor = false;
-            // 
-            // lblCampos
-            // 
-            this.lblCampos.AutoSize = true;
-            this.lblCampos.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCampos.Location = new System.Drawing.Point(7, 134);
-            this.lblCampos.Name = "lblCampos";
-            this.lblCampos.Size = new System.Drawing.Size(155, 19);
-            this.lblCampos.TabIndex = 57;
-            this.lblCampos.Text = "* Campos obrigatórios";
-            // 
-            // lblConsulta
-            // 
-            this.lblConsulta.AutoSize = true;
-            this.lblConsulta.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulta.Location = new System.Drawing.Point(7, 42);
-            this.lblConsulta.Name = "lblConsulta";
-            this.lblConsulta.Size = new System.Drawing.Size(397, 19);
-            this.lblConsulta.TabIndex = 58;
-            this.lblConsulta.Text = "Para atualização dos dados por favor informe o CPF ou CNPJ";
             // 
             // FormConsultaFunc
             // 

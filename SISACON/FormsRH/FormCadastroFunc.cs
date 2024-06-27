@@ -948,7 +948,7 @@ namespace SISACON.FormsRH
                         commandEmployeesHiring.ExecuteNonQuery();
                         transaction.Commit();
 
-                        MessageBox.Show("Dados cadastrados com sucesso!", "Sucesso");
+                        MessageBox.Show("Dados cadastrados com sucesso!", "SUCESSO!!");
 
                         LimparCampos();
 
