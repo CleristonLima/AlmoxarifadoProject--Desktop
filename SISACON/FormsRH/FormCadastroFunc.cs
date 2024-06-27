@@ -72,9 +72,7 @@ namespace SISACON.FormsRH
             PreencherComboxSuperior();
 
             this.Load += new EventHandler(FormCadastroFunc_Load);
-
         }
-
 
         private void pictureBoxFoto_Click(object sender, EventArgs e)
         {

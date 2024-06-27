@@ -59,13 +59,16 @@ namespace SISACON.FormsRH
 
                             int count = (int)commandCheckCpf.ExecuteScalar();
 
-                            if (count > 0)
+                            if (count == 1)
                             {
-                                MessageBox.Show("CPF existente na base");
+                                //MessageBox.Show("CPF existente na base");
+
+                                var atualizaFuncionario = new SISACON.FormsRH.FormAtualizaCadastroFunc();
+                                atualizaFuncionario.Show();
                             }
                             else
                             {
-                                MessageBox.Show("Não existe CPF favor fazer o cadastro");
+                                MessageBox.Show("Não existe esse CPF ou CNPJ cadastrado!");
                             }
                         }
                         catch (Exception ex)
