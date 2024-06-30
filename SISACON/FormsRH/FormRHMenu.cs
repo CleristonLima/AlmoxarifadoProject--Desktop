@@ -103,8 +103,8 @@ namespace SISACON.FormsRH
             else
             {
                 // Exibe o formulário de inicialização do sistema
-                var consultaFuncionario = new SISACON.FormsRH.FormConsultaFunc();
-                consultaFuncionario.Show();
+                var consultaAtualizaFuncionario = new SISACON.FormsRH.FormAtualizaCadastroFunc();
+                consultaAtualizaFuncionario.Show();
             }
         }
     }

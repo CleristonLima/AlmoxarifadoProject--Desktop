@@ -25,5 +25,6 @@ namespace SISACON.RHClass
             STATUS_OFFICE = status_office;
             POSITION_OF_TRUST = positionTrust;
         }
+
     }
 }
