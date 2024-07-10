@@ -665,9 +665,44 @@ namespace SISACON.FormsRH
             cbxBanco.ValueMember = "ID_BANK";
         }
 
-        private void btnFechar_Click(object sender, EventArgs e)
+        private void btnFechar_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProximo_Click(object sender, EventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+
+                tabCtlCadFunc.SelectedIndex = 1;
+
+            }
+        }
+
+        private void btnVoltar2_Click(object sender, EventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+
+                tabCtlCadFunc.SelectedIndex = 0;
+
+            }
         }
     }
 }
