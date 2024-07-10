@@ -650,7 +650,7 @@ namespace SISACON.FormsRH
 
 
 
-        private void btnProximo_Click(object sender, EventArgs e)
+        private void btnProximo_Click_1(object sender, EventArgs e)
         {
             string connectionString = ConexaoBancoDados.conn_;
 
@@ -793,7 +793,7 @@ namespace SISACON.FormsRH
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnVoltar2_Click(object sender, EventArgs e)
         {
             string connectionString = ConexaoBancoDados.conn_;
 
@@ -811,7 +811,7 @@ namespace SISACON.FormsRH
         }
 
         // Botão Salvar
-        private void button2_Click(object sender, EventArgs e)
+        private void btnSalvar2_Click(object sender, EventArgs e)
         {
 
             string connectionString = ConexaoBancoDados.conn_;
@@ -851,7 +851,7 @@ namespace SISACON.FormsRH
                          MessageBox.Show("Agência e Conta Inválidas!", "INVALIDAÇÃO");
                      }*/
 
-                    string usuarioLogado = UsuarioLogado.Login;
+                string usuarioLogado = UsuarioLogado.Login;
                 DateTime dataHoraAtual = DateTime.Now;
 
                 string cpfCnpj = txtCPFCNPJ.Text;
@@ -1035,7 +1035,7 @@ namespace SISACON.FormsRH
             txtNome.Focus();
         }
 
-        private void btnFechar_Click(object sender, EventArgs e)
+        private void btnFechar_Click_1(object sender, EventArgs e)
         {
             string connectionString = ConexaoBancoDados.conn_;
 
@@ -1047,17 +1047,17 @@ namespace SISACON.FormsRH
             else
             {
                 DialogResult result = MessageBox.Show("Se voltar o cadastro será cancelado, deseja fazer isso?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                
+
                 if (result == DialogResult.Yes)
-                { 
-                
+                {
+
                     string cpfCnpj = txtCPFCNPJ.Text;
 
 
                     string connection = ConexaoBancoDados.conn_;
 
                     using (SqlConnection conn = new SqlConnection(connection))
-                     {
+                    {
                         conn.Open();
                         SqlTransaction transaction = conn.BeginTransaction();
 
@@ -1178,6 +1178,7 @@ namespace SISACON.FormsRH
 
             cbxSuperior.SelectedIndex = 0;
         }
+
     }
     
 }
