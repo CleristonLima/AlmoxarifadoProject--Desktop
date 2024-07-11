@@ -29,6 +29,30 @@ namespace SISACON.FormsRH
             InitializeComponent();
             ConfigurarDateTimePickers();
 
+            // Habilitar o suporte a arrastar e soltar na PictureBox
+            pictureBoxFoto.AllowDrop = true;
+
+            // Lidar com o evento de arrastar e soltar
+            pictureBoxFoto.DragEnter += (sender, e) =>
+            {
+                DragEventArgs dragEvent = e as DragEventArgs;
+                if (dragEvent.Data.GetDataPresent(DataFormats.FileDrop))
+                    dragEvent.Effect = DragDropEffects.Copy;
+                else
+                    dragEvent.Effect = DragDropEffects.None;
+            };
+
+            pictureBoxFoto.DragDrop += (sender, e) =>
+            {
+                DragEventArgs dragEvent = e as DragEventArgs;
+                string[] files = (string[])dragEvent.Data.GetData(DataFormats.FileDrop);
+                if (files.Length > 0)
+                {
+                    string imagePath = files[0]; // Pegue apenas o primeiro arquivo
+                    pictureBoxFoto.Image = Image.FromFile(imagePath);
+                }
+            };
+
             txtCPFCNPJ.Leave += txtCPFCNPJ_Leave;
         }
 
@@ -672,7 +696,172 @@ namespace SISACON.FormsRH
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+                string usuarioLogado = UsuarioLogado.Login;
+                DateTime dataHoraAtual = DateTime.Now;
 
+                string cpfCnpj = txtConsultaCPFCNPJ.Text;
+
+                int IdEmplo = 0;
+
+                // Dados da tabela TB_HR_EMPLOYEES
+                string name = txtNome.Text;
+                string rgRne = txtRGRNE.Text;
+                string cpfCnpj2 = txtCPFCNPJ.Text;
+                DateTime bornDate = dateTimePickerDataNasc.Value.Date;
+                string zipCode = txtCEP.Text;
+                string address = txtEndereco.Text;
+                string number = txtNumero.Text;
+                string complement = txtComplemento.Text;
+                string district = txtBairro.Text;
+                string city = txtCidade.Text;
+                int state = (int)cbxEstado.SelectedValue;
+                int sex = (int)cbxSexo.SelectedValue;
+                int department = (int)cbxDepartamento.SelectedValue;
+                string nameLeader = cbxSuperior.Text;
+
+                byte[] photo = null;
+                if (pictureBoxFoto.Image != null)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+
+                       pictureBoxFoto.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // Substitua Jpeg pelo formato da sua imagem, se necessário
+                       photo = ms.ToArray();
+                    }
+                
+
+                    /* catch (System.Runtime.InteropServices.ExternalException ex)
+                     {
+                         MessageBox.Show($"Erro ao salvar a imagem: {ex.Message}", "Erro de Imagem");
+                         return;
+                     }*/
+                }
+                else
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        pictureBoxFoto.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // Substitua Jpeg pelo formato da sua imagem, se necessário
+                        //photo = ms.ToArray();                                                                     //photo = ms.ToArray();
+                    }
+                }
+
+                int office = (int)cbxCargo.SelectedValue;
+                int education = (int)cbxEscolaridade.SelectedValue;
+                string phoneNumber1 = txtPhone1.Text;
+                string phoneNumber2 = txtPhone2.Text;
+                string email = txtEmail.Text;
+
+                string connection = ConexaoBancoDados.conn_;
+                using (SqlConnection conn = new SqlConnection(connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        string queryGetId = "SELECT ID_EMPLO FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES WHERE CPF_CNPJ = @cpfCnpj";
+
+                        SqlCommand commandGetId = new SqlCommand(queryGetId, conn, transaction);
+                        commandGetId.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
+
+                        object idResult = commandGetId.ExecuteScalar();
+
+                        if (idResult != null)
+                        {
+                            IdEmplo = (int)idResult;
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("Funcionário não encontrado!", "Erro");
+                            return;
+                        }
+                        string updateQuery = "UPDATE DB_ALMOXARIFADO..TB_HR_EMPLOYEES " +
+                                           "  SET NAME_EMPLO = @nameEmplo" +
+                                           ", RG_RNE = @rgRne " +
+                                           ", CPF_CNPJ = @cpfCnpj2 " +
+                                           ", BORN_DATE = @bornDate " +
+                                           ", ZIP_CODE = @zipCode " +
+                                           ", ADDRESS_EMPLO = @addressEmplo " +
+                                           ", NUMBER = @number " +
+                                           ", COMPLEMENT = @complement " +
+                                           ", DISTRICT = @district " +
+                                           ", CITY = @city " +
+                                           ", UF_ID = @ufId " +
+                                           ", ID_SEX_EMPLO = @idSexEmplo " +
+                                           ", ID_EDUCATION = @idEducation " +
+                                           ", ID_DEPARTMENT = @idDepartment " +
+                                           ", ID_OFFICE = @idOffice " +
+                                           ", NAME_LEADER = @nameLeader " +
+                                           ", PHONE_NUMBER_1 = @phoneNumber1 " +
+                                           ", PHONE_NUMBER_2 = @phoneNumber2 " +
+                                           ", EMAIL = @email " +
+                                           ", USER_UPDATE = @userUpdate " +
+                                           ", DATE_UPDATE = @dateUpdate ";
+
+                            if (photo != null)
+                            {
+                                updateQuery += ", PHOTO = @photo";
+                            }
+                            else
+                            {
+                                updateQuery += ", PHOTO = NULL";
+                            }
+
+                            updateQuery += " WHERE ID_EMPLO = @IdEmplo";
+
+                            SqlCommand command = new SqlCommand(updateQuery, conn, transaction);
+
+                            // Atualizando os dados
+
+                            command.Parameters.AddWithValue("@nameEmplo", name);
+                            command.Parameters.AddWithValue("@rgRne", rgRne);
+                            command.Parameters.AddWithValue("@cpfCnpj2", cpfCnpj2);
+                            command.Parameters.AddWithValue("@bornDate", bornDate);
+                            command.Parameters.AddWithValue("@zipCode", zipCode);
+                            command.Parameters.AddWithValue("@addressEmplo", address);
+                            command.Parameters.AddWithValue("@number", number);
+                            command.Parameters.AddWithValue("@complement", complement);
+                            command.Parameters.AddWithValue("@district", district);
+                            command.Parameters.AddWithValue("@city", city);
+                            command.Parameters.AddWithValue("@ufId", state);
+                            command.Parameters.AddWithValue("@idSexEmplo", sex);
+                            command.Parameters.AddWithValue("@idDepartment", department);
+                            command.Parameters.AddWithValue("@nameLeader", nameLeader);
+                            command.Parameters.AddWithValue("@userUpdate", usuarioLogado);
+                            command.Parameters.AddWithValue("@dateUpdate", dataHoraAtual);
+                            command.Parameters.AddWithValue("@idOffice", office);
+                            command.Parameters.AddWithValue("@idEducation", education);
+                            command.Parameters.AddWithValue("@phoneNumber1", phoneNumber1);
+                            command.Parameters.AddWithValue("@phoneNumber2", phoneNumber2);
+                            command.Parameters.AddWithValue("@email", email);
+
+                            if (photo != null)
+                            {
+                                command.Parameters.AddWithValue("@photo", photo);
+                            }
+                            command.Parameters.AddWithValue("@IdEmplo", IdEmplo);
+
+                            command.ExecuteNonQuery();
+                            transaction.Commit();
+
+                            MessageBox.Show("Dados Atualizados com sucesso!", "Atualizados");
+                    
+                    }catch (Exception ex)
+                    {
+                            transaction.Rollback();
+                            MessageBox.Show($"Erro ao atualizar dados: {ex.Message}", "Erro");
+                    }
+                    
+                }
+            }
         }
 
         private void btnProximo_Click(object sender, EventArgs e)
