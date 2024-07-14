@@ -814,8 +814,6 @@ namespace SISACON.FormsRH
         private void btnSalvar2_Click(object sender, EventArgs e)
         {
 
-            string connectionString = ConexaoBancoDados.conn_;
-
             if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
             {
                 MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");

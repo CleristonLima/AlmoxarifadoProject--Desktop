@@ -33,7 +33,7 @@ namespace SISACON.FormsRH
             pictureBoxFoto.AllowDrop = true;
 
             // Lidar com o evento de arrastar e soltar
-            pictureBoxFoto.DragEnter += (sender, e) =>
+            /*pictureBoxFoto.DragEnter += (sender, e) =>
             {
                 DragEventArgs dragEvent = e as DragEventArgs;
                 if (dragEvent.Data.GetDataPresent(DataFormats.FileDrop))
@@ -51,7 +51,7 @@ namespace SISACON.FormsRH
                     string imagePath = files[0]; // Pegue apenas o primeiro arquivo
                     pictureBoxFoto.Image = Image.FromFile(imagePath);
                 }
-            };
+            };*/
 
             txtCPFCNPJ.Leave += txtCPFCNPJ_Leave;
         }
@@ -176,8 +176,8 @@ namespace SISACON.FormsRH
 
                                         if (reader["PHOTO"] != DBNull.Value)
                                         {
-                                            byte[] photoBytes = (byte[])reader["PHOTO"];
-                                            using (MemoryStream ms = new MemoryStream(photoBytes))
+                                            byte[] photoData = (byte[])reader["PHOTO"];
+                                            using (MemoryStream ms = new MemoryStream(photoData))
                                             {
                                                 pictureBoxFoto.Image = Image.FromStream(ms);
                                             }
@@ -701,8 +701,16 @@ namespace SISACON.FormsRH
                 MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
                 return;
             }
+
+            else if (string.IsNullOrWhiteSpace(txtConsultaCPFCNPJ.Text))
+            {
+                MessageBox.Show("Por favor informe o CPF ou CNPJ para atualizar os dados", "ATENÇÃO!!");
+                LimparCampos();
+            }
             else
             {
+                
+
                 string usuarioLogado = UsuarioLogado.Login;
                 DateTime dataHoraAtual = DateTime.Now;
 
@@ -726,31 +734,29 @@ namespace SISACON.FormsRH
                 int department = (int)cbxDepartamento.SelectedValue;
                 string nameLeader = cbxSuperior.Text;
 
-                byte[] photo = null;
+                /*byte[] photo = null;
+
+                bool photoChanged = false;
+
+                // Verifica se a imagem foi alterada
                 if (pictureBoxFoto.Image != null)
                 {
-                    using (MemoryStream ms = new MemoryStream())
+                    try
                     {
-
-                       pictureBoxFoto.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // Substitua Jpeg pelo formato da sua imagem, se necessário
-                       photo = ms.ToArray();
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            pictureBoxFoto.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // Substitua Jpeg pelo formato da sua imagem, se necessário
+                            photo = ms.ToArray();
+                            photoChanged = true;
+                        }
                     }
-                
-
-                    /* catch (System.Runtime.InteropServices.ExternalException ex)
-                     {
-                         MessageBox.Show($"Erro ao salvar a imagem: {ex.Message}", "Erro de Imagem");
-                         return;
-                     }*/
-                }
-                else
-                {
-                    using (MemoryStream ms = new MemoryStream())
+                    catch (System.Runtime.InteropServices.ExternalException ex)
                     {
-                        pictureBoxFoto.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // Substitua Jpeg pelo formato da sua imagem, se necessário
-                        //photo = ms.ToArray();                                                                     //photo = ms.ToArray();
+                        MessageBox.Show($"Erro ao salvar a imagem: {ex.Message}", "Erro de Imagem");
+                        return;
                     }
-                }
+                }*/
+
 
                 int office = (int)cbxCargo.SelectedValue;
                 int education = (int)cbxEscolaridade.SelectedValue;
@@ -804,18 +810,14 @@ namespace SISACON.FormsRH
                                            ", PHONE_NUMBER_2 = @phoneNumber2 " +
                                            ", EMAIL = @email " +
                                            ", USER_UPDATE = @userUpdate " +
-                                           ", DATE_UPDATE = @dateUpdate ";
+                                           ", DATE_UPDATE = @dateUpdate " +
+                                           " WHERE ID_EMPLO = @IdEmplo ";
 
-                            if (photo != null)
-                            {
-                                updateQuery += ", PHOTO = @photo";
-                            }
-                            else
-                            {
-                                updateQuery += ", PHOTO = NULL";
-                            }
-
-                            updateQuery += " WHERE ID_EMPLO = @IdEmplo";
+                        // Adiciona a foto à query apenas se ela foi alterada
+                       /* if (photoChanged)
+                        {
+                            updateQuery += ", PHOTO = @photo";
+                        }*/
 
                             SqlCommand command = new SqlCommand(updateQuery, conn, transaction);
 
@@ -843,10 +845,11 @@ namespace SISACON.FormsRH
                             command.Parameters.AddWithValue("@phoneNumber2", phoneNumber2);
                             command.Parameters.AddWithValue("@email", email);
 
-                            if (photo != null)
+                            /*if (photoChanged)
                             {
                                 command.Parameters.AddWithValue("@photo", photo);
-                            }
+                            }*/
+
                             command.Parameters.AddWithValue("@IdEmplo", IdEmplo);
 
                             command.ExecuteNonQuery();
@@ -854,7 +857,7 @@ namespace SISACON.FormsRH
 
                             MessageBox.Show("Dados Atualizados com sucesso!", "Atualizados");
                     
-                    }catch (Exception ex)
+                    } catch (Exception ex)
                     {
                             transaction.Rollback();
                             MessageBox.Show($"Erro ao atualizar dados: {ex.Message}", "Erro");
@@ -892,6 +895,272 @@ namespace SISACON.FormsRH
                 tabCtlCadFunc.SelectedIndex = 0;
 
             }
+        }
+
+        private void btnSalvar2_Click(object sender, EventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+
+            }else
+            {
+                if (string.IsNullOrWhiteSpace(txtNacionalidade.Text) || string.IsNullOrWhiteSpace(txtBoxNaturalidade.Text) || string.IsNullOrWhiteSpace(txtBoxNomeMae.Text) || string.IsNullOrWhiteSpace(txtAgencia.Text) ||
+                    string.IsNullOrWhiteSpace(txtSalario.Text) || string.IsNullOrWhiteSpace(txtConta.Text) || cbxEstadoNascimento.SelectedIndex == -1 || cbxEstadoCivil.SelectedIndex == -1 || cbxTipoContratacao.SelectedIndex == -1 ||
+                    cbxTipoConta.SelectedIndex == -1 || cbxBanco.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Por favor, preencha todos os campos obrigatórios.", "CAMPOS NÃO PREENCHIDOS!");
+                    return;
+                }
+
+                string usuarioLogado = UsuarioLogado.Login;
+                DateTime dataHoraAtual = DateTime.Now;
+
+                string cpfCnpj = txtConsultaCPFCNPJ.Text;
+
+                int IdEmplo = 0;
+
+                DateTime dateHiring = dateTimePickerHiring.Value.Date;
+                string nacionality = txtNacionalidade.Text;
+                string bornCity = txtBoxNaturalidade.Text;
+                int stateBorn = (int)cbxEstadoNascimento.SelectedValue;
+                string nameMother = txtBoxNomeMae.Text;
+                string nameFather = txtBoxNomePai.Text;
+                int civilState = (int)cbxEstadoCivil.SelectedValue;
+                int typeHiring = (int)cbxTipoContratacao.SelectedValue;
+
+                decimal salary;
+
+                if (!decimal.TryParse(txtSalario.Text, out salary))
+                {
+                    MessageBox.Show("O valor do salário é inválido. Insira um valor decimal.", "Erro de validação");
+                    return;
+                }
+
+                int typeCount = (int)cbxTipoConta.SelectedValue;
+                int bank = (int)cbxBanco.SelectedValue;
+                int agency = int.Parse(txtAgencia.Text);
+                string countSalary = txtConta.Text;
+                int numberCLT = int.Parse(txtCLT.Text);
+                string serie = txtSerie.Text;
+                DateTime? dateEmissionCLT = string.IsNullOrWhiteSpace(dateTimePickerDataEmissaoCLT.Text) ? (DateTime?)null : dateTimePickerDataEmissaoCLT.Value.Date;
+                long voterRegistration = long.Parse(txtEleitor.Text);
+                int zoneRegistration = int.Parse(txtZona.Text);
+                string sessionRegistration = txtSecao.Text;
+                int numberReservist = int.Parse(txtReservista.Text);
+                string serieReservist = txtSerieReservista.Text;
+                long numberDriverLicense = long.Parse(txtCNH.Text);
+                DateTime? dateValidateDriverLicense = string.IsNullOrWhiteSpace(dateTimePickerDataVencimentoCNH.Text) ? (DateTime?)null : dateTimePickerDataVencimentoCNH.Value.Date;
+                string typeDriver = txtCategoria.Text;
+                DateTime? dateEmissionDriverLicense = string.IsNullOrWhiteSpace(dateTimePickerDataEmissaoCNH.Text) ? (DateTime?)null : dateTimePickerDataEmissaoCNH.Value.Date;
+
+                string connection = ConexaoBancoDados.conn_;
+                using (SqlConnection conn = new SqlConnection(connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        string queryGetIdEh = "SELECT EH.ID_EMPLO " +
+                                            "FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES_HIRING EH " +
+                                            "INNER JOIN DB_ALMOXARIFADO..TB_HR_EMPLOYEES E " +
+                                                     "ON E.ID_EMPLO = EH.ID_EMPLO " +
+                                            "WHERE E.CPF_CNPJ = @cpfCnpj";
+
+                        SqlCommand commandGetIdEh = new SqlCommand(queryGetIdEh, conn, transaction);
+                        commandGetIdEh.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
+
+                        object idResult = commandGetIdEh.ExecuteScalar();
+
+                        if (idResult != null)
+                        {
+                            IdEmplo = (int)idResult;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Funcionário não encontrado!", "Erro");
+                            return;
+                        }
+                        string updateQuery2 = "UPDATE DB_ALMOXARIFADO..TB_HR_EMPLOYEES_HIRING " +
+                                            "SET DATE_HIRING = @dateHiring " +
+                                            "  , BORN_CITY = @bornCity " +
+                                            "  , UF_ID_BORN = @ufIdBorn " +
+                                            "  , NACIONALITY = @nacionality " +
+                                            "  , NAME_MOTHER = @nameMother " +
+                                            "  , NAME_FATHER = @nameFather " +
+                                            "  , ID_CIVIL_STATE = @idCivilState " +
+                                            "  , ID_TYPE_HIRING = @idTypeHiring " +
+                                            "  , SALARY = @salary " +
+                                            "  , ID_BANK = @idBank " +
+                                            "  , ID_TYPE_COUNT = @idTypeCount " +
+                                            "  , AGENCY = @agency " +
+                                            "  , COUNT_SALARY = @countSalary " +
+                                            "  , CLT_NUMBER = @cltNumber " +
+                                            "  , SERIE = @serie " +
+                                            "  , EMISSION_DATE_CLT = @emissionDateClt " +
+                                            "  , ZONE_REGISTRATION = @zoneRegistration " +
+                                            "  , SESSION_REGISTRATION = @sessionRegistration " +
+                                            "  , NUMBER_RESERVIST = @numberReservist " +
+                                            "  , SERIE_RESERVIST = @serieReservist " +
+                                            "  , DATE_VALIDATE_DRIVER_LICENSE = @dateValidateDriverLicense " +
+                                            "  , TYPE_DRIVER = @typeDriver " +
+                                            "  , EMISSION_DATE_DRIVER_LICENSE = @emissionDateDriverLicense " +
+                                            "  , VOTER_REGISTRATION = @voterRegistration " +
+                                            "  , NUMBER_DRIVER_LICENSE = @numberDriverLicense " +
+                                            "  , USER_UPDATE = @userUpdate " +
+                                            "  , DATE_UPDATE = @dateUpdate " +
+                                            "WHERE ID_EMPLO = @IdEmplo";
+
+                        SqlCommand commandEmployeesHiring = new SqlCommand(updateQuery2, conn, transaction);
+
+                        commandEmployeesHiring.Parameters.AddWithValue("@dateHiring", dateHiring);
+                        commandEmployeesHiring.Parameters.AddWithValue("@bornCity", bornCity);
+                        commandEmployeesHiring.Parameters.AddWithValue("@ufIdBorn", stateBorn);
+                        commandEmployeesHiring.Parameters.AddWithValue("@nacionality", nacionality);
+                        commandEmployeesHiring.Parameters.AddWithValue("@nameMother", nameMother);
+                        commandEmployeesHiring.Parameters.AddWithValue("@nameFather", nameFather);
+                        commandEmployeesHiring.Parameters.AddWithValue("@idCivilState", civilState);
+                        commandEmployeesHiring.Parameters.AddWithValue("@idTypeHiring", typeHiring);
+                        commandEmployeesHiring.Parameters.AddWithValue("@salary", salary);
+                        commandEmployeesHiring.Parameters.AddWithValue("@idBank", bank);
+                        commandEmployeesHiring.Parameters.AddWithValue("@idTypeCount", typeCount);
+                        commandEmployeesHiring.Parameters.AddWithValue("@agency", agency);
+                        commandEmployeesHiring.Parameters.AddWithValue("@countSalary", countSalary);
+                        commandEmployeesHiring.Parameters.AddWithValue("@cltNumber", numberCLT);
+                        commandEmployeesHiring.Parameters.AddWithValue("@serie", serie);
+                        commandEmployeesHiring.Parameters.AddWithValue("@emissionDateClt", (object)dateEmissionCLT ?? DBNull.Value);
+                        commandEmployeesHiring.Parameters.AddWithValue("@voterRegistration", voterRegistration);
+                        commandEmployeesHiring.Parameters.AddWithValue("@zoneRegistration", zoneRegistration);
+                        commandEmployeesHiring.Parameters.AddWithValue("@sessionRegistration", sessionRegistration);
+                        commandEmployeesHiring.Parameters.AddWithValue("@numberReservist", numberReservist);
+                        commandEmployeesHiring.Parameters.AddWithValue("@serieReservist", serieReservist);
+                        commandEmployeesHiring.Parameters.AddWithValue("@numberDriverLicense", numberDriverLicense);
+                        commandEmployeesHiring.Parameters.AddWithValue("@dateValidateDriverLicense", (object)dateValidateDriverLicense ?? DBNull.Value);
+                        commandEmployeesHiring.Parameters.AddWithValue("@typeDriver", typeDriver);
+                        commandEmployeesHiring.Parameters.AddWithValue("@emissionDateDriverLicense", (object)dateEmissionDriverLicense ?? DBNull.Value);
+                        commandEmployeesHiring.Parameters.AddWithValue("@userUpdate", usuarioLogado);
+                        commandEmployeesHiring.Parameters.AddWithValue("@dateUpdate", dataHoraAtual);
+
+                        commandEmployeesHiring.Parameters.AddWithValue("@IdEmplo", IdEmplo);
+
+                        commandEmployeesHiring.ExecuteNonQuery();
+                        transaction.Commit();
+
+                        MessageBox.Show("Dados Atualizados com sucesso!", "SUCESSO!!");
+
+                        LimparCampos();
+
+                        tabCtlCadFunc.SelectedIndex = 0;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show($"Erro ao atualizar dados: {ex.Message}", "Erro");
+                    }
+                }
+            }
+        }
+        private void LimparCampos()
+        {
+            txtConsultaCPFCNPJ.Text = "";
+            txtNome.Text = "";
+            txtRGRNE.Text = "";
+            txtCPFCNPJ.Text = "";
+            dateTimePickerDataNasc.Value = DateTime.Today;
+            txtCEP.Text = "";
+            txtEndereco.Text = "";
+            txtNumero.Text = "";
+            txtComplemento.Text = "";
+            txtBairro.Text = "";
+            txtCidade.Text = "";
+            cbxEstado.SelectedIndex = -1;
+            cbxSexo.SelectedIndex = -1;
+            cbxDepartamento.SelectedIndex = -1;
+            cbxSuperior.SelectedIndex = -1;
+            pictureBoxFoto.Image = null;
+            cbxCargo.SelectedIndex = -1;
+            cbxEscolaridade.SelectedIndex = -1;
+            txtPhone1.Text = "";
+            txtPhone2.Text = "";
+            txtEmail.Text = "";
+
+            // Limpando os campos que são referente a tabela TB_HR_EMPLOYEES_HIRING
+            txtNacionalidade.Text = "";
+            txtBoxNaturalidade.Text = "";
+            txtBoxNomeMae.Text = "";
+            txtBoxNomePai.Text = "";
+            cbxTipoConta.SelectedIndex = -1;
+            cbxBanco.SelectedIndex = -1;
+            cbxEstadoCivil.SelectedIndex = -1;
+            cbxTipoContratacao.SelectedIndex = -1;
+            txtSalario.Text = "";
+            txtAgencia.Text = "";
+            txtConta.Text = "";
+            txtCLT.Text = "";
+            txtSerie.Text = "";
+
+            dateTimePickerDataEmissaoCLT.CustomFormat = " ";
+            dateTimePickerDataEmissaoCLT.Format = DateTimePickerFormat.Custom;
+
+            txtEleitor.Text = "";
+            txtZona.Text = "";
+            txtSecao.Text = "";
+            txtReservista.Text = "";
+            txtSerieReservista.Text = "";
+            txtCNH.Text = "";
+
+            dateTimePickerDataVencimentoCNH.CustomFormat = " ";
+            dateTimePickerDataVencimentoCNH.Format = DateTimePickerFormat.Custom;
+
+            txtCategoria.Text = "";
+
+            dateTimePickerDataEmissaoCNH.CustomFormat = " ";
+            dateTimePickerDataEmissaoCNH.Format = DateTimePickerFormat.Custom;
+
+            txtConsultaCPFCNPJ.Focus();
+        }
+
+        private void FormAtualizaCadastroFunc_Load(object sender, EventArgs e)
+        {
+            ConfigurarDateTimePicker(dateTimePickerDataEmissaoCLT);
+            ConfigurarDateTimePicker(dateTimePickerDataVencimentoCNH);
+            ConfigurarDateTimePicker(dateTimePickerDataEmissaoCNH);
+        }
+
+        private void ConfigurarDateTimePicker(DateTimePicker dtp)
+        {
+            dtp.Format = DateTimePickerFormat.Custom;
+            dtp.CustomFormat = " "; // Espaço em branco para mostrar vazio
+            dtp.ValueChanged += new EventHandler(DateTimePicker_ValueChanged);
+        }
+
+        private void DateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            dtp.Format = DateTimePickerFormat.Custom;
+            dtp.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void dateTimePickerDataEmissaoCLT_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerDataEmissaoCLT.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDataEmissaoCLT.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void dateTimePickerDataVencimentoCNH_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerDataVencimentoCNH.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDataVencimentoCNH.CustomFormat = "dd/MM/yyyy";
+
+        }
+
+        private void dateTimePickerDataEmissaoCNH_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerDataEmissaoCNH.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDataEmissaoCNH.CustomFormat = "dd/MM/yyyy";
         }
     }
 }
