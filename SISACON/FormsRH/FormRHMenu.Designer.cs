@@ -157,6 +157,7 @@ namespace SISACON.FormsRH
             this.linkLblExcluirFuncionario.TabStop = true;
             this.linkLblExcluirFuncionario.Text = "Excluir funcionário";
             this.linkLblExcluirFuncionario.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLblExcluirFuncionario.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblExcluirFuncionario_LinkClicked);
             // 
             // linkLblFerias
             // 

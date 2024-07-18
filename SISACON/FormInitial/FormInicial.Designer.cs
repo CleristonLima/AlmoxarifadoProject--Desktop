@@ -48,6 +48,7 @@ namespace SISACON.FormInitial
             // 
             // linklblAdmin
             // 
+            this.linklblAdmin.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.linklblAdmin.AutoSize = true;
             this.linklblAdmin.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linklblAdmin.Location = new System.Drawing.Point(65, 326);
@@ -60,6 +61,7 @@ namespace SISACON.FormInitial
             // 
             // linkLblRH
             // 
+            this.linkLblRH.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.linkLblRH.AutoSize = true;
             this.linkLblRH.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLblRH.Location = new System.Drawing.Point(264, 326);
@@ -72,6 +74,7 @@ namespace SISACON.FormInitial
             // 
             // linkLblMaquinas
             // 
+            this.linkLblMaquinas.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.linkLblMaquinas.AutoSize = true;
             this.linkLblMaquinas.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLblMaquinas.Location = new System.Drawing.Point(523, 326);
@@ -83,6 +86,7 @@ namespace SISACON.FormInitial
             // 
             // linkLblVeiculos
             // 
+            this.linkLblVeiculos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.linkLblVeiculos.AutoSize = true;
             this.linkLblVeiculos.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLblVeiculos.Location = new System.Drawing.Point(785, 326);
@@ -94,6 +98,7 @@ namespace SISACON.FormInitial
             // 
             // linkLblFerramentas
             // 
+            this.linkLblFerramentas.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.linkLblFerramentas.AutoSize = true;
             this.linkLblFerramentas.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLblFerramentas.Location = new System.Drawing.Point(998, 326);
@@ -105,6 +110,7 @@ namespace SISACON.FormInitial
             // 
             // linkLblSair
             // 
+            this.linkLblSair.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.linkLblSair.AutoSize = true;
             this.linkLblSair.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLblSair.Location = new System.Drawing.Point(95, 590);
@@ -128,15 +134,17 @@ namespace SISACON.FormInitial
             // 
             // lblUsuarioLogado
             // 
+            this.lblUsuarioLogado.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblUsuarioLogado.AutoSize = true;
             this.lblUsuarioLogado.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioLogado.Location = new System.Drawing.Point(962, 20);
+            this.lblUsuarioLogado.Location = new System.Drawing.Point(515, 9);
             this.lblUsuarioLogado.Name = "lblUsuarioLogado";
             this.lblUsuarioLogado.Size = new System.Drawing.Size(0, 15);
             this.lblUsuarioLogado.TabIndex = 18;
             // 
             // btnSair
             // 
+            this.btnSair.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnSair.Image = global::SISACON.Properties.Resources.Sair;
             this.btnSair.Location = new System.Drawing.Point(69, 418);
             this.btnSair.Name = "btnSair";
@@ -147,6 +155,7 @@ namespace SISACON.FormInitial
             // 
             // btnFerramentas
             // 
+            this.btnFerramentas.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnFerramentas.Image = global::SISACON.Properties.Resources.Ferramentas;
             this.btnFerramentas.Location = new System.Drawing.Point(965, 162);
             this.btnFerramentas.Name = "btnFerramentas";
@@ -156,6 +165,7 @@ namespace SISACON.FormInitial
             // 
             // button1
             // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button1.Image = global::SISACON.Properties.Resources.Veiculo;
             this.button1.Location = new System.Drawing.Point(726, 162);
             this.button1.Name = "button1";
@@ -165,6 +175,7 @@ namespace SISACON.FormInitial
             // 
             // btnMaquina
             // 
+            this.btnMaquina.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnMaquina.Image = global::SISACON.Properties.Resources.Maquina;
             this.btnMaquina.Location = new System.Drawing.Point(473, 162);
             this.btnMaquina.Name = "btnMaquina";
@@ -174,6 +185,7 @@ namespace SISACON.FormInitial
             // 
             // btnRH
             // 
+            this.btnRH.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnRH.Image = global::SISACON.Properties.Resources.RH;
             this.btnRH.Location = new System.Drawing.Point(258, 162);
             this.btnRH.Name = "btnRH";
@@ -184,6 +196,7 @@ namespace SISACON.FormInitial
             // 
             // btnAdmin
             // 
+            this.btnAdmin.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAdmin.Image = ((System.Drawing.Image)(resources.GetObject("btnAdmin.Image")));
             this.btnAdmin.Location = new System.Drawing.Point(56, 162);
             this.btnAdmin.Name = "btnAdmin";
@@ -196,7 +209,7 @@ namespace SISACON.FormInitial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 626);
+            this.ClientSize = new System.Drawing.Size(1156, 626);
             this.Controls.Add(this.lblUsuarioLogado);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.linkLblSair);

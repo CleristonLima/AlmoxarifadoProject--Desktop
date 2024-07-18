@@ -41,6 +41,7 @@ namespace SISACON.FormsAdmin
             // 
             // linklblAdmin
             // 
+            this.linklblAdmin.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.linklblAdmin.AutoSize = true;
             this.linklblAdmin.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linklblAdmin.Location = new System.Drawing.Point(112, 308);
@@ -54,6 +55,7 @@ namespace SISACON.FormsAdmin
             // 
             // linkLabel1
             // 
+            this.linkLabel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.Location = new System.Drawing.Point(489, 308);
@@ -67,6 +69,7 @@ namespace SISACON.FormsAdmin
             // 
             // linkLabel2
             // 
+            this.linkLabel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel2.Location = new System.Drawing.Point(710, 308);
@@ -80,6 +83,7 @@ namespace SISACON.FormsAdmin
             // 
             // btnConsultaUsuário
             // 
+            this.btnConsultaUsuário.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnConsultaUsuário.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultaUsuário.Image")));
             this.btnConsultaUsuário.Location = new System.Drawing.Point(757, 131);
             this.btnConsultaUsuário.Name = "btnConsultaUsuário";
@@ -90,6 +94,7 @@ namespace SISACON.FormsAdmin
             // 
             // btnCadastroPerfil
             // 
+            this.btnCadastroPerfil.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnCadastroPerfil.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastroPerfil.Image")));
             this.btnCadastroPerfil.Location = new System.Drawing.Point(429, 131);
             this.btnCadastroPerfil.Name = "btnCadastroPerfil";
@@ -100,6 +105,7 @@ namespace SISACON.FormsAdmin
             // 
             // btnCadastroUser
             // 
+            this.btnCadastroUser.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnCadastroUser.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastroUser.Image")));
             this.btnCadastroUser.Location = new System.Drawing.Point(111, 131);
             this.btnCadastroUser.Margin = new System.Windows.Forms.Padding(10);
@@ -111,10 +117,11 @@ namespace SISACON.FormsAdmin
             // 
             // btnVoltar
             // 
+            this.btnVoltar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnVoltar.BackColor = System.Drawing.SystemColors.Control;
             this.btnVoltar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.ForeColor = System.Drawing.Color.Red;
-            this.btnVoltar.Location = new System.Drawing.Point(111, 407);
+            this.btnVoltar.Location = new System.Drawing.Point(803, 407);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnVoltar.Size = new System.Drawing.Size(92, 31);
