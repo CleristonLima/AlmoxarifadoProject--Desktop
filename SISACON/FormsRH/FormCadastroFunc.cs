@@ -652,7 +652,6 @@ namespace SISACON.FormsRH
 
         private void btnProximo_Click_1(object sender, EventArgs e)
         {
-            string connectionString = ConexaoBancoDados.conn_;
 
             if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
             {
@@ -1177,6 +1176,10 @@ namespace SISACON.FormsRH
             cbxSuperior.SelectedIndex = 0;
         }
 
+        private void dateTimePickerHiring_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }

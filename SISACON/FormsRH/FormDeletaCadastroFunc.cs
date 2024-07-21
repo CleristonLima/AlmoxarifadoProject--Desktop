@@ -272,6 +272,11 @@ namespace SISACON.FormsRH
                 MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
                 return;
             }
+            else if (string.IsNullOrWhiteSpace(txtConsultaCPFCNPJ.Text))
+            {
+                MessageBox.Show("Por favor informe o CPF ou CNPJ para atualizar os dados", "ATENÇÃO!!");
+                LimparCampos();
+            }
             else
             {
                 if (string.IsNullOrWhiteSpace(txtConsultaCPFCNPJ.Text))
@@ -546,7 +551,124 @@ namespace SISACON.FormsRH
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
 
+            }
+            else
+            {
+
+                string cpfCnpj = txtConsultaCPFCNPJ.Text;
+
+                int IdEmplo = 0;
+
+                string connection = ConexaoBancoDados.conn_;
+                using (SqlConnection conn = new SqlConnection(connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        // Obter o ID_EMPLO com base no CPF_CNPJ
+                        string queryGetId = "SELECT ID_EMPLO FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES WHERE CPF_CNPJ = @cpfCnpj";
+                        SqlCommand commandGetId = new SqlCommand(queryGetId, conn, transaction);
+                        commandGetId.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
+
+                        object idResult = commandGetId.ExecuteScalar();
+                        if (idResult == null)
+                        {
+                            MessageBox.Show("Funcionário não encontrado!", "Erro");
+                            return;
+                        }
+
+                        int idEmplo = (int)idResult;
+
+                        // Deletar da tabela TB_HR_EMPLOYEES_HIRING
+                        string queryDeleteHiring = "DELETE FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES_HIRING WHERE ID_EMPLO = @idEmplo";
+                        SqlCommand commandDeleteHiring = new SqlCommand(queryDeleteHiring, conn, transaction);
+                        commandDeleteHiring.Parameters.AddWithValue("@idEmplo", idEmplo);
+                        commandDeleteHiring.ExecuteNonQuery();
+
+                        // Deletar da tabela TB_HR_EMPLOYEES
+                        string queryDeleteEmployees = "DELETE FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES WHERE ID_EMPLO = @idEmplo";
+                        SqlCommand commandDeleteEmployees = new SqlCommand(queryDeleteEmployees, conn, transaction);
+                        commandDeleteEmployees.Parameters.AddWithValue("@idEmplo", idEmplo);
+                        commandDeleteEmployees.ExecuteNonQuery();
+
+                        transaction.Commit();
+                        MessageBox.Show("Funcionário excluído com sucesso!", "Sucesso");
+                        LimparCampos();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Erro ao excluir funcionário: " + ex.Message, "Erro");
+                    }
+                }
+            }
+        }
+
+        private void LimparCampos()
+        {
+            txtConsultaCPFCNPJ.Text = "";
+            txtNome.Text = "";
+            txtRGRNE.Text = "";
+            txtCPFCNPJ.Text = "";
+            dateTimePickerDataNasc.Value = DateTime.Today;
+            txtCEP.Text = "";
+            txtEndereco.Text = "";
+            txtNumero.Text = "";
+            txtComplemento.Text = "";
+            txtBairro.Text = "";
+            txtCidade.Text = "";
+            cbxEstado.SelectedIndex = -1;
+            cbxSexo.SelectedIndex = -1;
+            cbxDepartamento.SelectedIndex = -1;
+            cbxSuperior.SelectedIndex = -1;
+            pictureBoxFoto.Image = null;
+            cbxCargo.SelectedIndex = -1;
+            cbxEscolaridade.SelectedIndex = -1;
+            txtPhone1.Text = "";
+            txtPhone2.Text = "";
+            txtEmail.Text = "";
+
+            // Limpando os campos que são referente a tabela TB_HR_EMPLOYEES_HIRING
+            txtNacionalidade.Text = "";
+            txtBoxNaturalidade.Text = "";
+            txtBoxNomeMae.Text = "";
+            txtBoxNomePai.Text = "";
+            cbxTipoConta.SelectedIndex = -1;
+            cbxBanco.SelectedIndex = -1;
+            cbxEstadoCivil.SelectedIndex = -1;
+            cbxTipoContratacao.SelectedIndex = -1;
+            txtSalario.Text = "";
+            txtAgencia.Text = "";
+            txtConta.Text = "";
+            txtCLT.Text = "";
+            txtSerie.Text = "";
+
+            dateTimePickerDataEmissaoCLT.CustomFormat = " ";
+            dateTimePickerDataEmissaoCLT.Format = DateTimePickerFormat.Custom;
+
+            txtEleitor.Text = "";
+            txtZona.Text = "";
+            txtSecao.Text = "";
+            txtReservista.Text = "";
+            txtSerieReservista.Text = "";
+            txtCNH.Text = "";
+
+            dateTimePickerDataVencimentoCNH.CustomFormat = " ";
+            dateTimePickerDataVencimentoCNH.Format = DateTimePickerFormat.Custom;
+
+            txtCategoria.Text = "";
+
+            dateTimePickerDataEmissaoCNH.CustomFormat = " ";
+            dateTimePickerDataEmissaoCNH.Format = DateTimePickerFormat.Custom;
+
+            txtConsultaCPFCNPJ.Focus();
         }
     }
 }

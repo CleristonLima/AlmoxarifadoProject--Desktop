@@ -177,11 +177,12 @@ namespace SISACON.FormsRH
             this.linkLblDemissao.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLblDemissao.Location = new System.Drawing.Point(332, 98);
             this.linkLblDemissao.Name = "linkLblDemissao";
-            this.linkLblDemissao.Size = new System.Drawing.Size(183, 19);
+            this.linkLblDemissao.Size = new System.Drawing.Size(79, 19);
             this.linkLblDemissao.TabIndex = 17;
             this.linkLblDemissao.TabStop = true;
-            this.linkLblDemissao.Text = "Demissão de funcionários";
+            this.linkLblDemissao.Text = "Demissões";
             this.linkLblDemissao.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLblDemissao.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblDemissao_LinkClicked);
             // 
             // linkLblAtualizaFunc
             // 
