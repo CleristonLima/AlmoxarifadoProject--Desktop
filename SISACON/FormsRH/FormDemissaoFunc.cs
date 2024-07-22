@@ -67,6 +67,13 @@ namespace SISACON.FormsRH
 
                             int count = (int)commandCheckCpf.ExecuteScalar();
 
+                            if (count == 0)
+                            {
+                                MessageBox.Show("CPF ou CNPJ não encontrado!", "Erro");
+                                transaction.Rollback();
+                                return;
+                            }
+
                             if (count == 1)
                             {
 
@@ -229,6 +236,9 @@ namespace SISACON.FormsRH
 
             dateTimePickerDemission.CustomFormat = " ";
             dateTimePickerDemission.Format = DateTimePickerFormat.Custom;
+
+            dateTimePickerHiring.CustomFormat = " ";
+            dateTimePickerHiring.Format = DateTimePickerFormat.Custom;
 
             txtNome.Text = "";
             txtRGRNE.Text = "";

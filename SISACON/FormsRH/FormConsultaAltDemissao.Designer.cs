@@ -30,13 +30,14 @@ namespace SISACON.FormsRH
         private void InitializeComponent()
         {
             this.gpbConsultaDemissao = new System.Windows.Forms.GroupBox();
+            this.btnAlterar = new System.Windows.Forms.Button();
             this.btnVoltar2 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtObservacao = new System.Windows.Forms.TextBox();
             this.lblObservacao = new System.Windows.Forms.Label();
             this.txtMotivo = new System.Windows.Forms.TextBox();
             this.lblMotivo = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDemission = new System.Windows.Forms.DateTimePicker();
             this.lblDataDemissao = new System.Windows.Forms.Label();
             this.dateTimePickerHiring = new System.Windows.Forms.DateTimePicker();
             this.lblDataAdmissao = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@ namespace SISACON.FormsRH
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.txtConsultaCPFCNPJ = new System.Windows.Forms.TextBox();
             this.lblCPFCNPJ = new System.Windows.Forms.Label();
-            this.btnAlterar = new System.Windows.Forms.Button();
             this.gpbConsultaDemissao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +69,7 @@ namespace SISACON.FormsRH
             this.gpbConsultaDemissao.Controls.Add(this.lblObservacao);
             this.gpbConsultaDemissao.Controls.Add(this.txtMotivo);
             this.gpbConsultaDemissao.Controls.Add(this.lblMotivo);
-            this.gpbConsultaDemissao.Controls.Add(this.dateTimePicker1);
+            this.gpbConsultaDemissao.Controls.Add(this.dateTimePickerDemission);
             this.gpbConsultaDemissao.Controls.Add(this.lblDataDemissao);
             this.gpbConsultaDemissao.Controls.Add(this.dateTimePickerHiring);
             this.gpbConsultaDemissao.Controls.Add(this.lblDataAdmissao);
@@ -94,6 +94,19 @@ namespace SISACON.FormsRH
             this.gpbConsultaDemissao.TabStop = false;
             this.gpbConsultaDemissao.Text = "Consultar ou Alterar Demissão";
             // 
+            // btnAlterar
+            // 
+            this.btnAlterar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAlterar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlterar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnAlterar.Location = new System.Drawing.Point(820, 512);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(120, 37);
+            this.btnAlterar.TabIndex = 94;
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            // 
             // btnVoltar2
             // 
             this.btnVoltar2.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -105,6 +118,7 @@ namespace SISACON.FormsRH
             this.btnVoltar2.TabIndex = 84;
             this.btnVoltar2.Text = "Voltar";
             this.btnVoltar2.UseVisualStyleBackColor = true;
+            this.btnVoltar2.Click += new System.EventHandler(this.btnVoltar2_Click);
             // 
             // label7
             // 
@@ -158,14 +172,14 @@ namespace SISACON.FormsRH
             this.lblMotivo.TabIndex = 79;
             this.lblMotivo.Text = "Motivo:";
             // 
-            // dateTimePicker1
+            // dateTimePickerDemission
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(566, 227);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(121, 26);
-            this.dateTimePicker1.TabIndex = 78;
+            this.dateTimePickerDemission.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerDemission.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDemission.Location = new System.Drawing.Point(566, 227);
+            this.dateTimePickerDemission.Name = "dateTimePickerDemission";
+            this.dateTimePickerDemission.Size = new System.Drawing.Size(121, 26);
+            this.dateTimePickerDemission.TabIndex = 78;
             // 
             // lblDataDemissao
             // 
@@ -186,6 +200,7 @@ namespace SISACON.FormsRH
             this.dateTimePickerHiring.Name = "dateTimePickerHiring";
             this.dateTimePickerHiring.Size = new System.Drawing.Size(127, 26);
             this.dateTimePickerHiring.TabIndex = 76;
+            this.dateTimePickerHiring.ValueChanged += new System.EventHandler(this.dateTimePickerHiring_ValueChanged);
             // 
             // lblDataAdmissao
             // 
@@ -301,6 +316,7 @@ namespace SISACON.FormsRH
             this.btnPesquisar.TabIndex = 65;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.UseVisualStyleBackColor = false;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // txtConsultaCPFCNPJ
             // 
@@ -320,18 +336,6 @@ namespace SISACON.FormsRH
             this.lblCPFCNPJ.TabIndex = 63;
             this.lblCPFCNPJ.Text = "* CPF/CNPJ:";
             // 
-            // btnAlterar
-            // 
-            this.btnAlterar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAlterar.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlterar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnAlterar.Location = new System.Drawing.Point(820, 512);
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(120, 37);
-            this.btnAlterar.TabIndex = 94;
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.UseVisualStyleBackColor = true;
-            // 
             // FormConsultaAltDemissao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,6 +347,7 @@ namespace SISACON.FormsRH
             this.Name = "FormConsultaAltDemissao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CONSULTAR OU ALTERAR DADOS DEMISSÃO";
+            this.Load += new System.EventHandler(this.FormConsultaAltDemissao_Load);
             this.gpbConsultaDemissao.ResumeLayout(false);
             this.gpbConsultaDemissao.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).EndInit();
@@ -369,7 +374,7 @@ namespace SISACON.FormsRH
         private System.Windows.Forms.Label lblObservacao;
         private System.Windows.Forms.TextBox txtMotivo;
         private System.Windows.Forms.Label lblMotivo;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDemission;
         private System.Windows.Forms.Label lblDataDemissao;
         private System.Windows.Forms.DateTimePicker dateTimePickerHiring;
         private System.Windows.Forms.Label lblDataAdmissao;
