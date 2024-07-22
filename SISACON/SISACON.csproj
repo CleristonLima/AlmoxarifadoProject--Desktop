@@ -111,6 +111,12 @@
     <Compile Include="FormsRH\FormAtualizaCadastroFunc.Designer.cs">
       <DependentUpon>FormAtualizaCadastroFunc.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsRH\FormAtualizaCadFerias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormAtualizaCadFerias.Designer.cs">
+      <DependentUpon>FormAtualizaCadFerias.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsRH\FormAtualizaCargo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,12 @@
     </Compile>
     <Compile Include="FormsRH\FormCadastroDepartamento.Designer.cs">
       <DependentUpon>FormCadastroDepartamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRH\FormCadastroFerias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormCadastroFerias.Designer.cs">
+      <DependentUpon>FormCadastroFerias.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsRH\FormCadastroFunc.cs">
       <SubType>Form</SubType>
@@ -158,6 +170,12 @@
     </Compile>
     <Compile Include="FormsRH\FormMenuDemissao.Designer.cs">
       <DependentUpon>FormMenuDemissao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRH\FormMenuFerias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormMenuFerias.Designer.cs">
+      <DependentUpon>FormMenuFerias.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsRH\FormRHMenu.cs">
       <SubType>Form</SubType>
@@ -220,6 +238,9 @@
     <EmbeddedResource Include="FormsRH\FormAtualizaCadastroFunc.resx">
       <DependentUpon>FormAtualizaCadastroFunc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormAtualizaCadFerias.resx">
+      <DependentUpon>FormAtualizaCadFerias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormAtualizaCargo.resx">
       <DependentUpon>FormAtualizaCargo.cs</DependentUpon>
     </EmbeddedResource>
@@ -228,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormCadastroDepartamento.resx">
       <DependentUpon>FormCadastroDepartamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormCadastroFerias.resx">
+      <DependentUpon>FormCadastroFerias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormCadastroFunc.resx">
       <DependentUpon>FormCadastroFunc.cs</DependentUpon>
@@ -243,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormMenuDemissao.resx">
       <DependentUpon>FormMenuDemissao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormMenuFerias.resx">
+      <DependentUpon>FormMenuFerias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormRHMenu.resx">
       <DependentUpon>FormRHMenu.cs</DependentUpon>

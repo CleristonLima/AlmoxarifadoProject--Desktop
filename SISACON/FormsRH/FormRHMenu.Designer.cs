@@ -170,6 +170,7 @@ namespace SISACON.FormsRH
             this.linkLblFerias.TabStop = true;
             this.linkLblFerias.Text = "Férias remuneradas";
             this.linkLblFerias.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLblFerias.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblFerias_LinkClicked);
             // 
             // linkLblDemissao
             // 

@@ -13,26 +13,11 @@ using System.Windows.Forms;
 
 namespace SISACON.FormsRH
 {
-    public partial class FormDemissaoFunc : Form
+    public partial class FormAtualizaCadFerias : Form
     {
-        public FormDemissaoFunc()
+        public FormAtualizaCadFerias()
         {
             InitializeComponent();
-        }
-
-        private void FormDemissaoFunc_Load(object sender, EventArgs e)
-        {
-            ConfigurarDateTimePicker(dateTimePickerDemission);
-            ConfigurarDateTimePicker(dateTimePickerHiring);
-        }
-
-        private void ConfigurarDateTimePicker(DateTimePicker dtp)
-        {
-            dtp.Format = DateTimePickerFormat.Custom;
-            dtp.CustomFormat = " "; // Espaço em branco para mostrar vazio
-            dtp.ValueChanged += new EventHandler(dateTimePicker1_ValueChanged);
-            dtp.ValueChanged += new EventHandler(dateTimePickerHiring_ValueChanged);
-
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
@@ -83,14 +68,19 @@ namespace SISACON.FormsRH
                                     conn_.Open();
 
                                     string queryEmployees = "SELECT HE.NAME_EMPLO " +
-                                                          "     , HE.RG_RNE " +
-                                                          "     , HE.CPF_CNPJ " +
-                                                          "     , HE.PHOTO " +
-                                                          "     , HEH.DATE_HIRING " +
-                                                          "FROM TB_HR_EMPLOYEES HE " +
-                                                          "INNER JOIN TB_HR_EMPLOYEES_HIRING HEH " +
-                                                          "   ON HEH.ID_EMPLO = HE.ID_EMPLO " +
-                                                          " WHERE HE.CPF_CNPJ = @cpfCnpj";
+                                                           "    , HE.RG_RNE " +
+                                                           "    , HE.CPF_CNPJ " +
+                                                           "    , HE.PHOTO " +
+                                                           "    , EV.OBSERVATION " +
+                                                           "    , EV.DATE_START_VACATION " +
+                                                           "    , EV.DATE_FINISH_VACATION " +
+                                                           "FROM TB_HR_EMPLOYEES HE " +
+                                                           "INNER JOIN TB_HR_EMPLOYEES_X_VACATION EV " +
+                                                           "    ON EV.ID_EMPLO = HE.ID_EMPLO " +
+                                                           "WHERE HE.CPF_CNPJ = @cpfCnpj " +
+                                                           "AND EV.DATE_FINISH_VACATION = ( " +
+                                                           "    SELECT MAX(EV2.DATE_FINISH_VACATION) " +
+                                                           "    FROM TB_HR_EMPLOYEES_X_VACATION EV2)";
 
                                     SqlCommand command = new SqlCommand(queryEmployees, conn_);
                                     command.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
@@ -115,9 +105,13 @@ namespace SISACON.FormsRH
                                             pictureBoxFoto.Image = null;
                                         }
 
-                                        dateTimePickerHiring.Value = Convert.ToDateTime(reader["DATE_HIRING"]);
-                                        dateTimePickerHiring.Format = DateTimePickerFormat.Short;
+                                        dateTimePickerStartVacation.Value = Convert.ToDateTime(reader["DATE_START_VACATION"]);
+                                        dateTimePickerStartVacation.Format = DateTimePickerFormat.Short;
 
+                                        dateTimePickerFinishVacation.Value = Convert.ToDateTime(reader["DATE_FINISH_VACATION"]);
+                                        dateTimePickerFinishVacation.Format = DateTimePickerFormat.Short;
+
+                                        txtObservacao.Text = reader["OBSERVATION"].ToString();
                                     }
                                 }
                             }
@@ -137,7 +131,7 @@ namespace SISACON.FormsRH
             }
         }
 
-        private void btnProximo_Click(object sender, EventArgs e)
+        private void btnSalvar_Click(object sender, EventArgs e)
         {
             if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
             {
@@ -146,7 +140,7 @@ namespace SISACON.FormsRH
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(txtConsultaCPFCNPJ.Text) || string.IsNullOrWhiteSpace(txtMotivo.Text) || string.IsNullOrWhiteSpace(txtObservacao.Text) || dateTimePickerDemission.Value == dateTimePickerDemission.MinDate)
+                if (string.IsNullOrWhiteSpace(txtConsultaCPFCNPJ.Text) || dateTimePickerFinishVacation.Value == dateTimePickerFinishVacation.MinDate || dateTimePickerStartVacation.Value == dateTimePickerStartVacation.MinDate || string.IsNullOrWhiteSpace(txtObservacao.Text))
                 {
                     MessageBox.Show("Por favor, preencha todos os campos obrigatórios.", "CAMPOS NÃO PREENCHIDOS!");
                     return;
@@ -155,64 +149,61 @@ namespace SISACON.FormsRH
                 string usuarioLogado = UsuarioLogado.Login;
                 DateTime dataHoraAtual = DateTime.Now;
                 string cpfCnpj = txtCPFCNPJ.Text;
-                int idEmplo = 0;
+                int idEmploVac = 0;
 
-                DateTime dateDemission = dateTimePickerDemission.Value.Date;
-                string reason = txtMotivo.Text;
-                string observations = txtObservacao.Text;
+                DateTime dateStartVacation = dateTimePickerStartVacation.Value.Date;
+                DateTime dateFinishVacation = dateTimePickerFinishVacation.Value.Date;
+                string observation = txtObservacao.Text;
 
                 string connection = ConexaoBancoDados.conn_;
                 using (SqlConnection conn = new SqlConnection(connection))
                 {
                     conn.Open();
+                    string queryIdEmploXVac = "SELECT EV.ID_EMPLO_X_VAC " +
+                                            " FROM TB_HR_EMPLOYEES HE " +
+                                            "INNER JOIN TB_HR_EMPLOYEES_X_VACATION EV " +
+                                            "   ON EV.ID_EMPLO = HE.ID_EMPLO " +
+                                            "WHERE HE.CPF_CNPJ = @cpfCnpj " +
+                                            "AND EV.DATE_FINISH_VACATION = ( " +
+                                            "    SELECT MAX(EV2.DATE_FINISH_VACATION) " +
+                                            "    FROM TB_HR_EMPLOYEES_X_VACATION EV2)" ;
 
-                    string queryIdEmplo = "SELECT HE.ID_EMPLO " +
-                                        " FROM TB_HR_EMPLOYEES HE " +
-                                        " WHERE HE.CPF_CNPJ = @cpfCnpj";
-
-                    SqlCommand command = new SqlCommand(queryIdEmplo, conn);
+                    SqlCommand command = new SqlCommand(queryIdEmploXVac, conn);
                     command.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
 
                     object idResult = command.ExecuteScalar();
 
                     if (idResult != null)
                     {
-                        idEmplo = (int)idResult;
-                    }
-
-                    // Query para consulta se ja existe o registro de funcionário demitido
-                    string queryCheckDemission = "SELECT COUNT(*) FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES_DEMISSION WHERE ID_EMPLO = @idEmplo";
-                    SqlCommand commandCheckDemission = new SqlCommand(queryCheckDemission, conn);
-                    commandCheckDemission.Parameters.AddWithValue("@idEmplo", idEmplo);
-
-                    int demissionCount = (int)commandCheckDemission.ExecuteScalar();
-
-                    if (demissionCount > 0)
-                    {
-                        MessageBox.Show("Já existe um histórico de demissão cadastrado para este funcionário.", "Erro");
-                        return;
+                        idEmploVac = (int)idResult;
                     }
 
                     SqlTransaction transaction = conn.BeginTransaction();
 
                     try
                     {
-                        string queryInsert = "INSERT INTO DB_ALMOXARIFADO..TB_HR_EMPLOYEES_DEMISSION (ID_EMP_X_DEM, ID_EMPLO, DATE_DEMISSION, REASON, OBSERVATIONS, USER_INSERT, DATE_INSERT)" +
-                                                                                     "  VALUES (NEXT VALUE FOR SEQ_HR_EMPLOYEES_DEMISSION, @idEmplo, @dateDemission, @reason, @observations, @userInsert, @dateInsert)";
-                        using (SqlCommand commandInsert = new SqlCommand(queryInsert, conn, transaction))
+                        string queryUpdate = "UPDATE TB_HR_EMPLOYEES_X_VACATION " +
+                                           "   SET DATE_START_VACATION = @dateStartVacation " +
+                                           "     , DATE_FINISH_VACATION = @dateFinishVacation " +
+                                           "     , OBSERVATION = @observation " +
+                                           "     , USER_UPDATE = @userUpdate " +
+                                           "     , DATE_UPDATE = @dateUpdate " +
+                                           "WHERE ID_EMPLO_X_VAC = @idEmploVac ";
+
+                        using (SqlCommand commandUpdate = new SqlCommand(queryUpdate, conn, transaction))
                         {
-                            commandInsert.Parameters.AddWithValue("@idEmplo", idEmplo);
-                            commandInsert.Parameters.AddWithValue("@dateDemission", dateDemission);
-                            commandInsert.Parameters.AddWithValue("@reason", reason);
-                            commandInsert.Parameters.AddWithValue("@observations", observations);
-                            commandInsert.Parameters.AddWithValue("@userInsert", usuarioLogado);
-                            commandInsert.Parameters.AddWithValue("@dateInsert", dataHoraAtual);
+                            commandUpdate.Parameters.AddWithValue("@idEmploVac", idEmploVac);
+                            commandUpdate.Parameters.AddWithValue("@dateStartVacation", dateStartVacation);
+                            commandUpdate.Parameters.AddWithValue("@dateFinishVacation", dateFinishVacation);
+                            commandUpdate.Parameters.AddWithValue("@observation", observation);
+                            commandUpdate.Parameters.AddWithValue("@userUpdate", usuarioLogado);
+                            commandUpdate.Parameters.AddWithValue("@dateUpdate", dataHoraAtual);
 
-                            commandInsert.ExecuteNonQuery();
+                            commandUpdate.ExecuteNonQuery();
                             transaction.Commit();
-                            LimparCampos();
+                            //LimparCampos();
 
-                            MessageBox.Show("Funcionario demitido com sucesso!", "Sucesso");
+                            MessageBox.Show("Férias Atualizadas com sucesso!", "Sucesso");
                         }
                     }
                     catch (Exception ex)
@@ -224,38 +215,22 @@ namespace SISACON.FormsRH
             }
         }
 
+        private void dateTimePickerStartVacation_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerStartVacation.Format = DateTimePickerFormat.Custom;
+            dateTimePickerStartVacation.CustomFormat = "dd/MM/yyyy";
+
+        }
+
+        private void dateTimePickerFinishVacation_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerFinishVacation.Format = DateTimePickerFormat.Custom;
+            dateTimePickerFinishVacation.CustomFormat = "dd/MM/yyyy";
+        }
+
         private void btnVoltar2_Click(object sender, EventArgs e)
         {
             this.Close();
-
-        }
-
-        private void LimparCampos()
-        {
-            txtConsultaCPFCNPJ.Text = "";
-
-            dateTimePickerDemission.CustomFormat = " ";
-            dateTimePickerDemission.Format = DateTimePickerFormat.Custom;
-
-            dateTimePickerHiring.CustomFormat = " ";
-            dateTimePickerHiring.Format = DateTimePickerFormat.Custom;
-
-            txtNome.Text = "";
-            txtRGRNE.Text = "";
-            txtCPFCNPJ.Text = "";
-            txtMotivo.Text = "";
-            txtObservacao.Text = "";
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            dateTimePickerDemission.Format = DateTimePickerFormat.Custom;
-            dateTimePickerDemission.CustomFormat = "dd/MM/yyyy";
-        }
-
-        private void dateTimePickerHiring_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

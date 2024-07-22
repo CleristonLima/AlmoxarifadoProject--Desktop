@@ -137,5 +137,20 @@ namespace SISACON.FormsRH
                 demissaoFuncionario.Show();
             }
         }
+
+        private void linkLblFerias_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!");
+                return;
+            }
+            else
+            {
+                // Exibe o formulário de inicialização do sistema
+                var feriasFuncionario = new SISACON.FormsRH.FormMenuFerias();
+                feriasFuncionario.Show();
+            }
+        }
     }
 }

@@ -328,9 +328,9 @@ namespace SISACON.FormsRH
             this.lblConsulta.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConsulta.Location = new System.Drawing.Point(6, 29);
             this.lblConsulta.Name = "lblConsulta";
-            this.lblConsulta.Size = new System.Drawing.Size(432, 19);
+            this.lblConsulta.Size = new System.Drawing.Size(408, 19);
             this.lblConsulta.TabIndex = 67;
-            this.lblConsulta.Text = "Para ver realizar a demissão é necessário informar o CPF ou CNPJ";
+            this.lblConsulta.Text = "Para realizar a demissão é necessário informar o CPF ou CNPJ";
             // 
             // FormDemissaoFunc
             // 
