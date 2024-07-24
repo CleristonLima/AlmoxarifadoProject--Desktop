@@ -117,6 +117,12 @@
     <Compile Include="FormsRH\FormAtualizaCadFerias.Designer.cs">
       <DependentUpon>FormAtualizaCadFerias.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsRH\FormAtualizaCadLicenca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormAtualizaCadLicenca.Designer.cs">
+      <DependentUpon>FormAtualizaCadLicenca.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsRH\FormAtualizaCargo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,12 @@
     <Compile Include="FormsRH\FormDemissaoFunc.Designer.cs">
       <DependentUpon>FormDemissaoFunc.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsRH\FormLicencaFunc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormLicencaFunc.Designer.cs">
+      <DependentUpon>FormLicencaFunc.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsRH\FormMenuDemissao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +188,12 @@
     </Compile>
     <Compile Include="FormsRH\FormMenuFerias.Designer.cs">
       <DependentUpon>FormMenuFerias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsRH\FormMenuLicenca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsRH\FormMenuLicenca.Designer.cs">
+      <DependentUpon>FormMenuLicenca.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsRH\FormRHMenu.cs">
       <SubType>Form</SubType>
@@ -241,6 +259,9 @@
     <EmbeddedResource Include="FormsRH\FormAtualizaCadFerias.resx">
       <DependentUpon>FormAtualizaCadFerias.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormAtualizaCadLicenca.resx">
+      <DependentUpon>FormAtualizaCadLicenca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormAtualizaCargo.resx">
       <DependentUpon>FormAtualizaCargo.cs</DependentUpon>
     </EmbeddedResource>
@@ -265,11 +286,17 @@
     <EmbeddedResource Include="FormsRH\FormDemissaoFunc.resx">
       <DependentUpon>FormDemissaoFunc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormLicencaFunc.resx">
+      <DependentUpon>FormLicencaFunc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormMenuDemissao.resx">
       <DependentUpon>FormMenuDemissao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormMenuFerias.resx">
       <DependentUpon>FormMenuFerias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsRH\FormMenuLicenca.resx">
+      <DependentUpon>FormMenuLicenca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormRHMenu.resx">
       <DependentUpon>FormRHMenu.cs</DependentUpon>

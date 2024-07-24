@@ -13,25 +13,25 @@ using System.Windows.Forms;
 
 namespace SISACON.FormsRH
 {
-    public partial class FormAtualizaCadFerias : Form
+    public partial class FormAtualizaCadLicenca : Form
     {
-        public FormAtualizaCadFerias()
+        public FormAtualizaCadLicenca()
         {
             InitializeComponent();
         }
 
-        private void FormAtualizaCadFerias_Load(object sender, EventArgs e)
+        private void FormAtualizaCadLicenca_Load(object sender, EventArgs e)
         {
-            ConfigurarDateTimePicker(dateTimePickerStartVacation);
-            ConfigurarDateTimePicker(dateTimePickerFinishVacation);
+            ConfigurarDateTimePicker(dateTimePickerStartLicense);
+            ConfigurarDateTimePicker(dateTimePickerFinishLicense);
         }
 
         private void ConfigurarDateTimePicker(DateTimePicker dtp)
         {
             dtp.Format = DateTimePickerFormat.Custom;
             dtp.CustomFormat = " "; // Espaço em branco para mostrar vazio
-            dtp.ValueChanged += new EventHandler(dateTimePickerStartVacation_ValueChanged);
-            dtp.ValueChanged += new EventHandler(dateTimePickerFinishVacation_ValueChanged);
+            dtp.ValueChanged += new EventHandler(dateTimePickerStartLicense_ValueChanged);
+            dtp.ValueChanged += new EventHandler(dateTimePickerFinishLicense_ValueChanged);
 
         }
 
@@ -60,6 +60,7 @@ namespace SISACON.FormsRH
 
                         try
                         {
+
                             // Verificar se o CPF já existe na tabela
                             string query = "SELECT COUNT(*) FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES WHERE CPF_CNPJ = @cpfCnpj";
                             SqlCommand commandCheckCpf = new SqlCommand(query, conn, transaction);
@@ -90,32 +91,30 @@ namespace SISACON.FormsRH
 
                                 if (countDemission > 0)
                                 {
-                                    MessageBox.Show("CPF ou CNPJ informado encontra-se demitido, não é possivel atualizar dados das férias", "ATENÇÃO!");
+                                    MessageBox.Show("CPF ou CNPJ informado encontra-se demitido, não é possivel atualizar a licença!", "ATENÇÃO!");
                                     transaction.Rollback();
                                     return;
                                 }
                                 else
                                 {
-
                                     string connectionString = ConexaoBancoDados.conn_;
                                     using (SqlConnection conn_ = new SqlConnection(connectionString))
                                     {
                                         conn_.Open();
-
                                         string queryEmployees = "SELECT HE.NAME_EMPLO " +
-                                                               "    , HE.RG_RNE " +
-                                                               "    , HE.CPF_CNPJ " +
-                                                               "    , HE.PHOTO " +
-                                                               "    , EV.OBSERVATION " +
-                                                               "    , EV.DATE_START_VACATION " +
-                                                               "    , EV.DATE_FINISH_VACATION " +
-                                                               "FROM TB_HR_EMPLOYEES HE " +
-                                                               "INNER JOIN TB_HR_EMPLOYEES_X_VACATION EV " +
-                                                               "    ON EV.ID_EMPLO = HE.ID_EMPLO " +
-                                                               "WHERE HE.CPF_CNPJ = @cpfCnpj " +
-                                                               "AND EV.DATE_FINISH_VACATION = ( " +
-                                                               "    SELECT MAX(EV2.DATE_FINISH_VACATION) " +
-                                                               "    FROM TB_HR_EMPLOYEES_X_VACATION EV2)";
+                                                              "     , HE.RG_RNE " +
+                                                              "     , HE.CPF_CNPJ " +
+                                                              "     , HE.PHOTO " +
+                                                              "     , EL.DATE_START_LICENSE " +
+                                                              "     , EL.DATE_FINISH_LICENSE " +
+                                                              "     , EL.OBSERVATION " +
+                                                              "FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES HE " +
+                                                              "INNER JOIN DB_ALMOXARIFADO..TB_HR_EMPLOYEES_X_LICENSE EL " +
+                                                              "   ON EL.ID_EMPLO = HE.ID_EMPLO" +
+                                                              " WHERE HE.CPF_CNPJ = @cpfCnpj " +
+                                                              "AND EL.DATE_FINISH_LICENSE = ( " +
+                                                              "   SELECT MAX(EL2.DATE_FINISH_LICENSE) " +
+                                                              "     FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES_X_LICENSE EL2) ";
 
                                         SqlCommand command = new SqlCommand(queryEmployees, conn_);
                                         command.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
@@ -140,11 +139,11 @@ namespace SISACON.FormsRH
                                                 pictureBoxFoto.Image = null;
                                             }
 
-                                            dateTimePickerStartVacation.Value = Convert.ToDateTime(reader["DATE_START_VACATION"]);
-                                            dateTimePickerStartVacation.Format = DateTimePickerFormat.Short;
+                                            dateTimePickerStartLicense.Value = Convert.ToDateTime(reader["DATE_START_LICENSE"]);
+                                            dateTimePickerStartLicense.Format = DateTimePickerFormat.Short;
 
-                                            dateTimePickerFinishVacation.Value = Convert.ToDateTime(reader["DATE_FINISH_VACATION"]);
-                                            dateTimePickerFinishVacation.Format = DateTimePickerFormat.Short;
+                                            dateTimePickerFinishLicense.Value = Convert.ToDateTime(reader["DATE_FINISH_LICENSE"]);
+                                            dateTimePickerFinishLicense.Format = DateTimePickerFormat.Short;
 
                                             txtObservacao.Text = reader["OBSERVATION"].ToString();
                                         }
@@ -176,7 +175,7 @@ namespace SISACON.FormsRH
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(txtConsultaCPFCNPJ.Text) || dateTimePickerFinishVacation.Value == dateTimePickerFinishVacation.MinDate || dateTimePickerStartVacation.Value == dateTimePickerStartVacation.MinDate || string.IsNullOrWhiteSpace(txtObservacao.Text))
+                if (string.IsNullOrWhiteSpace(txtConsultaCPFCNPJ.Text) || dateTimePickerFinishLicense.Value == dateTimePickerFinishLicense.MinDate || dateTimePickerStartLicense.Value == dateTimePickerStartLicense.MinDate || string.IsNullOrWhiteSpace(txtObservacao.Text))
                 {
                     MessageBox.Show("Por favor, preencha todos os campos obrigatórios.", "CAMPOS NÃO PREENCHIDOS!");
                     return;
@@ -185,52 +184,53 @@ namespace SISACON.FormsRH
                 string usuarioLogado = UsuarioLogado.Login;
                 DateTime dataHoraAtual = DateTime.Now;
                 string cpfCnpj = txtCPFCNPJ.Text;
-                int idEmploVac = 0;
+                int idEmploLic = 0;
 
-                DateTime dateStartVacation = dateTimePickerStartVacation.Value.Date;
-                DateTime dateFinishVacation = dateTimePickerFinishVacation.Value.Date;
+                DateTime dateStartLicense = dateTimePickerStartLicense.Value.Date;
+                DateTime dateFinishLicense = dateTimePickerFinishLicense.Value.Date;
                 string observation = txtObservacao.Text;
 
                 string connection = ConexaoBancoDados.conn_;
                 using (SqlConnection conn = new SqlConnection(connection))
                 {
                     conn.Open();
-                    string queryIdEmploXVac = "SELECT EV.ID_EMPLO_X_VAC " +
-                                            " FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES HE " +
-                                            "INNER JOIN DB_ALMOXARIFADO..TB_HR_EMPLOYEES_X_VACATION EV " +
-                                            "   ON EV.ID_EMPLO = HE.ID_EMPLO " +
-                                            "WHERE HE.CPF_CNPJ = @cpfCnpj " +
-                                            "AND EV.DATE_FINISH_VACATION = ( " +
-                                            "    SELECT MAX(EV2.DATE_FINISH_VACATION) " +
-                                            "    FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES_X_VACATION EV2)";
 
-                    SqlCommand command = new SqlCommand(queryIdEmploXVac, conn);
+                    string queryIdEmploLic = "SELECT EL.ID_EMPLO_X_LIC " +
+                                           "  FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES E " +
+                                           "INNER JOIN DB_ALMOXARIFADO..TB_HR_EMPLOYEES_X_LICENSE EL " +
+                                           "   ON EL.ID_EMPLO = E.ID_EMPLO " +
+                                           "WHERE E.CPF_CNPJ = @cpfCnpj " +
+                                           "AND EL.DATE_FINISH_LICENSE = ( " +
+                                           "   SELECT MAX(EL2.DATE_FINISH_LICENSE) " +
+                                           "     FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES_X_LICENSE EL2) ";
+
+                    SqlCommand command = new SqlCommand(queryIdEmploLic, conn);
                     command.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
 
                     object idResult = command.ExecuteScalar();
 
                     if (idResult != null)
                     {
-                        idEmploVac = (int)idResult;
+                        idEmploLic = (int)idResult;
                     }
 
                     SqlTransaction transaction = conn.BeginTransaction();
 
                     try
                     {
-                        string queryUpdate = "UPDATE DB_ALMOXARIFADO..TB_HR_EMPLOYEES_X_VACATION " +
-                                           "   SET DATE_START_VACATION = @dateStartVacation " +
-                                           "     , DATE_FINISH_VACATION = @dateFinishVacation " +
-                                           "     , OBSERVATION = @observation " +
-                                           "     , USER_UPDATE = @userUpdate " +
-                                           "     , DATE_UPDATE = @dateUpdate " +
-                                           "WHERE ID_EMPLO_X_VAC = @idEmploVac ";
+                        string queryUpdate = "UPDATE DB_ALMOXARIFADO..TB_HR_EMPLOYEES_X_LICENSE " +
+                                            "  SET DATE_START_LICENSE = @dateStartLicense " +
+                                            "    , DATE_FINISH_LICENSE = @dateFinishLicense " +
+                                            "    , OBSERVATION = @observation " +
+                                            "    , USER_UPDATE = @userUpdate " +
+                                            "    , DATE_UPDATE = @dateUpdate " +
+                                            "WHERE ID_EMPLO_X_LIC = @idEmploLic";
 
                         using (SqlCommand commandUpdate = new SqlCommand(queryUpdate, conn, transaction))
                         {
-                            commandUpdate.Parameters.AddWithValue("@idEmploVac", idEmploVac);
-                            commandUpdate.Parameters.AddWithValue("@dateStartVacation", dateStartVacation);
-                            commandUpdate.Parameters.AddWithValue("@dateFinishVacation", dateFinishVacation);
+                            commandUpdate.Parameters.AddWithValue("@idEmploLic", idEmploLic);
+                            commandUpdate.Parameters.AddWithValue("@dateStartLicense", dateStartLicense);
+                            commandUpdate.Parameters.AddWithValue("@dateFinishLicense", dateFinishLicense);
                             commandUpdate.Parameters.AddWithValue("@observation", observation);
                             commandUpdate.Parameters.AddWithValue("@userUpdate", usuarioLogado);
                             commandUpdate.Parameters.AddWithValue("@dateUpdate", dataHoraAtual);
@@ -239,7 +239,7 @@ namespace SISACON.FormsRH
                             transaction.Commit();
                             LimparCampos();
 
-                            MessageBox.Show("Férias Atualizada com sucesso!", "Sucesso");
+                            MessageBox.Show("Licença Atualizada com sucesso!", "Sucesso");
                         }
                     }
                     catch (Exception ex)
@@ -261,31 +261,24 @@ namespace SISACON.FormsRH
 
             pictureBoxFoto.Image = null;
 
-            dateTimePickerStartVacation.CustomFormat = " ";
-            dateTimePickerStartVacation.Format = DateTimePickerFormat.Custom;
+            dateTimePickerStartLicense.CustomFormat = " ";
+            dateTimePickerStartLicense.Format = DateTimePickerFormat.Custom;
 
-            dateTimePickerFinishVacation.CustomFormat = " ";
-            dateTimePickerFinishVacation.Format = DateTimePickerFormat.Custom;
+            dateTimePickerFinishLicense.CustomFormat = " ";
+            dateTimePickerFinishLicense.Format = DateTimePickerFormat.Custom;
         }
 
-        private void dateTimePickerStartVacation_ValueChanged(object sender, EventArgs e)
+        private void dateTimePickerStartLicense_ValueChanged(object sender, EventArgs e)
         {
-            dateTimePickerStartVacation.Format = DateTimePickerFormat.Custom;
-            dateTimePickerStartVacation.CustomFormat = "dd/MM/yyyy";
-
+            dateTimePickerStartLicense.Format = DateTimePickerFormat.Custom;
+            dateTimePickerStartLicense.CustomFormat = "dd/MM/yyyy";
         }
 
-        private void dateTimePickerFinishVacation_ValueChanged(object sender, EventArgs e)
+        private void dateTimePickerFinishLicense_ValueChanged(object sender, EventArgs e)
         {
-            dateTimePickerFinishVacation.Format = DateTimePickerFormat.Custom;
-            dateTimePickerFinishVacation.CustomFormat = "dd/MM/yyyy";
+            dateTimePickerFinishLicense.Format = DateTimePickerFormat.Custom;
+            dateTimePickerFinishLicense.CustomFormat = "dd/MM/yyyy";
         }
 
-        private void btnVoltar2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        
     }
 }

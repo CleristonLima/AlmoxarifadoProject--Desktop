@@ -145,6 +145,7 @@ namespace SISACON.FormsRH
             this.linkLblLicenca.TabStop = true;
             this.linkLblLicenca.Text = "Licença dos funcionários";
             this.linkLblLicenca.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLblLicenca.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblLicenca_LinkClicked);
             // 
             // linkLblExcluirFuncionario
             // 

@@ -74,42 +74,63 @@ namespace SISACON.FormsRH
                                 return;
                             }
 
-                            if (count == 1)
+                            else if (count == 1)
                             {
+                                // Verifica se o funcionario esta demitido
+                                string queryDemission = "SELECT COUNT(ED.ID_EMPLO) " +
+                                                      "  FROM DB_ALMOXARIFADO..TB_HR_EMPLOYEES_DEMISSION ED " +
+                                                      " INNER JOIN DB_ALMOXARIFADO..TB_HR_EMPLOYEES E " +
+                                                      "    ON E.ID_EMPLO = ED.ID_EMPLO " +
+                                                      "WHERE E.CPF_CNPJ = @cpfCnpj";
 
-                                string connectionString = ConexaoBancoDados.conn_;
-                                using (SqlConnection conn_ = new SqlConnection(connectionString))
+                                SqlCommand commandCheckDemission = new SqlCommand(queryDemission, conn, transaction);
+                                commandCheckDemission.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
+
+                                int countDemission = (int)commandCheckDemission.ExecuteScalar();
+
+                                if (countDemission > 0)
                                 {
-                                    conn_.Open();
+                                    MessageBox.Show("CPF ou CNPJ informado encontra-se demitido, não é possivel realizar férias!", "ATENÇÃO!");
+                                    transaction.Rollback();
+                                    return;
+                                }
 
-                                    string queryEmployees = "SELECT HE.NAME_EMPLO " +
-                                                          "     , HE.RG_RNE " +
-                                                          "     , HE.CPF_CNPJ " +
-                                                          "     , HE.PHOTO " +
-                                                          "FROM TB_HR_EMPLOYEES HE " +
-                                                          " WHERE HE.CPF_CNPJ = @cpfCnpj";
-
-                                    SqlCommand command = new SqlCommand(queryEmployees, conn_);
-                                    command.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
-                                    SqlDataReader reader = command.ExecuteReader();
-
-                                    if (reader.Read())
+                                else
+                                {
+                                    string connectionString = ConexaoBancoDados.conn_;
+                                    using (SqlConnection conn_ = new SqlConnection(connectionString))
                                     {
-                                        txtNome.Text = reader["NAME_EMPLO"].ToString();
-                                        txtRGRNE.Text = reader["RG_RNE"].ToString();
-                                        txtCPFCNPJ.Text = reader["CPF_CNPJ"].ToString();
+                                        conn_.Open();
 
-                                        if (reader["PHOTO"] != DBNull.Value)
+                                        string queryEmployees = "SELECT HE.NAME_EMPLO " +
+                                                              "     , HE.RG_RNE " +
+                                                              "     , HE.CPF_CNPJ " +
+                                                              "     , HE.PHOTO " +
+                                                              "FROM TB_HR_EMPLOYEES HE " +
+                                                              " WHERE HE.CPF_CNPJ = @cpfCnpj";
+
+                                        SqlCommand command = new SqlCommand(queryEmployees, conn_);
+                                        command.Parameters.AddWithValue("@cpfCnpj", cpfCnpj);
+                                        SqlDataReader reader = command.ExecuteReader();
+
+                                        if (reader.Read())
                                         {
-                                            byte[] photoData = (byte[])reader["PHOTO"];
-                                            using (MemoryStream ms = new MemoryStream(photoData))
+                                            txtNome.Text = reader["NAME_EMPLO"].ToString();
+                                            txtRGRNE.Text = reader["RG_RNE"].ToString();
+                                            txtCPFCNPJ.Text = reader["CPF_CNPJ"].ToString();
+
+                                            if (reader["PHOTO"] != DBNull.Value)
                                             {
-                                                pictureBoxFoto.Image = Image.FromStream(ms);
+                                                byte[] photoData = (byte[])reader["PHOTO"];
+                                                using (MemoryStream ms = new MemoryStream(photoData))
+                                                {
+                                                    pictureBoxFoto.Image = Image.FromStream(ms);
+                                                }
                                             }
-                                        }
-                                        else
-                                        {
-                                            pictureBoxFoto.Image = null;
+                                            else
+                                            {
+                                                pictureBoxFoto.Image = null;
+                                            }
                                         }
                                     }
                                 }
@@ -191,7 +212,7 @@ namespace SISACON.FormsRH
 
                             commandInsert.ExecuteNonQuery();
                             transaction.Commit();
-                            //LimparCampos();
+                            LimparCampos();
 
                             MessageBox.Show("Férias Cadastradas com sucesso!", "Sucesso");
                         }
@@ -215,6 +236,20 @@ namespace SISACON.FormsRH
         {
             dateTimePickerFinishVacation.Format = DateTimePickerFormat.Custom;
             dateTimePickerFinishVacation.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void LimparCampos()
+        {
+            txtConsultaCPFCNPJ.Text = "";
+            txtNome.Text = "";
+            txtRGRNE.Text = "";
+            txtObservacao.Text = "";
+
+            dateTimePickerStartVacation.CustomFormat = " ";
+            dateTimePickerStartVacation.Format = DateTimePickerFormat.Custom;
+
+            dateTimePickerFinishVacation.CustomFormat = " ";
+            dateTimePickerFinishVacation.Format = DateTimePickerFormat.Custom;
         }
 
         private void btnVoltar2_Click(object sender, EventArgs e)

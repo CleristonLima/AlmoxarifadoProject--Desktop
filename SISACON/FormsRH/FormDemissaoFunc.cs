@@ -245,6 +245,8 @@ namespace SISACON.FormsRH
             txtCPFCNPJ.Text = "";
             txtMotivo.Text = "";
             txtObservacao.Text = "";
+
+            pictureBoxFoto.Image = null;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
