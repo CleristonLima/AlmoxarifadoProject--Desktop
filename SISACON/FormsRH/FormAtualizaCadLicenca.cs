@@ -280,5 +280,9 @@ namespace SISACON.FormsRH
             dateTimePickerFinishLicense.CustomFormat = "dd/MM/yyyy";
         }
 
+        private void btnVoltar2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

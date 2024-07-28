@@ -85,6 +85,36 @@ namespace SISACON.FormInitial
             }
         }
 
+        private void btnMaquina_Click(object sender, EventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+                // Exibe o formulário de inicialização do sistema
+                var machine = new SISACON.FormsMaquinas.FormMenuMaquinas();
+                machine.Show();
+            }
+        }
+
+        private void linkLblMaquinas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!ConexaoInternet.ConexaoInternet.VerificarConexao())
+            {
+                MessageBox.Show("Sem Conexão com a internet!!", "SEM ACESSO A REDE!");
+                return;
+            }
+            else
+            {
+                // Exibe o formulário de inicialização do sistema
+                var machine = new SISACON.FormsMaquinas.FormMenuMaquinas();
+                machine.Show();
+            }
+        }
+
         private void btnSair_Click(object sender, EventArgs e)
         {
             Form[] forms = Application.OpenForms.Cast<Form>().ToArray();
@@ -113,6 +143,7 @@ namespace SISACON.FormInitial
                 }
             }
         }
+
         
     }
 }

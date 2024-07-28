@@ -83,6 +83,7 @@ namespace SISACON.FormInitial
             this.linkLblMaquinas.TabIndex = 12;
             this.linkLblMaquinas.TabStop = true;
             this.linkLblMaquinas.Text = "Maquinas";
+            this.linkLblMaquinas.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblMaquinas_LinkClicked);
             // 
             // linkLblVeiculos
             // 
@@ -182,6 +183,7 @@ namespace SISACON.FormInitial
             this.btnMaquina.Size = new System.Drawing.Size(193, 149);
             this.btnMaquina.TabIndex = 4;
             this.btnMaquina.UseVisualStyleBackColor = true;
+            this.btnMaquina.Click += new System.EventHandler(this.btnMaquina_Click);
             // 
             // btnRH
             // 

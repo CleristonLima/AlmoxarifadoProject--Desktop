@@ -33,6 +33,7 @@ namespace SISACON.FormsRH
             this.cbxCargo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxCadCargo = new System.Windows.Forms.GroupBox();
+            this.chkCargoConfianca = new System.Windows.Forms.CheckBox();
             this.cbxStatus = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
@@ -40,7 +41,6 @@ namespace SISACON.FormsRH
             this.txtCargo = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblCargo = new System.Windows.Forms.Label();
-            this.chkCargoConfianca = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxCadCargo.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +64,7 @@ namespace SISACON.FormsRH
             // 
             this.cbxCargo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxCargo.FormattingEnabled = true;
-            this.cbxCargo.Location = new System.Drawing.Point(64, 56);
+            this.cbxCargo.Location = new System.Drawing.Point(64, 57);
             this.cbxCargo.Name = "cbxCargo";
             this.cbxCargo.Size = new System.Drawing.Size(246, 26);
             this.cbxCargo.TabIndex = 1;
@@ -101,6 +101,17 @@ namespace SISACON.FormsRH
             this.groupBoxCadCargo.TabIndex = 27;
             this.groupBoxCadCargo.TabStop = false;
             this.groupBoxCadCargo.Text = "Cadastro de cargos";
+            // 
+            // chkCargoConfianca
+            // 
+            this.chkCargoConfianca.AutoSize = true;
+            this.chkCargoConfianca.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCargoConfianca.Location = new System.Drawing.Point(333, 112);
+            this.chkCargoConfianca.Name = "chkCargoConfianca";
+            this.chkCargoConfianca.Size = new System.Drawing.Size(165, 23);
+            this.chkCargoConfianca.TabIndex = 29;
+            this.chkCargoConfianca.Text = "Cargo de confiança?";
+            this.chkCargoConfianca.UseVisualStyleBackColor = true;
             // 
             // cbxStatus
             // 
@@ -178,17 +189,6 @@ namespace SISACON.FormsRH
             this.lblCargo.TabIndex = 1;
             this.lblCargo.Text = "* Nome do Cargo:";
             // 
-            // chkCargoConfianca
-            // 
-            this.chkCargoConfianca.AutoSize = true;
-            this.chkCargoConfianca.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkCargoConfianca.Location = new System.Drawing.Point(333, 112);
-            this.chkCargoConfianca.Name = "chkCargoConfianca";
-            this.chkCargoConfianca.Size = new System.Drawing.Size(165, 23);
-            this.chkCargoConfianca.TabIndex = 29;
-            this.chkCargoConfianca.Text = "Cargo de confiança?";
-            this.chkCargoConfianca.UseVisualStyleBackColor = true;
-            // 
             // FormAtualizaCargo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,6 +196,7 @@ namespace SISACON.FormsRH
             this.ClientSize = new System.Drawing.Size(553, 404);
             this.Controls.Add(this.groupBoxCadCargo);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "FormAtualizaCargo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

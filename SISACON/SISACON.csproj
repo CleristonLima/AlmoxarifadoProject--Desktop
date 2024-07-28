@@ -99,6 +99,24 @@
     <Compile Include="FormsAdmin\FormOpcõesDeCadastroPerfil.Designer.cs">
       <DependentUpon>FormOpcõesDeCadastroPerfil.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsMaquinas\FormAtualizaFabricante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsMaquinas\FormAtualizaFabricante.Designer.cs">
+      <DependentUpon>FormAtualizaFabricante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsMaquinas\FormCadastroFabricante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsMaquinas\FormCadastroFabricante.Designer.cs">
+      <DependentUpon>FormCadastroFabricante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsMaquinas\FormMenuMaquinas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsMaquinas\FormMenuMaquinas.Designer.cs">
+      <DependentUpon>FormMenuMaquinas.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsRH\FormAtualizaCadastroDepartamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +219,8 @@
     <Compile Include="FormsRH\FormRHMenu.Designer.cs">
       <DependentUpon>FormRHMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="MaquinasClass\Fabricante.cs" />
+    <Compile Include="MaquinasClass\FabricanteDAO\FabricanteDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdminClass\StatusCadastroUsuario.cs" />
@@ -249,6 +269,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsAdmin\FormOpcõesDeCadastroPerfil.resx">
       <DependentUpon>FormOpcõesDeCadastroPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsMaquinas\FormAtualizaFabricante.resx">
+      <DependentUpon>FormAtualizaFabricante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsMaquinas\FormCadastroFabricante.resx">
+      <DependentUpon>FormCadastroFabricante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsMaquinas\FormMenuMaquinas.resx">
+      <DependentUpon>FormMenuMaquinas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsRH\FormAtualizaCadastroDepartamento.resx">
       <DependentUpon>FormAtualizaCadastroDepartamento.cs</DependentUpon>

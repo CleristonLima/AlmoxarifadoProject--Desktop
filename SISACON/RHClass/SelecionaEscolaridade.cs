@@ -14,7 +14,6 @@ namespace SISACON.RHClass
 
         public SelecionaEscolaridade() { }
 
-
         public SelecionaEscolaridade(int id_education, string name_education)
         {
             ID_EDUCATION = id_education;
